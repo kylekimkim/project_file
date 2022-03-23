@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//동물(이름,눈,코,입,다리,움직인다,숨을쉰다)
+//강아지(이름,종,눈,코,입,다리,꼬리,털,move,smell,wag,breath ...)
+//고양이(이름,종,눈,코,입,다리,꼬리,털,move,jump,hunt,hairUp ...)
+//망아지
+//동물 => 강아지
+//동물 => 고양이
+//동물 => 망아지
+//.....
+class Animal{
+    name;eyes;nose;mouth;legs;
+    constructor(name,eyes=2,nose=1,mouth=1,legs=4){
+        this.name=name;
+        this.eyes=Number(eyes);
+        this.nose=Number(nose);
+        this.mouth=Number(mouth);
+        this.legs=Number(legs);
+    }
+    move(){
+        return `${this.name}가 다리 ${this.legs}개로 움직인다.`;
+    }
+    breath(){
+        return `${this.name}가 코 ${this.nose}개로 숨을 쉰다.`;
+    }
+}
+class Dog extends Animal{
+    tail;hair;species;
+    //기본값을 주는 매개변수는 끝에 지정해야 한다.
+    constructor(name,species,tail,hair,legs=4,eyes=2,nose=1,mouth=1){
+        super(name,eyes,nose,mouth,legs);
+        this.tail=tail;
+        this.hair=hair;
+        this.species=species;
+        this.walk="터벅터벅";
+    }//오버라이딩
+
+    //함수 재정의
+    //(말티즈)홍구가 다리 4개로 움직인다. 터벅터벅!
+    move(){
+        //return `(${this.species}){this.name}가 다리 ${this.legs}개로 움직인다.`;
+        //완전히 수정하는 재정의
+        return `(${this.species})${super.move()} ${this.walk}!`;
+        //부모의 함수를 호출하고 재정의하기
+    }
+}//부모의 함수를 자식이 재정의 => 오버라이딩
+
+
+
+class Cat extends Animal{
+}
+
+
+const 홍구=new Dog("홍구",1,"반곱슬","말티즈");
+console.log(홍구);
+console.log(홍구.move());
+//10개 동물을 정의했다.
+//의뢰 (수정사항) 모든 개수가 있는 필드를 정의할 때 꼭 형변환 하세요.
+//의뢰 (수정사항) 다른 필드도 기본값은 있지만 정의하게 해주세요.
+
+</script>
+</body>
+</html>

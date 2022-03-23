@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본 데이터 타입 Number</title>
+</head>
+<body>
+    <h1>부동 소수점 Number로 기본 데이터 타입을 선언하자</h1>
+    <p>64bit의 부동 소수점 분수(1~52) 지수(53~64) 부호(.)</p>
+    <ul>
+        <!--(li>{Number.}script{document.write()})*4-->
+        <li>
+            Number.MAX_VALUE :
+            <script>
+                document.write("<b>"+Number.MAX_VALUE+"</b>");
+            </script>
+        </li>
+        <li>
+            Number.MIN_VALUE :
+            <b id="min_value"></b>
+            <script>
+                document.getElementById("min_value").innerText=Number.MIN_VALUE
+            </script>
+        </li>
+        <li>
+            Number.MAX_SAFE_INTEGER:
+            <script>document.write(Number.MAX_SAFE_INTEGER)</script>
+        </li>
+        <li>
+            Number.MIN_SAFE_INTEGER:
+            <script>document.write(Number.MIN_SAFE_INTEGER)</script>
+        </li>
+        <li>
+            Number.POSITIVE_INFINITY:
+            <script>document.write(Number.POSITIVE_INFINITY)</script>
+        </li>
+        <li>
+            Number.NEGATIVE_INFINITY:
+            <script>document.write(Number.NEGATIVE_INFINITY)</script>
+        </li>
+        <li>
+            Number.Nan:
+            <script>document.write(Number.NaN)</script>
+        </li>
+        <li>
+            10/0:
+            <script>document.write(10/0)</script>
+        </li>
+        <li>
+            -10/0:
+            <script>document.write(-10/0)</script>
+        </li>
+        <li>
+            Number("이십)":
+            <script>document.write(Number("이십"))</script>
+        </li>
+        <li>
+            "이십"*3:
+            <script>document.write("이십"*3)</script>
+            <ol>
+                <li>"이십"을 숫자로 형변환 시도</li>
+                <li>NaN*3=>NaN</li>
+                <li>수가 아닌 것을 수로 연산 => 심각한 오류(흔한 오류)</li>
+                <li>오류를 메세지로 바꿔서 실행이 취소되는 것을 막는다.</li>
+                <li>개발자가 NaN 처리할 수 있도록 도와준다.</li>
+            </ol>
+        </li>
+        <li>
+            Number.isNaN("이십)":
+            <script>document.write(Number.isNaN(Number("이십")))</script>
+        </li>
+        <li>
+            Number.isNan("20*3)":
+            <script>document.write(Number.isNaN(20*3))</script>
+        </li>
+        <li>
+            "20"*3:
+            <script>document.write("20"*3)</script>
+        </li>
+        <li>
+            "20구"*3:
+            <script>document.write("20구"*3)</script>
+        </li>
+        <li>
+            "구20"*3:
+            <script>document.write("구20"*3)</script>
+        </li>
+        <li>
+            "구20"+3 (문자열 + 연산):
+            <script>document.write("구20"+3)</script>
+            <ol>
+                <li>+연산은 문자열이 우선이다.</li>
+                <li>*/-%..은 수만 연산</li>
+                <li>문자열 + 수 => 수를 문자열로 형 변환한다.</li>
+            </ol>
+        </li>
+    </ul>
+<script>
+console.log("십이"*8); //오류 => js가 오류로 만들지 않으려고 노력 => NaN를 대입
+console.log("NaN 이후 코드 실행");
+
+const c="상수";
+c="대입";
+console.log("오류 이후에는 아무것도 실행되지 않는다.")
+</script>
+</body>
+</html>

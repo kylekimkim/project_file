@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member ajax</title>
+</head>
+<body>
+    <h1>MYSQL SHOP.MEMBER의 TABLE을 AJAX로 제어하자</h1>
+    <hr>
+    <h2>SHOP.MEMBER insert FORM <button id="memFormLoad">불러오기</button></h2>
+    <div id="memFormCont">
+
+    </div>
+    <hr>
+    <table style="width:100%">
+        <caption>
+            <strong>SHOP.MEMBER LIST</strong>
+            <button id="memListAjax">리스트 출력</button>
+        </caption>
+        <thead>
+            <tr><th>아이디</th><th>이름</th><th>이메일</th><th>폰</th><th>삭제</th> <th>수정</th></tr>
+        </thead>
+        <tbody id="memList"></tbody>
+    </table>
+<script>
+const AJAX_SERVER="http://127.0.0.1:7777";//상수
+const memFormLoad=document.getElementById("memFormLoad");    
+const memListAjax=document.getElementById("memListAjax");
+const memFormCont=document.getElementById("memFormCont");
+
+memFormLoad.addEventListener("click",()=>{
+    fetch(AJAX_SERVER+"/member/loadForm")
+    .then((res)=>{return res.text()})
+    .then((html_text)=>{memFormCont.innerHTML=html_text});
+});
+
+memListAjax.addEventListener("click",()=>{
+    fetch(AJAX_SERVER+"/member/list",{method:"GET",credentials:'omit'})
+    .then((res)=>{return res.json()})
+    .then((memList)=>{
+        console.log(memList);
+        let html="";
+        memList.forEach((mem)=>{
+            html+="<tr>";
+                let key;
+                for(key in mem){
+                    if(key==="ID"){
+                        html+=
+                        `<td>${mem[key]}/
+                            <a href='javascript:memDel("${mem[key]}")'>
+                                삭제                                
+                            </a>
+                        </td>`;
+                    }else{
+                        html+=`<td>${mem[key]}            
+                            </td>`;
+                    }
+                }
+            html+="</tr>";
+        })
+        document.getElementById("memList").innerHTML=html;
+    })
+});
+function memDel(id){
+    alert(id);
+    fetch(AJAX_SERVER+"/member/delete?id="+id,{method:"GET",credentials:"omit"})
+    .then(res=>res.json())
+    .then((del_obj)=>{
+        let msg="";
+        if(del_obj["delete"]===-1){
+            msg="삭제가 실패(참조키거나 통신장애)"
+            console.log(del_obj["msg"]);
+        }else if(del_obj["delete"]===0){
+            msg="이미 삭제된 data";
+        }else if(del_obj["delete"]>0){
+            msg=del_obj["delete"]+"개 삭제 되었습니다.";
+        }
+        alert(msg);
+    })
+}
+</script>
+</body>
+</html>

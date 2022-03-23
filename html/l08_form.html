@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>양식을 제출하는 form 요소</title>
+</head>
+<body>
+    <h1>form 요소로 서버에 양식을 제출해 보자</h1>
+    <p>jsp와 같은 서버에서 양식을 처리할 수 있는 페이지를 작성해야 한다.</p>
+    <h2>로그인 양식</h2>
+    <form name="userLogin" action="/login.jsp" method="get">
+        <p><input type="text" name="id" placeholder="아이디" value=""></p>
+        <p><input type="password" name="pw" placeholder="비밀번호"></p>
+        <p><input type="submit" value="로그인"></p>
+    </form>
+    <h3>회원가입 양식</h3>
+    <form name="userInsert">
+        <p><input type="text" name="id" placeholder="아이디"></p>
+        <p><input type="password" name="pw" placeholder="비밀번호"></p>
+        <p><input type="password" name="pwC" placeholder="비밀번호 확인"></p>
+        <p>
+            <label for="genderM">남자</label>
+            <input type="radio" name="gender" id="genderM" value="m">
+            <label for="genderF">여자</label>
+            <input type="radio" name="gender" id="genderF"value="f">
+            <!-- radio는 선택을 하면 gender="m" or "f" -->
+        </p>
+        <p>
+            주소 :
+            <select name="city" id="" multiple>
+                <option value="">도시 선택</option>
+                <option value="서울">서울</option>
+                <option value="부산">부산</option>
+                <option value="광주">광주</option>
+                <optgroup label="경기도">
+                    <option value="파주">파주</option>
+                    <option value="고양">고양</option>
+                    <option value="양주">양주</option>
+                    <option value="의정부">의정부</option>
+                </optgroup>
+                
+            </select>
+        </p>
+        <p>
+            취미 <br>
+            <label for="reading">독서</label>
+            <input type="checkbox" name="hobby" id="reading" value="독서">
+            <label for="cooking">요리</label>
+            <input type="checkbox" name="hobby" id="cooking" value="요리">
+            <label for="music">음악</label>
+            <input type="checkbox" name="hobby" id="music" value="음악">
+        </p>
+        <p>
+            <label>
+                자기소개
+                :<br>
+<textarea name="info" cols="30" rows="3" style="resize: none;">
+안녕하세요.
+빅데이터 수업입니다.
+</textarea>
+            </label>
+        </p>
+        <p>
+            <label>이메일
+                <input type="email" list="email_list">
+                <datalist id="email_list">
+                    <option value="@naver.com">
+                    <option value="@gmail.com">
+                    <option value="@hanmail.net">
+                        
+                </datalist>
+            </label>
+        </p>
+        <p>
+            <label>생일
+                <input type="date" value="2002-01-01">
+            </label>
+        </p>
+        <p id="pwCmsg"></p>
+        <p>
+            <input type="reset" value="초기화">
+            <input type="submit" value="회원가입">
+        </p>
+    </form>
+<script>
+    console.log(new Date());//
+    console.log(userInsert.gender[0].checked);
+    console.log(userInsert.gender[1].checked);
+    console.log(userInsert.gender);
+    //console.log(document.forms[0]);  ///비권장
+    //console.log(document.form["userLogin"]);
+    //console.log(document.form.userLogin);
+    //console.log(userLogin.id);
+    //oninput: 입력요소 이벤트로 입력요소에 입력 이벤트가 발생하면 실행되는 이벤트 속성
+    //A==B (비교 연산자)
+    userInsert.pwC.oninput=function(){
+        var result=(this.value == userInsert.pw.value);
+        
+        if(result){ //result가 참일 때 실행하는 영역
+            pwCmsg.innerText="사용할 수 있는 패스워드";
+            pwCmsg.style.color="green";
+        }else{ //result가 거짓일 때 실행되는 영역
+            pwCmsg.innerText="잘못 입력한 패스워드";
+            pwCmsg.style.color="red";
+        }
+    }
+
+
+</script>
+
+
+    <a href="/book.list.jsp?page=1&cate=과학">url로 통신하는 방식은 모두 GET 방식이다.</a>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shop board list</title>
+</head>
+<script>
+window.onload=()=>{} //window가 load 된 시점
+document.addEventListener("DOMContentLoaded",()=>{})
+
+window.addEventListener("DOMContentLoaded",()=>{
+const loadBoardListBtn=document.getElementById("loadBoardListBtn");
+const boardListTbody=document.getElementById("boardList");
+const idMsg=document.getElementById("idMsg");
+
+const boardForm=document.forms.boardForm;
+let insertCheck=false;
+boardForm.id.addEventListener("blur",(e)=>{
+    let id=e.target.value;
+    boardReadDetail(id)
+    .then((res)=>{return res.json()})
+    .then((boardList)=>{
+        let length=boardList.length;
+        if(length==0){
+                idMsg.innerHTML=("사용가능한 아이디");
+                idMsg.style.color="green";
+                insertCheck=true;
+            }else{
+                idMsg.innerHTML=("사용할 수 없는 아이디");
+                idMsg.style.color="red";
+                e.target.value="";
+                insertCheck=false;
+            }
+    })
+
+});
+const FormData=function(id,title,content){
+    this.id=id;
+    this.title=title;
+    this.content=content;
+}
+boardForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    if(insertCheck){
+        const formData=new FormData(boardForm.id.value,boardForm.title.value,boardForm.content.value)
+        boardCreate(formData)
+    }
+})
+
+
+loadBoardListBtn.addEventListener("click",boardRead);
+const boardClone=document.querySelector("#boardList>.boardClone"); 
+function boardRead(){
+    fetch("/board/ajax/read.do")
+        .then((res)=>{return res.json()})
+        .then((boardList)=>{
+            boardListTbody.innerHTML="";
+            boardList.forEach((board)=>{
+                const boardNode=boardClone.cloneNode(true);
+                boardNode.style.display="";
+                let key;
+                for(key in board){
+                    switch(key){
+                        case "ID": 
+                        setIDNode(board[key],boardNode); 
+                        break;
+                        case "TITLE":
+                        boardNode.querySelector(".title").innerText=board[key];
+                        break;
+                        case "CONTENTS":
+                        boardNode.querySelector(".content").innerText=board[key];
+                        break;
+                    }
+                }
+                boardListTbody.append(boardNode);
+            })
+        });
+}
+function setIDNode(value,boardNode){
+        boardNode.querySelector(".id").innerText=value;
+        boardNode.querySelector(".update").addEventListener("click",()=>{boardUpdateCont(value)})
+        boardNode.querySelector(".delete").addEventListener("click",()=>{boardDeleteCont(value)})
+    }
+function boardDeleteCont(id){
+    boardDelete(id)
+    .then((res)=>{return res.json()})
+    .then((delete_result)=>{
+        console.log(delete_result["delete"]);
+        boardRead();
+    })
+}
+const boardUpdateForm=document.forms.boardUpdateForm;
+function boardUpdateCont(id){
+    boardReadDetail(id)
+    .then((res)=>{return res.json()})
+    .then((boardList)=>{
+        if(boardList.length>0){
+            const board=boardList[0];
+            boardUpdateForm.id.value=board.ID;
+            boardUpdateForm.title.value=board.TITLE;
+            boardUpdateForm.content.value=board.CONTENTS;
+        }
+    });
+}
+boardUpdateForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+        const formdata=new FormData(
+            boardUpdateForm.id.value,
+            boardUpdateForm.title.value,
+            boardUpdateForm.content.value)
+        boardUpdate(formdata)
+        .then((res)=>{return res.json()})
+        .then((result)=>{
+            //-1:에러, 0:삭제된 레코드입니다, 1:수정성공
+            console.log(result);
+        });
+})
+
+
+function boardReadDetail(id){
+    return fetch("/board/ajax/readDetail.do?id="+id);
+}
+function boardUpdate(formData){
+    console.log(formData);
+        return fetch("/board/ajax/update.do",{
+            method: "post",
+            headers: {"Content-type":"application/json"},
+            body: JSON.stringify(formData)
+        })
+}
+function boardCreate(formData){
+    return fetch("/board/ajax/create.do",{
+        method: "post",
+        headers: { 'Content-type':'application/json'},
+        body: JSON.stringify(formData)
+    })
+}
+function boardDelete(id){
+    return fetch("/board/ajax/delete.do?id="+id);
+}
+
+
+});
+</script>
+<body>
+    <h1>게시판 관리를 해보자</h1>
+    <ul>
+        <li>회원 관리</li>
+        <li>상품 관리</li>
+        <li><a href="/board/list.do">게시판 관리</a></li>
+    </ul>
+<main>
+    <h2>게시판 등록</h2>
+    <form name="boardForm">
+        <p>
+            <label for="">아이디<input name="id" type="text" value="ZZZ"></label>
+            <br><strong id="idMsg">blur로 중복체크중</strong>
+        </p>
+        <p><label for="">제목<input name="title" type="text" value="제목을 입력하시오"></label></p>
+        <p><label for="">내용<input name="content" value="내용을 입력하시오"></label></p>
+        <P><button name="submitBtn">입력</button></P>
+    </form>
+    <hr>
+    <h2>게시판 관리</h2>
+    <h3>게시판 리스트 <button id="loadBoardListBtn">출력</button></h3>
+        <table>
+            <thead>
+                <tr><td>아이디</td><td>제목</td><td>내용</td>
+                    <td>수정</td><td>삭제</td>
+                </tr>
+            </thead>
+            <tbody id="boardList">
+                <tr class="boardClone" style="display:none;">
+                    <td class="id">아이디</td>
+                    <td class="title">제목</td>
+                    <td class="content">내용</td>
+                    <td><button class="update">수정</button></td>
+                    <td><button class="delete">삭제</button></td>
+                </tr>
+            </tbody>
+        </table>
+    <hr>
+    <h2>게시판 수정</h2>
+    <form name="boardUpdateForm" id="boardUpdateForm">
+        <p>
+            <label for="">아이디<input name="id" type="text" value="" disabled></label>
+        </p>
+        <p><label for="">제목<input name="title" type="text" value=""></label></p>
+        <p><label for="">내용<input name="content" value=""></label></p>
+        <P><button name="submitBtn">입력</button></P>
+    </form>
+</main>
+</body>
+</html>

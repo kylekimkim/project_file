@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스모델과 레이아웃</title>
+    <style>
+        .box_container{
+            background-color:coral;
+            padding: 1px;
+        }
+        .box{
+            background-color:cadetblue;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border-width: 5px;
+            border-style: dashed;
+            border-color: crimson;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-bottom: 50px;
+            margin-right: auto;
+            /* block이 지정된 요소는 가로를  가득 채우기를 기대하는데 가로의
+            길이가 지정이 되면 나머지 여백(margin)으로 다 채우려 한다.
+            이 때 왼쪽으로 블록을 정렬하기 위해 오른쪽 여백을 가득 채운다. */
+            animation-name: bigBox;
+            animation-duration: 5s;
+
+        }
+        @keyframes bigBox {
+            50%{
+                width: 200px;
+            }
+            100%{
+                width:100%;
+                background-color: darkmagenta;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>스타일의 박스모델을 알아보자</h1>
+    <div class="box_container">
+        <p class="box">
+            박스
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object 참조형 데이터</title>
+</head>
+<body>
+    <h1>object 참조형 데이터를 선언해보자</h1>
+<script>
+let arr=["가","나","다"];
+let obj={0:"가",1:"나",2:"다"};
+let obj2={a:"가",b:"나",c:"다"};
+let user={name:"김성재",age:"26",gender:"남자"}; //object의 리터럴 선언법
+//object가 참조하는 key는 순서가 없고 문자열로 취급된다.
+console.log(arr);
+console.log(obj);
+console.log(obj2);
+console.log(user);
+
+//변수명 규칭 중에 숫자만 사용할 수 없음이 있어 "."필드 접근자로 숫자를
+//참조할 수 없다.
+//console.log(arr.0);
+//console.log(obj.0);
+console.log(obj2.a);
+console.log("user.name:",user.name);
+console.log("user['name']:",user['name']);
+console.log("user.length:",user.length); //object는 길이가 없다.
+
+let arr3=new Array("안","녕");
+let obj3=new Object();
+obj3.name="김성재";
+obj3.age="26";
+obj3["gender"]="남자";
+obj3.arr=arr3;
+obj3.obj=obj2;
+console.log(obj3);
+console.log(obj3.arr[0]);
+console.log(obj3["arr"][0]);
+console.log(obj3.obj.a);
+
+let arr4=[["a","b","c"],["A","B","C"]];
+console.log(arr4[0][1]);
+
+const personPSH={
+    name:"박소희",
+    birth:"1997-05-10",
+    gender:"여자",
+    mother: null
+}
+const personKSJ={
+    name:"김성재",
+    birth:"1997-08-13",
+    gender:"남자",
+    girlfriend: personPSH
+}
+console.log(window.document.body.style);
+console.log(personKSJ);
+console.log(personKSJ.girlfriend.name);
+
+//객체의 type을 지정하기 (객체를 설계한다. 프로토타입을 생성)
+//Person 대문자: 객체를 정의한다.
+//Person() 생성자 (함수x)
+//Person의 블록에 this룰 정의하면 => type이 된다.
+function Person(){
+    this.name="김성재";
+    this.birth="1997-08-13";
+    this.gender="남자";
+    this.girlfriend=personPSH;
+}
+
+console.log(Person); //코드
+console.log(Person.prototype); //코드를 기반으로 생성된 설계도(prototype)
+
+const pKSJ=new Person(); //new 연산자로 생성자를 호출 => 설계도를 기반으로 객체를 생성
+const pPSH=new Person();
+pPSH.name="박소희";
+pPSH.birth="1997-05-10";
+pPSH.gender="여";
+
+console.log(pKSJ);
+console.log(pPSH);
+
+function Person2(n,b,g,f){
+    this.name=n;
+    this.birth=b;
+    this.gender=g;
+    this.girlfriend=f;
+    this.age=function(){
+        let now_y=new Date().getFullYear();
+        return now_y-Number(this.birth)+1;
+    };
+}
+const PSH=new Person2("박소희","1997","여",null);
+const KSJ=new Person2("김성재","1997","남",PSH);
+console.log(PSH);
+console.log(KSJ);
+
+console.log(KSJ.age());
+
+//class로 객체의 설계도를 정의하자
+//java의 class 흉내낸 문법
+//class는 객체 지향 언어의 설게도
+//function은 함수 지향(프로토타입) 언어의 설계도
+
+//js의 class를 생성해도 function으로 생성되는 것과 똑같다.(프로토타입이 생성된다.)
+//java와 거의 똑같이 작성된다.
+class Person3{
+    name;birth;gender;girlfriend;
+    constructor(n,b,g,f){ //생성자 예약어(생성자를 정의하려면 생성)
+    this.name=n;
+    this.birth=b;
+    this.gender=g;
+    this.girlfriend=f;
+    }
+    age(){
+        return new Date().getFullYear()-this.birth+1;
+    }
+    //Object().toString()= 정의 => 재정의
+    toString(){
+        //console.log()가 toString()을 대신한다.
+        return "{name:,birth:.gender:.girlfriend:}"
+    }
+}
+
+const class_hkd=new Person3("홍길동","1980","남자",null);
+console.log(class_hkd);
+console.log(class_hkd.age());
+console.log("birth" in class_hkd);
+console.log("age" in class_hkd);
+console.log("test" in class_hkd);
+console.log(class_hkd.toString());//객체 명세서로 재정의 해야한다.
+
+console.log("valueOf" in class_hkd); //상속받은 필드(Object)도 검사 가능
+//delete 객체.속성 : 해당 객체의 필드를 삭제
+delete class_hkd.girlfriend;
+delete class_hkd.name;
+console.log(class_hkd);
+console.log(class_hkd.__proto__);
+console.log(class_hkd instanceof Person3);
+console.log(class_hkd instanceof Person2);
+console.log(class_hkd instanceof Object);
+
+//instanceof 참조형 데이터 타입의 타입을 비교하는 연산
+//상속 받은 부코 타입을 같이 비교할 수 있다.
+</script>
+</body>
+</html>

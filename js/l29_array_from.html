@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array.from()으로 배열을 형 변환 하자</title>
+</head>
+<body>
+    <h1 id="title">인덱스가 있는 참조형 데이터 타입을 배열(array)로 형 변환해 사용하자</h1>
+
+    <h2>HTMLCollection과 NodeList를 Array로 형 변환</h2>
+    <ul id="arrTest">
+        <li class="a b">1</li>
+        <li class="a b">2</li>
+        <li class="a b">3</li>
+        <li class="a b">4</li>
+        <li class="a b">5</li>
+        <li class="a b">6</li>
+        <li class="a b">7</li>
+        <li class="a b">8</li>
+        <li class="a b">9</li>
+        <li class="a b">10</li>
+    </ul>
+    <p>#arrTest>li.innerText 합 : </p>
+<script>
+const nums=[1,2,3,4,5,6,7,8,9,10];
+console.log(nums);
+let nums_total=nums.reduce((total,num)=>{
+    return total+num;
+});
+console.log("nums_total",nums_total);
+//total=total+num;
+const lis=document.querySelectorAll("#arrTest>li");
+console.log(lis);
+//()=>{}, let 최신 문법 사용을 강제
+
+var total=0;
+lis.forEach((li,i)=>{
+    total+=Number(li.innerText);
+});
+console.log(total);
+//console.log(total);
+
+//Array.from()이 없던 시절 형 변환
+const li_arr=[];
+console.log(li_arr);
+lis.forEach((li,i)=>{
+    //li_arr[i]=li;
+    li_arr.push(li);
+});
+console.log(li_arr);
+
+//lis.reduce((total,li)=>{}); index=1부터 시작 total에 index=0의 item을 대입
+//lis.reduce((totla.li)=>{},total+default); index=0 부터 시작
+
+let li_total=li_arr.reduce((total,li,i)=>{
+    //index=0을 무시하고 index=1 일 때 total index=0의 item을 대입
+    //if(i===1){total=Number(total.innerText)}; //초기값 작성 안했을 시
+    return total+Number(li.innerText);
+},0);
+console.log("li_total",li_total);
+
+
+const lis2=arrTest.getElementsByTagName("li");
+console.log(lis2);
+const li2_arr=Array.from(lis2);
+console.log(li2_arr);
+//map으로 li의 textNode를 제곱 값으로 변경하세요.
+li_arr.map((i)=>{
+    return li_arr[i]**2;
+});
+console.log(li_arr[2]);
+
+//type???? 명사??? => 프로토타입???
+function CSSStyle(c,b,d){
+    this.color=c;
+    this.backgroundColor=b;
+    this.border=d;
+}
+function Obj(a,b){
+    this.a=a;
+    this.style=new CSSStyle(b);
+}
+const li=new Obj();
+console.log(li);
+console.log(title.style);
+
+
+
+const method_arr=["pop","push","shift","unshift","forEach","map"];
+//=> map으로 item을 textnode로 포함하는 li 개체를 만드세요.
+//method_arr2=[<li>pop</li>,<li>push</li>,....,<li>map</li>];
+//#arrTest에 append 하세요.
+const method_arr2=method_arr.map((value)=>{
+    const new_li=document.createElement("li");
+    new_li.append(value);
+    return new_li;
+});
+
+console.log(method_arr2);
+
+method_arr2.forEach((li)=>{
+    arrTest.append(li);
+});
+
+</script>
+</body>
+</html>

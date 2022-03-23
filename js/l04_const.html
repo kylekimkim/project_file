@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변하지 않는 수 상수</title>
+</head>
+<body>
+    <h1 id="title">변하지 않는 수 상수를 선언해 보자</h1>
+    <script>
+        let a=10;
+        a="안녕";
+        console.log(a);
+        //a는 변수
+        //변수는 리터럴한 값 10을 참조(기본데이터 타입은 리터럴하다.)
+        //리터럴 표기법(new Number(10)=>일반적 선언, "안녕")
+        //=>실제 data와 선언시 작성한 값이 동일한 것
+
+        let array=new Array(10,"안녕",true,document);
+        console.log(array);
+        let array2=[10,"안녕",false,document.body];
+        console.log(array2);
+
+        const BLUE_COLOR="#2222FF"; //브랜드 컬러
+        title.style.color=BLUE_COLOR;
+
+        //BULE_COLOR="#FF0000";
+        //Assignment to constant variable.
+        console.log(Math.PI);
+        console.log(Number.MAX_VALUE);
+        console.log(Number.MAX_SAFE_INTEGER);
+
+    </script>
+</body>
+</html>

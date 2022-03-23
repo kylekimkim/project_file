@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise로 스레드간 동기화</title>
+</head>
+<body>
+    <h1>promise로 스레드간의 동기화를 해보자.</h1>
+    <div id="root">
+        <h2>3초마다 p요소 append 되는 곳</h2>
+    </div>
+<script>
+const setTimeFunc=function(index){
+    return new Promise((resolve,reject)=>{
+        window.setTimeout(()=>{
+            root.append(index+"추가된 / ");
+            resolve();
+        },1000)
+    });
+}
+setTimeFunc(1).then(()=>{
+    return setTimeFunc(2);
+}).then(()=>{
+    return setTimeFunc(3);
+}).then(()=>{
+    return setTimeFunc(4);
+}).then(()=>{
+    setTimeFunc(5);
+})
+
+
+
+
+
+
+// const appendP=new Promise((resolve,reject)=>{
+//     window.setTimeout(()=>{
+//         const p=document.createElement("p");
+//         p.append("첫번째");
+//         root.append(p);
+//         resolve("첫번째 append 성공"); //동기화 시점을 지정
+//     },3000)
+// });
+// appendP.then((resolve)=>{
+//     console.log(resolve);
+
+//     window.setTimeout(()=>{
+//         const p=document.createElement("p");
+//         p.append("두번째");
+//         root.append(p);
+//     },3000);
+// })
+///////////////////////////////////////////////////////
+// window.setTimeout(()=>{
+//     root.append("<p>첫번째</p>")
+//     window.setTimeout(()=>{
+//         root.append("<p>두번째</p>")
+//     },3000)
+// },3000)
+
+
+</script>
+</body>
+</html>

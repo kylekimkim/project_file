@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise 예외 처리</h1>
+    <h2>Promise.resolve()</h2>
+    <ul>
+        <li>resolve(data) 실행한 시점을 다음(chaining) then의 첫번째
+            매개변수(콜백 함수)가 받는다.
+        </li>
+        <li>data 매개변수는 다음 then의 첫번째 콜백 함수의 첫번째
+            매개변수로 사용된다.
+        </li>
+        <li>또 다시 동기화 하기 위해서는 then의 첫번째 매개변수에서
+            promise 객체를 return 하면 된다.
+        </li>
+        <li>Promise는 thread를 동기화하는 도구</li>
+    </ul>
+    <h2>Promise.reject()</h2>
+    <ul>
+        <li>reject(error) 실행한 시점을 다음(chaining) then의 두번째
+            매개변수(콜백 함수)가 받는다.</li>
+        <li>error 매개변수는 다음 then의 두번째 콜백함수의 매개변수 사용된다.</li>
+        <li>또는 두번째 콜백함수를 정의하지 않으면 catch가 받는다.</li>
+    </ul>
+    <h2>catch((error_msg)=>{})</h2>
+    <ul>
+        <li>오류가 발생하면 catch가 실행된다. throw new Error(error_msg)</li>
+        <li>reject() 실행하고 두번째 콜백이 정의되지 않아도 catch가 실행된다.</li>
+        <li>catch를 실행하면 다음 then() 무사히 동기화(실행) 된다.
+            [catch 다음에 thenn을 사용할 수 있다.]
+        </li>
+        <li>멀티 스레드에서 throw new Error() 역시 동기화 해야 catch가 실행되기 때문에
+            reject를 사용해야 한다.[스레드에서 reject 사용해야만 오류를 잡아낸다.]
+        </li>
+    </ul>
+
+    <div id="root"></div>
+<script>
+    let data;
+new Promise((s,j)=>{
+    window.setTimeout(()=>{
+        data="첫번째가 전해준 data"
+        s(data);
+    },2000);
+}).then((s_data)=>{
+    return new Promise((s,j)=>{
+        window.setTimeout(()=>{
+            root.append("두번째: "+s_data);
+            s("두번째 전하는 data");
+        },1000)
+    })
+}).then((s_data)=>{
+    alert(s_data);
+})
+
+
+
+new Promise((resolve,reject)=>{
+    resolve("성공 메세지")
+}).then((resolve_para)=>{
+    console.log("첫번째 함수:",resolve_para);
+},(reject_para)=>{
+    console.log("두번째 함수:",reject_para);
+})
+//resolve reject 모두 실행하면 .then()이 실행된다. (동기 시점을 지정)
+//then((resolve)=>(동기화될 코드), (reject)=>(오류일 때 처리할 코드))
+new Promise((resolve,reject)=>{
+    reject("실패 메세지")
+}).then((resolve_para)=>{
+    console.log("첫번째 함수:",resolve_para);
+},(reject_para)=>{
+    console.log("두번째 함수:",reject_para);
+})
+
+//id 사용 가능이면 alert("사용 가능")
+//사용가능하지 않으면 alert("사용 가능하지 않은 이유(오류,false)")
+new Promise((resolve,reject)=>{
+    const req=new XMLHttpRequest();
+    req.open("GET","loginCheck.json");
+    req.onload=function(){
+        if(req.status===200){
+            let login=(JSON.parse(req.responseText)).login;
+            if(login){
+                resolve("로그인 가능 아이디")
+            }else{
+                reject("로그인 불가능한 아이디")
+            }
+        }else{
+            //reject("통신에 실패");
+            //통신에 실패 시 catch 실행
+            reject (Error("통신 에러"+req.status));
+        }
+    }
+    req.send();
+}).then((success)=>{
+    alert(success);
+},(failed)=>{
+    alert(failed);
+})
+// .catch(alert("무조건 1번 실행해야할 때 사용"));
+// .catch((reject_error)=>{reject new Error()에러처리})
+//or then에서 두번 콜백을 정의하지 않았을 때 사용
+
+
+</script>
+</body>
+</html>

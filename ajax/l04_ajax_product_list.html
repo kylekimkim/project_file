@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax로 list를 출력하자</title>
+<style>
+.product_list_container>li{
+    border: 1px solid;
+    list-style: none;
+    display:inline-block;
+    padding: 40px 20px;
+    margin: 10px;
+}
+</style>
+</head>
+<body>
+<!-- {
+    "product_num":123123333,
+    "name":"나이키 신발",
+    "price": 80000,
+    "stars":4.5,
+    "sale":true
+} -->
+    <h1>AJAX로 product_list.json을 출력하자</h1>
+    <p>
+        <button id="productListBtn"
+        >상품 리스트 출력!</button>
+    </p>
+    <ul class="product_list_container" id="productList">
+        <!-- <li>
+            <ul>
+                <li>이름: 나이키 신발</li>
+                <li>가격: 80000원</li>
+                <li>별점: ★★★★☆</li>
+                <li>상태: 판매중</li>
+            </ul>
+        </li>       -->
+    </ul>
+<script>
+const productListBtn=document.getElementById("productListBtn");
+const productList=document.getElementById("productList");
+
+productListBtn.addEventListener("click",()=>{
+    const req=new XMLHttpRequest();
+    req.open("GET","product_list.json");
+    req.onreadystatechange=function(){
+        if(req.readyState===4 && req.status===200){
+            const product_list=JSON.parse(req.responseText);
+            product_list.forEach((item)=>{
+                const item_li=document.createElement("li");
+                const item_ul=document.createElement("ul");
+                for(let key in item){
+                    const li=document.createElement("li");
+                    li.append(item[key]);
+                    item_ul.append(li);
+                }
+                item_li.append(item_ul);
+                productList.append(item_li);
+            })
+        }
+    }
+    req.send();
+})
+
+
+// const productListBtn=document.getElementById("productListBtn");
+// const productList=document.getElementById("productList");
+
+// productListBtn.addEventListener("click",productListReq);
+
+// function productListReq(){
+//     const req=new XMLHttpRequest();
+//     req.open("GET","product_list.json");
+//     req.onreadystatechange=function(){
+//         if(req.readyState===4 && req.status===200){
+//             const product_list=JSON.parse(req.responseText);
+//             product_list.forEach((item)=>{
+//                 const item_li=document.createElement("li");
+//                 const item_ul=document.createElement("ul");
+//                 item_ul.className="product";
+//                 for(let key in item){
+//                     const li=document.createElement("li");
+//                     li.append(item[key]);
+//                     item_ul.append(li);
+//                 }
+//                 item_li.append(item_ul);
+//                 productList.append(item_li);
+
+//             });
+//         }
+//     }
+//     req.send();
+// }
+</script>
+</body>
+</html>

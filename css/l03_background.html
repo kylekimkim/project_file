@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background 배경 이미지를 지정하자</title>
+</head>
+<body>
+    <h1>background에 복수의 이미지를 추가하고 컨텐츠의 위치를 
+        지정해보자.</h1>
+    <h2>background-image:url(),url(),url()</h2>
+    <div style="border: 5px double blue;
+                height:300px;
+                background-color: burlywood;
+                background-image: url(/css/IU/아이유1.jpg),
+                url(/css/IU/아이유2.jpg),url(/css/IU/아이유3.jpg),
+                linear-gradient(40deg, red, blue);
+                background-size: 100px, 100px, 100px, 100px 100px;
+                background-repeat: no-repeat, no-repeat, no-repeat;
+                background-position: 0 0, 50px 50px, 100px 100px, right bottom;">
+                
+    </div>
+    <h2>background-attachment: (scroll,fixed,local)</h2>
+
+    <div style="
+    border: 5px inset palevioletred;
+    padding: 20px;
+    height: 200px;
+    /* overflow: visible;*/
+     overflow: auto;
+     background-image: url('/css/IU/아이유3.jpg'),
+     url('/css/IU/아이유2.jpg'),
+     url('/css/IU/아이유1.jpg');
+     background-repeat: no-repeat;
+     background-size: 100px, 80px, contain;
+     background-attachment: local, scroll, fixed;
+     background-position: top left,center center,center center;"> 
+        안녕하세요. <br>
+        지금 스크롤을 생성하려 합니다. <br>
+        <strong>01</strong><br><strong>02</strong><br>
+        <strong>03</strong><br><strong>04</strong><br>
+        <strong>05</strong><br><strong>06</strong><br>
+        <strong>07</strong><br><strong>08</strong><br>
+        <strong>09</strong><br><strong>10</strong><br>
+        <strong>11</strong><br><strong>12</strong><br>
+        <strong>13</strong><br><strong>14</strong><br>
+        <strong>15</strong><br><strong>16</strong><br>
+        <strong>17</strong><br><strong>18</strong><br>
+        <strong>19</strong><br><strong>20</strong><br>
+    </div>
+    <h2>background-image: linear-gradient()</h2>
+
+    <div style="
+        border: 5px outset purple;
+        height: 200px;
+        background-image: linear-gradient(45deg,
+                                        rgba(255,255,0,1) 0% 25%,
+                                        rgba(255,0,255,1) 45% 55%,
+                                        rgba(0,255,255,1) 75% 100%),
+                            url('/css/IU/아이유3.jpg');
+        background-size: cover;
+        ">
+        :linear-gradient()
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

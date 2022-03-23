@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document querySelector</title>
+</head>
+<body>
+    <h1>querySelector or querySelectorAll로 dom을 검색하자</h1>
+    <h2>#selectorTest의 textnode로 style의 color 변경하세요.</h2>
+    <ul id="selectorTest">
+        <li>red</li>
+        <li>blue</li>
+        <li>green</li>
+        <li>magenta</li>
+        <li>gray</li>
+    </ul>
+    <form name="formSelect" id="formSelectId">
+        <input type="text" value="안녕" name="a"><br>
+        <input type="number" value="10" name="b">
+    </form>
+
+    <h2>document.querySelector("선택자")</h2>
+    <ul>
+        <li>선택자로 검색된 노드들 중에 첫번째로 검색된 노드를 반환</li>
+        <li>css 서낵자를 검색에 사용하고 document와 node 개체 모두 검색 가능</li>
+    </ul>
+    <h2>document.querySelectorAll("선택자")</h2>
+    <ul>
+        <li>선택자로 검색된 복수의 노드를 NodeList로 반환</li>
+        <li>NodeList는 배열(array)처럼 인덱스가 있는 자료구조로
+            for of와 forEach를 사용할 수 있다.
+        </li>
+    </ul>
+<script>
+//노드를 반환하는 dom 검색 함수
+const first_li=document.querySelector("li");
+console.log(first_li);
+//css 선택자를 똑같이 사용 (#,. 결합자[" ", >, ~....])
+const selectorTest=document.querySelector("#selectorTest");
+console.log(selectorTest);
+
+document.querySelector("[type=text]").style.border="4px dotted";
+//type="number" color="blue";
+document.querySelector("[type=number]").style.color="blue";
+
+const selectorTest_lis=document.querySelectorAll("#selectorTest>li");
+console.log(selectorTest_lis);
+//NodeList : for, for of, foreach 사용가능
+selectorTest_lis.forEach((li,i)=>{
+    li.style.borderBottom="1px solid";
+    //color를 textnode로 변경
+    console.log(li.innerText);
+});
+const inputs=document.querySelectorAll("form[name=formSelect] input");
+inputs.forEach((input)=>{
+    input.style.boxShadow="2px 2px 6px";
+});
+//form name=id 처럼 사용 가능
+console.log(document.forms.formSelect);
+console.log(formSelect); //form 노드는 내부의 입력 요소를 name을 필드로 검색할 수 있다.
+
+const num_input=formSelect.querySelector("input[type=number]");
+console.log(num_input);
+
+const input_arr=formSelectId.querySelectorAll("input");
+console.log(input_arr);
+//node 개체에서 querySelector를 사용할 수 있지만 보통 선택자로 대체한다.
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산의 랩퍼 클래스 math</title>
+</head>
+<body>
+    <h1>Math로 랜덤 수를 뽑고 정수로 반환 받자</h1>
+
+    <h2>Math.ceil() 올림</h2>
+    <p>
+        Math.ceil(12.34) :
+        <script>document.write(Math.ceil(12.34));</script>
+    </p>
+    <p>
+        Math.ceil(34.56) :
+        <script>document.write(Math.ceil(34.56));</script>
+    </p>
+    <p>
+        Math.ceil(-12.34) :
+        <script>document.write(Math.ceil(-12.34));</script>
+    </p>
+    <p>
+        Math.ceil(-34.56) :
+        <script>document.write(Math.ceil(-34.56));</script>
+    </p>
+    <h2>Math.floor() 내림</h2>
+    <p>
+        Math.floor(12.34) :
+        <script>document.write(Math.floor(12.34))</script>
+    </p>
+    <p>
+        Math.floor(-12.34) :
+        <script>document.write(Math.floor(-12.34))</script>
+    </p>
+
+    <h2>Math.round() 반올림</h2>
+    <p>
+        Math.round(12.34) :
+        <script>document.write(Math.round(12.34))</script>
+    </p>
+    <p>
+        Math.round(34.56) :
+        <script>document.write(Math.round(34.56))</script>
+    </p>
+    <p>
+        Math.round(-12.34) :
+        <script>document.write(Math.round(-12.34))</script>
+    </p>
+    <p>
+        Math.round(-34.56) :
+        <script>document.write(Math.round(-34.56))</script>
+    </p>
+
+    <h2>Math.trunc() 소수점 버림</h2>
+    <p>
+        Math.trunc(12.34) :
+        <script>document.write(Math.trunc(12.34))</script>
+    </p>
+    <p>
+        Math.trunc(34.56) :
+        <script>document.write(Math.trunc(34.56))</script>
+    </p>
+    <p>
+        Math.trunc(-12.34) :
+        <script>document.write(Math.trunc(-12.34))</script>
+    </p>
+    <p>
+        Math.trunc(-34.56) :
+        <script>document.write(Math.trunc(-34.56))</script>
+    </p>
+    <h2>Number.parseInt() 소수점 버림</h2>
+    <p>
+        Math.parseInt(12.34) :
+        <script>document.write(Number.parseInt(12.34))</script>
+    </p>
+    <p>
+        Math.parseInt(34.56) :
+        <script>document.write(Number.parseInt(34.56))</script>
+    </p>
+    <p>
+        Math.parseInt(-12.34) :
+        <script>document.write(Number.parseInt(-12.34))</script>
+    </p>
+    <p>
+        Math.parseInt(-34.56) :
+        <script>document.write(Number.parseInt(-34.56))</script>
+    </p>
+
+    <h2>Math.random()</h2>
+    <ul>
+        <li>
+            0-1사이 난수 :
+            <script>document.write(Math.random())</script>
+        </li>
+        <li>
+            0-9사이 난수 :
+            <script>document.write(Math.trunc(Math.random()*10))</script>
+        </li>
+        <li>
+            1-10사이 난수 :
+            <script>document.write(Math.trunc(Math.random()*10)+1)</script>
+        </li>
+        <li>
+            5-10사이 난수 :
+            <script>document.write(Math.trunc(Math.random()*6)+5)</script>
+        </li>
+    </ul>
+
+    <h2>random 응용 const game=["가위","바위","보"]</h2>
+    <p>
+        <button id="gameBtn">가위 바위 보</button>
+        <strong id="gameMsg"></strong>
+    </p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+const game=["가위","바위","보"];
+gameBtn.addEventListener("click",()=>{
+    let game_i=Math.trunc(Math.random()*3);
+    gameMsg.innerText=game[game_i];
+})
+
+
+
+
+
+
+//0~1 사이의 난수를 반환
+//소수점 길이만 난수를 생성 가능
+console.log(Math.random()*10000000000000000000);
+
+//0~9 까지 난수를 사용 Math.random()*(9+1)
+console.log(Number.parseInt(Math.random()*10));
+</script>
+</body>
+</html>

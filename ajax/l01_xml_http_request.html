@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest 객체로 비동기식 통신하기</title>
+</head>
+<body>
+    <h1>XMLHttpRequest 객체로 비동기식 통신을 해보자</h1>
+    <h2>비동기 통신 AJAX(Asynchronous JavaScript And XML[html,json,...])란??</h2>
+    <ul>
+        <li>브라우저가 서버에 요청하는 페이지를 새로고침과 함께 호출하는 방식(동기식)</li>
+        <li>XMLHttpRequest 객체가 서버에 요청하고 응답 받는 방식(비동기식)</li>
+    </ul>
+    <div id="requestContainer">
+
+    </div>
+    <p><button id="reqBtn">request_test.html 요청</button></p>
+<script>
+reqBtn.addEventListener("click",()=>{
+    const req=new XMLHttpRequest();
+    req.open("GET",'request_test.html')//경로
+    //통신 후 data를 처리하기 위해서는 상태를 알아야 한다.
+    req.onreadystatechange=()=>{
+        if(req.readyState===4){
+            console.log(req.responseURL);
+            requestContainer.innerHTML=req.responseText;
+        }
+    }
+    //req.readyState==0 new XMLHttpRequest() 객체 생성 단계
+    //req.readyState==1 open()를 실행하는 단계로 요청 헤더를 정의
+
+    //통신의 모든 단계에서 onreadystatechange()가 실행된다.
+    //통신의 모든 단계에서 실행되는 콜백 함수를 정의하는 곳
+
+    //req.readyState==2 서버에서 요청한 주소의 리소스를 응답(응답 헤더)
+    //req.readyState==3 응답헤더의 본문을 해석
+    //req.readyState==4 모든 통신이 완료된 상태 (req에 응답 정보(request_test.html)를 참조할 수 있다.)
+
+    req.send();
+    //통신은 send()로 시작하자 마자 완료되지 않기 때문에
+    //통신을 하는 thread를 생성한다. 이 때 통신의 상태마다 실행하는 함수가
+    //onreadystatechange고 이를 콜백 함수로 재정의해서 통신의 완료 상태 때
+    //리소스를 처리한다.
+    window.setTimeout(()=>{
+        respHTML=req.responseText;
+        console.log(respHTML);
+    },1000);
+});
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM을 참조하는 window.document 객체를 사용해 노드 개체를 수정, 삭제, 생성, 검색 해보자</h1>
+    <h2>#idTest인 ul 태그를 검색</h2>
+    <ul id="idTest">
+        <li class="bg_blue">리스트1</li>
+        <li>리스트2</li>
+        <li>리스트3</li>
+        <li class="bg_blue">리스트4</li>
+        <li>리스트5</li>
+    </ul>
+    <h3>id 선택자 사용 방법</h3>
+    <p id="idTest">실수로 2개 생성한 #idTest</p>
+    <p>getElementById("idTest") : 처음 지정한 1개만 참조</p>
+    <p>윈도우가 생성한 idTest : id 선택자를 복수로 취급(return GTMLCollection)</p>
+
+    <h3>getElementsByTagName() 함수 사용 방법</h3>
+    <p>#homeWork : 내부에 .hover_color_red에 hover 이벤트를 구현하세요.</p>
+    <ol id="homeWork">
+        <li>getElementsByTagName("tagName") : return HTMLCollection</li>
+        <li class="hover_color_red">document.getElementsByTagName() : body 전체</li>
+        <li>node(Element).getElementsByTagName() : node 내부</li>
+        <li class="hover_color_red">HTMLCollection : for of 가능(symbol.interator 정의), forEach() 정의 x</li>
+    </ol>
+    <h3>getElementsByClassName() 함수 사용 방법</h3>
+    <p>getElementsByTagName과 사용 방법 동일</p>
+<script>
+    console.log(homeWork);
+const idTest=document.getElementById("idTest"); //node 개체를 반환
+console.log(idTest);
+idTest.style.backgroundColor="#ccb";
+
+const li_tags=document.getElementsByTagName("li");
+console.log(li_tags);
+const idTest_li_tags=idTest.getElementsByTagName("li");
+console.log(idTest_li_tags);
+//반복문을 사용 =>(li onmouseenter 재정의)
+//반복문
+for(let i=0; i<idTest_li_tags.length;i++){
+    //idTest_li_tags[i].style.color='blue';
+    idTest_li_tags[i].onmouseenter=function(){
+        this.style.color="blue";
+    }//필드에 콜백 함수를 재정의 (보안에 문제)
+    idTest_li_tags[i].addEventListener("mouseleave",function(){
+        this.style.color="#353";
+    });
+    //함수에 콜백 함수를 매개변수로 재정의 (객체지향 문법에서 일반적)
+}
+
+const bg_blue_arr=idTest.getElementsByClassName("bg_blue");
+console.log(bg_blue_arr);
+//for of background-color="blue";
+for(const bg_blue of bg_blue_arr){
+    bg_blue.style.backgroundColor="#99f";
+}
+</script>
+
+</body>
+</html>

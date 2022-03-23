@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array 타입의 필드를 알아보자</title>
+</head>
+<body>
+    <h1>Array 타입의 필드를 알아보자.</h1>
+<script>
+const obj={a:1,b:4}; //Object 리터럴 선언
+obj2=new Object();
+obj2["a"]=1;
+obj2.b=4;
+console.log(obj2);
+console.log(obj2.c); //key 3이 없어서 undefined
+console.log(obj2.lengtj);
+const array=[12,1,-4,5,100]; //리터럴한 방식의 선언
+array2=new Array(1,3,6);
+array2[0]=100;
+array2[1]=20;
+array2[9]=-1;
+console.log(array2);
+console.log(array2[3]);
+console.log(array2.length);
+
+const score_arr=[70,66,99,84,100,77];
+console.log(score_arr);
+let last_el=score_arr.pop();
+console.log(last_el);
+console.log(score_arr);
+console.log("/////////////////////////");
+score_arr.push(last_el);
+console.log(score_arr);
+
+console.log(score_arr.unshift("추가된"));
+console.log(score_arr);
+console.log(score_arr.shift());
+console.log(score_arr);
+
+console.log(score_arr.splice(2,0,"a","b","c","d"));
+console.log(score_arr);
+
+console.log(score_arr.splice(2,4));
+console.log(score_arr);
+
+console.log(score_arr.splice(2,1,95,87));
+console.log(score_arr);
+
+//새로운 배열을 만든다.
+console.log(score_arr.slice(4));
+console.log(score_arr.slice(3,5));
+
+
+const printInfo=function(item,i,arr){
+    console.log(item,i,arr);
+};
+score_arr.forEach(printInfo);
+
+console.log(score_arr);
+let total_score=0;
+let avg_score=0;
+
+score_arr.forEach(calTotal);
+score_arr.forEach(calAvg);
+
+function calTotal(score){
+    total_score+=score;
+}
+function calAvg(){
+    avg_score=total_score/score_arr.length;
+}
+console.log(total_score);
+console.log(avg_score);
+
+const new_score_arr=score_arr.map((score)=>{
+    return 100-score;
+});
+console.log(new_score_arr);
+//Boolean(0)=false
+const error_score_arr=[70, 66, 0, null, undefined,"","16", 95, 87, 84, 100, 77];
+
+const a_score_arr=error_score_arr.filter((score)=>{
+    //return Boolean(score); //default
+    //return score;
+    return !(score===null || score===undefined || (typeof score)==="string");
+});
+console.log(a_score_arr);
+
+//reduce() total
+let result_total=score_arr.reduce((total,score)=>{
+    return total+score;
+});
+console.log(result_total);
+//map => 100~90=>a 80=>b 70=>c
+console.log(score_arr);
+let grade_arr=score_arr.map((score)=>{
+    if(score>=90){
+        return score="A";
+    }
+    else if(score>=80){
+        return score="B";
+    }
+    else if(score>=70){
+        return score="C";
+    }
+    else{
+        return score="F";
+    }
+});
+    console.log(grade_arr);
+</script>
+</body>
+</html>

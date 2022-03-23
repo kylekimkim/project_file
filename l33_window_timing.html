@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>window timing function인 secInterval과 setTimeout을 배우자</h1>
+
+    <h2>setInterval(callbackFunc.milliseconds)</h2>
+    <p>num: <strong id="numPrint"></strong></p>
+    <script>
+        let num=0;
+        // for(; true;){
+        //     document.write("num :"+(++num));
+        // }
+        window.setInterval(()=>{
+            numPrint.innerText=++num;
+        },1000);
+    </script>
+    <p>
+        <button id="incN">++n</button>
+        <strong id="nPrint"></strong>
+    </p>
+    <p>
+        시계
+        <strong id="clock"></strong>
+    </p>
+
+<script>
+window.setInterval(function(){
+    clock.innerText=new Date().toLocaleTimeString();
+},1000);
+
+
+    let n=0;
+    let thread_arr=[];
+    incN.addEventListener("click",()=>{
+        let interval=window.setInterval(()=>{
+            nPrint.innerText=(n++);
+        },1000);
+        thread_arr.push(interval);
+        console.log(thread_arr);
+    });
+    const day_string=["일","월","화","수","목","금","토"];
+    const todate=new Date();
+    console.log(todate.toString());
+    console.log(todate.toLocaleDateString());
+    console.log(todate.toLocaleTimeString());
+    console.log(todate.getDate());
+    console.log(day_string[todate.getDay()]);
+    console.log(todate.getFullYear()+"년");
+    console.log(todate.getHours()); //0~23
+    console.log(todate.getMonth()+1+"월"); //1~12 (x) 0~11월
+
+    //1986-5-25
+    const todate2=new Date("1986-5-25");
+    console.log(todate2.toString());
+    console.log(new Date(2002,1,22));
+</script>
+
+<style>
+.container{
+    border: 5px dotted;
+    position: relative;
+}
+.box{
+    border: 1px solid;
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+    /* position: absolute;
+    left: 150px;
+    top: 0; */
+}
+.box:hover{
+    background-color: cadetblue;
+}
+</style>
+<div class="container">
+    <div id="rightMoveBox" class="box">
+        오른쪽으로 이동하는 박스</div>
+</div>
+
+
+<div class="container">
+    <div id="rightMoveBox2" class="box">
+        오른쪽으로 이동하는 박스
+    </div>
+</div>
+<script>
+rightMoveBox.addEventListener("click",()=>{
+    console.log("화살표 함수 this:",this);
+});
+//화살표 함수의 블록 스코프가 필드를 적용하지 못해서
+//화살표 함수를 포함하는 객체를 this가 참조하지 못한다.
+rightMoveBox.addEventListener("click",function(){
+    console.log("익명 함수 this:",this);
+});
+
+rightMoveBox.addEventListener("click",(event)=>{
+    //수치 => 문자열
+    let m_l=event.target.style.marginLeft;
+    //parseInt("50px") => 50
+    m_l=(!m_l)?0:parseInt(m_l);
+    console.log(m_l);
+    event.target.style.marginLeft=m_l+50+("px");
+});
+let interval_num;
+rightMoveBox2.addEventListener("click",(event)=>{
+        //console.log(event.target);
+        //margin 정수로 받는 코드 (최초 값이 NaN)
+
+        //!interval_num => 0 "" null undefined
+        console.log(interval_num);
+    if(!interval_num){
+        interval_num=window.setInterval(()=>{
+        let m_l=event.target.style.marginLeft;
+        m_l=(!m_l)?0:parseInt(m_l);
+        console.log(m_l);
+        event.target.style.marginLeft=(m_l+1)+"px";
+        },10)
+    }else{
+        window.clearInterval(interval_num);
+        interval_num=0;
+    }
+});
+</script>
+
+<p> <button id="light_switch">스위치</button> <span id="light" 
+    class="on a b">불</span></p>
+<style>
+.on{
+    background-color: yellow;
+}
+</style>
+<script>
+console.log(light.className);
+console.log(light.classList);
+
+console.log(light.classList.contains("on"));
+//toggle("on") : on이 있으면 삭제 없으면 더한다.
+//remove("on")
+//add("on")
+console.log(light.classList.toggle("on"));
+console.log(light.classList.toggle("on"));
+//2초 뒤에 불이 꺼지게 하세요.
+//window.setTimeout(callBackFunc,milliseconds);
+//지정한 시간뒤에 callbackFunc를 실행 (지정한 시간동안은 반복문 실행중)
+
+light_switch.addEventListener("click",()=>{
+    window.setTimeout(()=>{
+        light.classList.toggle("on");
+    },2000);
+
+});
+</script>
+
+<h3>rotateZBox를 누르면 100밀리초당 1deg씩 돌아가는 박스를 만드세요.</h3>
+<div class="container">
+    <div id="rotateZBox" class="box" style="transform: rotateZ(10deg);">
+        오른쪽으로 회전하는 박스
+    </div>
+</div>
+
+<script>
+
+let box_stop;
+rotateZBox.addEventListener("click",(event)=>{
+    if(!box_stop){
+        box_stop=window.setInterval(()=>{
+            event.target.style.transform+="rotateZ(1deg)";
+        },100)
+    }else{
+        window.clearInterval(box_stop);
+        box_stop=0;
+    }
+});
+
+
+
+</script>
+</body>
+</html>

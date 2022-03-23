@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <!-- CND 적용 방법 1 : 구글 cdn -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>jquery의 이벤트와 체인</title>
+</head>
+<body>
+    <h1>jquery의 이벤트와 체인</h1>
+    <ul id="overTest">
+        <li>01마우스를 올려주세요~</li>
+        <li>02마우스를 올려주세요~</li>
+        <li>03마우스를 올려주세요~</li>
+        <li>04마우스를 올려주세요~</li>
+        <li>05마우스를 올려주세요~</li>
+    </ul>
+    <ul id="appendToTest"></ul>
+<script>
+// document.querySelectorAll("#overTest>li").forEach((li)=>{
+//     li.addEventListener("mouseover",function(e){this.style.color='blue';})
+//     li.addEventListener("mouseleave",function(e){this.style.color='black';})
+// });
+let old_color="";
+let text="";
+$("#overTest>li").on("mouseover",function(){
+    // this.css("color","red");
+    old_color=$(this).css("color");
+    text=$(this).text();
+    $(this).css("color","red");
+    $(this).append("<b>올렸다</b>");
+    // setTimeout(()=>{
+    //     $(this).appendTo("#appendToTest");
+    // },100);
+}).on("mouseleave",function(){
+    $(this).css("color",old_color).text(text);
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async function</title>
+</head>
+<body>
+    <h1>async function을 이용해서 스마트하게 스레드를 동기화 하자</h1>
+    <p>타이머:
+        <strong id="timerNum">6</strong>
+    </p>
+    <div id="root"></div>
+<script>
+let timer_num=6;
+let interNum=window.setInterval(()=>{
+    console.log("스레드 실행중");
+    if(timer_num!==0){
+        timerNum.innerHTML=(--timer_num)
+    }else{
+        window.clearInterval(interNum);
+    }
+},1000)
+//promise화
+function appendI(index,sec){
+    return new Promise((resolve,reject)=>{
+        window.setTimeout(()=>{
+            let p=document.createElement("p");
+            p.append(index);
+            root.append(p);
+            resolve(p);
+        },sec)
+    });
+}
+//Number.parseInt()
+Promise.all([appendI("첫번째",5000),appendI("두번째",500)
+,appendI("세번째",3000)]).then((p_arr)=>{
+    (p_arr).forEach((p)=>{
+        root.append(p);
+    });
+})
+
+
+// async function test(){
+//     const p_arr=await Promise.all(
+//         [appendI("첫번째",5000),
+//         appendI("두번째",500),
+//         appendI("세번째",3000)]);
+//      for(let p of p_arr){
+//          root.append(p);
+//      }
+// }
+// test();
+
+</script>
+</body>
+</html>

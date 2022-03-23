@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax간의 동기화</title>
+</head>
+<style>
+.disabled{
+    display: none;
+}
+</style>
+<body>
+<h1>비동기식 통신인 ajax 코드간의 동기화 하기</h1>
+<h2>아이디가 사용 가능한지 체크가 되면 비밀번호 입력창이 보이게 하세요.</h2>
+<h2>회원가입</h2>
+<form action="userInsert.jsp" name="userInsert">
+    <p>
+        <label>
+            아이디 :
+            <input type="text" name="id" placeholder="@naver"><br>
+            <span id="idMsg"></span>
+        </label>
+    </p>
+    <div class="disabled" id="pwForm">
+
+        <p>
+            <label>
+                비밀번호<br>
+                <input type="password" nmae="pw"><br>
+                <span id="pwMsg" class="error">사용불가 비밀번호</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                비밀번호 재확인<br>
+                <input type="password" nmae="re_pw"><br>
+                <span id="rePwMsg" class="success">사용가능 비밀번호</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <button type="button">가입하기</button>
+            </label>
+        </p>
+    </div>
+    </form>
+<script>
+let id_checked=false;
+userInsert.id.addEventListener("change",(e)=>{
+    console.log(e.target.value);
+    if(e.target.value.length>4){
+        //id_checked=true;
+        //통신
+        const req=new XMLHttpRequest();
+        req.open("GET","loginCheck.json");
+        //req.onreadystatechange  req.readyState===4 => onload() 시점이 같다.
+        req.addEventListener("load",()=>{
+            let id_check_text=req.responseText;
+            let id_check_obj=JSON.parse(id_check_text);
+            id_checked=id_check_obj["login"];
+            if(id_checked){pwForm.classList.remove("disabled")}
+        });
+        req.send();
+    }
+});
+</script>
+</body>
+</html>

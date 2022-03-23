@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css display 속성</title>
+<style>
+.box{
+    width: 200px;
+    height: 200px;
+    border: 1px solid;
+    outline: 1px dotted;
+    padding: 20px;
+    margin: 20px;
+    background-color: aquamarine;
+    transition: all 1s;
+    /* css 속성중에서 수치가 있는 속성 값이 변경될때 애니메때
+        애니메이션과 함께 변경 */
+}
+</style>
+</head>
+<body>
+    <h1>display로 레이아웃을 구성하자</h1>
+    <h2>display: block; box-model</h2>
+    <div class="box">
+        display: block;
+    </div>
+    <div class="box">
+        display: block;
+    </div>
+    <h2>display:inline; box-model</h2>
+    <a class="box" href="https://naver.com">display:inline</a>
+    <a class="box" href="https://naver.com">display:inline</a>
+
+    <h2>display:inline-block; box-model</h2>
+    <button class="box">inline-block</button>
+    <button class="box">inline-block</button>
+    <h2>display:none;</h2>
+    <div class="box" onclick="this.style.display='none';">
+        <br>
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+    <h2>visibility: hidden;</h2>
+    <div class="box" onclick="this.style.visibility='hidden';">
+        <br>
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+    <h2>opacity: 0;</h2>
+    <div class="box" onclick="this.style.opacity='0';">
+
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+    <h2>background-color: rgba(127,255,209,0);</h2>
+    <div class="box" onclick="this.style.backgroundColor='rgba(127,255,209,0)';">
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+    <h2>height: 0px;</h2>
+    <div class="box"
+        style="box-sizing: border-box; overflow: hidden;"
+         onclick="this.style.height='0px';
+         this.style.borderWidth='0px';
+         this.style.padding='0px';
+         ">
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+<style>
+.effect{
+    overflow: hidden;
+    width: 100%;
+    transition: all 200ms;
+}
+.box_cont:hover .effect{
+    width: 0;
+}
+</style>
+    <div class="box_cont">
+    <h2>width: 0px;</h2>
+    <div class="effect">
+       <div class="box">
+        <strong>마우스를 올리세요!</strong>
+</div>
+</div>
+</div>
+    <hr>
+    <h2>width: 0px; height: 0px;</h2>
+    <div class="box"
+        style="box-sizing: border-box; overflow: hidden;"
+         onclick="this.style.width='0px';
+                this.style.height='0px';">
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+    <h2>transform: scaleX(0)</h2>
+    <div class="box"
+         onclick="this.style.transform='scaleX(0)';">
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+    <h2>transform: scale(.1,.1)</h2>
+    <div class="box"
+         onclick="this.style.transform='scale(.1,.1)';">
+        <strong>클릭하세요!!!</strong>
+    </div>
+    <hr>
+
+ <br><br><br><br><br><br><br><br><br>
+</body>
+</html>

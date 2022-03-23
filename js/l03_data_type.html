@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="l03_data_type.js"></script>
+    <title>data type</title>
+</head>
+<body>
+    <h1>데이터 타입 중 기본형과 참조형에 대해 알아보자</h1>
+    <input type="text" id="inputAge" placeholder="나이를 입력하세요">
+    <p>35세 이하만 입장 가능(결과) : <strong id="result"></strong></P>
+<script>
+//inputAge
+let inputAgeEl=window.document.getElementById("inputAge");
+let resultEl=window.document.getElementById("result");
+
+console.log(inputAgeEl);
+inputAgeEl.oninput=function(){
+    let inputVal=Number(this.value);
+    console.log(Number.isNaN(inputVal));
+    if(Number.isNaN(inputVal)){
+        resultEl.innerText="다시 입력하세요.";
+        inputAgeEl.value="";
+    }
+    else{
+    if(inputVal<=35){
+        resultEl.innerText="입장";
+    }
+    else{
+        resultEl.innerText="퇴장";
+    }
+}
+}
+
+</script>
+</body>
+</html>

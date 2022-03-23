@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수를 작성해 보자</title>
+</head>
+<body>
+    <h1>js의 함수를 작성해 보자</h1>
+<script>
+//프로그래밍에서 가장 중요한 실행의 단위(블럭)
+//특정 작업을 수행하기 위해 설계된 구조
+let txt="안녕하세요!";
+
+function indexLog(txt,char){
+    console.log((txt[0]==char)+"문자열의 0번째");
+    console.log((txt[1]==char)+"문자열의 1번째");
+    console.log((txt[2]==char)+"문자열의 2번째");
+    console.log((txt[3]==char)+"문자열의 3번째");
+    console.log((txt[4]==char)+"문자열의 4번째");
+    console.log((txt[5]==char)+"문자열의 5번째");
+}
+indexLog(txt,"하");
+//문자열의 2번째에 있어요! (콘솔에 출력)
+console.log("//////////////////////////////////");
+indexLog(txt,"세");
+//2수를 더하고 결과를 반환하는 함수
+function sum2(x,y){
+    let sum=x+y;
+    return sum;
+}
+console.log(sum2);
+console.log(sum2());
+console.log(sum2(200,300));
+
+let x=20;
+let y=30;
+//x,x: 파라미터, 매개변수, 지역변수(>전역변수), 수 제한 x
+function avg2(x,y){
+    return(x+y)/2; //반환하면 실행이 끝난다.
+    console.log("avg2 리턴 다음 실행"); //무시되는 코드
+}
+console.log(avg2(500,600));
+//함수의 실행은 꼭"()" 된다."
+
+console.log("var_hoistingTest",var_hoistingTest);//undefined
+var var_hoistingTest="20";
+console.log("var_hoisingTest:", var_hoistingTest);
+//var로 변수를 선언하면 js 코드 실행전, 코드 전체를 분석해 window의 필드로 정의함(hoisting)
+
+//console.log("let_hoistingTest",let_hoistingTest);//before initialization 오류
+let let_hoistingTest="20";
+console.log("let_hoisingTest:", let_hoistingTest);
+
+
+console.log("sum5(1,2,3,4,5) :",sum5(1,2,3,4,5));//함수의 hoisting
+//자바스크립트는 함수형 언어 or 프로토타입 언어라 부른다.
+//함수를 선언하면 프로토타입이 생성되는데 이 시점이 코드를 실행하기 전이다.
+//때문에 선언하기 전 코드에서 호출, 실행할 수 있다.(hoisting)
+function sum5(a,b,c,d,e){
+    return a+b+c+d+e;//return은 한번 밖에 할 수 없다.
+    return a+b+c+d-e;
+}
+console.log("sum5(10,20,30,40,50) :",sum5(10,20,30,40,50));
+
+sum5Log(11,22,33,44,55)//void (리턴하지 않는 변수)
+function sum5Log(a,b,c,d,e){
+    console.log("sum5Log() :",a+b+c+d+e);
+}
+
+//매개변수에 기본값 작성
+//이유: 매개변수의 지정 개수를 줄이기 위함이다.
+function mult2(a=0,b=0){
+    //if(Number.isNaN(Number(a))){a=0;}
+    //if(Number.isNaN(Number(b))){b=0;}
+    return a*b;
+}
+console.log(mult2());
+console.log(mult2(20,30));
+console.log(mult2(20));
+//매개변수의 기본값 지정은 끝에서 부터 지정한다.
+
+//매개변수 길이의 제한이 없이 사용하고 싶다면 arguments를 사용한다.
+function sum(){
+    console.log("argument.length :",arguments.length); //arguments function
+    //자동으로 지정되는 값
+    //let sum=arguments[0]+arguments[1]+arguments[2]+arguments[3]+arguments[4];
+    let sum=0;
+    let i=0;
+    while(i<arguments.length){
+        sum=sum+=arguments[i];
+        i++;
+    }
+    
+    console.log("sum :",sum);
+}
+sum();
+sum(1,0);
+sum(1,2,3,4,5);
+
+//이름이 없는 익명함수!!!
+//익명함수는 프로토타입을 명시 시점이 선언 시점이다.
+//익명함수를 참조하는 변수는 상수로 하는 편이다.
+
+//console.log(mod(10,3)); //호이스팅이 되어 있지 않다.
+const mod=function(a,b){
+    return a%b;
+}
+console.log(mod(10,6));
+//console.log(mod2(12,5));
+//화살표 함수(익명함수) => 프로토타입이 없다. (새로 나온 문법)
+//실행으로으 ㅣ함수는 프로토타입이 존재할 필요가 없기 때문에 실행을 위한 함수를 
+//새롬게 만들었다.
+//익명함수를 명시적으로 표현하기 위해 만들어졌다.
+//블록 구분ㅇ ㅣ모호한 것을 이용하게 하기 위해(미래)
+const mod2=(a,b)=>{
+    return a%b;
+}
+console.log(mod(12,5));
+
+const mod3=(a,b)=>a%b; //{}를 생략하면 1줄 실행코드가 자동으로 return이 된다.
+console.log(mod3(12,5));
+</script>
+<h2>함수 응용</h2>
+<form name="calc" onsubmit="">
+    <p>x:
+        <input type="number" value="0" name="x">
+    </p>
+    <p>y:
+        <input type="number" value="0" name="y">
+    </p>
+    <button type="button"
+    onclick="this.innerText=parseSum(calc.x.value,calc.y.value)">
+    (x+y)</button>
+    <button type="button" name="sumBtn">
+        x+y
+    </button>
+    <button type="button" name="multBtn"
+    onclick="this.innerText=parseMult(calc.x.value,calc.y.value)">
+        x*y
+    </button>
+</form>
+<script>
+
+//calc.sumBtn.onclick=(e)=>{
+//   e.target.innerText=parseSum(calc.x.value,calc.y.value);
+//}
+
+
+function parseSum(x,y){
+        return Number(x)+Number(y);
+    }
+function parseMult(x,y){
+    return Number(x)*Number(y);
+}
+
+function Member(){
+    this,age=26;
+    this.name="김성재";
+    this.gender="남자";
+}
+console.log(new Member());
+
+function printHtml(msg){
+    printTest.innerHTML="<b>"+msg+"</b>";
+}
+function printHtml2(msg){
+    printTest2.innerHTML="<b>"+msg+"</b>";
+}
+function printHtml3(msg){
+    printTest3.innerHTML="<b>"+msg+"</b>";
+}
+function idPrintHtml(id,msg){
+    //id.innerHTML=msg   <<< 오류
+    let node=document.getElementById(id);
+    node.innerHTML=`<i>${msg}</i>`;
+}
+</script>
+<style>
+.box{
+    border: 1px solid; height: 40px;
+}
+</style>
+<p class="box" id="printTest">#printTest</p>
+<p class="box" id="printTest2">#printTest2</p>
+<p class="box" id="printTest3">#printTest3</p>
+<!-- <button onclick="printHtml()">출력</button> -->
+<!-- <button onclick="printHtml('반갑습니다.')">msg 출력</button> -->
+<!-- <input type="text" oninput="printHtml(this.value)"> -->
+<script>
+   // printHtml("안녕하세요"); //함수를 실행한다. 호출한다.
+   // printHtml("반갑습니다.");
+   // printHtml2("오호!");
+   // printHtml3("야호!");
+    idPrintHtml("printTest","안녕!");
+    idPrintHtml("printTest2","안녕 함수!");
+    idPrintHtml("printTest3","안녕 매개변수!");
+</script>
+
+
+</body>
+</html>

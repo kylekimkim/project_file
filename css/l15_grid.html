@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid로 전체 레이아웃 구성하자</title>
+</head>
+<body>
+    <h1>문서의 2차원 레이아웃을 구성하는 grid</h1>
+<style>
+.grid_container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height:400px;
+    border:3px dashed red;
+    padding: 10px;
+    background-color: rgb(92,101,179);
+    justify-content: stretch;
+    grid-gap:10px 20px;
+    /* 가로 가용공간을 content(셀)에 나눠 주겠다. */
+    /* align-content: start; */
+}
+.grid_container div{
+    /* grid로 정의된 컨테이너의 자식은 자동으로 그리드 아이템이 된다.*/
+    border: 1px solid;
+    background-color: #fff;
+}
+</style>
+    <div class="grid_container">
+        <div class="grid_container" style="height:auto">
+            <span>셀01</span><span>셀02</span><span>셀03</span>
+            <span>셀04</span><span>셀05</span><span>셀06</span>
+        </div>
+        <div style="margin: 10px;">셀(아이템) 2</div>
+        <div>셀(아이템) 3</div>
+        <div>셀(아이템) 4</div>
+        <div>셀(아이템) 5</div>
+        <div>셀(아이템) 6</div>
+        <div>셀(아이템) 7</div>
+        <div>셀(아이템) 8</div>
+        <div>셀(아이템) 9</div>
+    </div>
+    <h2>grid container 속성 정의</h2>
+    <p>grid-taplate-columns: auto auto atuo</p>
+    <div class="grid_container" id="gridTest">
+        <div style="grid-column:2/3;
+                    grid-row: 2/3;
+                    background-color: aquamarine;">
+                    <h5>셀(아이템)1</h5>
+        </div>
+        <div style="grid-column:1/2;
+        grid-row: 1/7;">
+            <h3>셀(아이템) 2</h3></div>
+        <div>
+            <h6>셀(아이템) 3</h6></div>
+        <div>
+            <h4>셀(아이템) 4</h4></div>
+        <div><h2>셀(아이템) 5</h2></div>
+        <div>
+            <h1>셀(아이템) 6</h1></div>
+        <div>
+            <h7>셀(아이템) 7</h7></div>
+        <div>
+            <h5>셀(아이템) 8</h5></div>
+        <div><h8>셀(아이템) 9</h8></div>
+    </div>
+    <form name="gridChange">
+        <p>
+            <label>
+                justify-content :
+                <select 
+                onchange="gridTest.style.justifyContent=this.value"
+                name="justify_content">
+                    <option value="stretch" selected>stretch
+                        (여백을 셀에 나눈다)
+                    </option>
+                    <option value="start">start
+                        (flex-start,left)
+                    </option>
+                    <option value="end">end
+                        (flex-end,right)
+                    </option>
+                    <option value="center">center
+                    </option>
+                </option>
+                <option value="space-between">space-between
+                </option>
+            </option>
+            <option value="space-around">space-around
+            </option>
+        </option>
+        <option value="space-evenly">space-evenly
+        </option>
+                </select>
+            </label>
+        </p>
+        <p>
+            <label>
+                align-content (공백 세로 정렬) :
+                <select 
+                onchange="gridTest.style.alignContent=this.value"
+                name="justify_content">
+                    <option value="stretch" selected>stretch
+                        (여백을 셀에 나눈다)
+                    </option>
+                    <option value="start">start
+                        (flex-start,left)
+                    </option>
+                    <option value="end">end
+                        (flex-end,right)
+                    </option>
+                    <option value="center">center
+                    </option>
+                </select>
+            </label>
+        </p>
+        <hr>
+        <p>
+            <label>
+                justify-items (셀 가로 배치[정렬]) :
+                <select 
+                onchange="gridTest.style.justifyItems=this.value"
+                name="justify_items">
+                    <option value="stretch" selected>
+                        stretch(셀의 가로를 늘려서 배치)
+                    </option>
+                    <option value="start">
+                        start(left)
+                    </option>
+                    <option value="end">
+                        end(right)
+                    </option>
+                    <option value="center">
+                        center
+                    </option>
+                    <option value="baseline">
+                       baseline
+                    </option>
+                </select>
+            </label>
+        </p>
+        <p>
+            <label>
+                align-items (셀 세로 배치[정렬]) :
+                <select 
+                onchange="gridTest.style.alignItems=this.value"
+                name="align_items">
+                    <option value="stretch" selected>
+                        stretch(셀의 가로를 늘려서 배치)
+                    </option>
+                    <option value="start">
+                        start(left)
+                    </option>
+                    <option value="end">
+                        end(right)
+                    </option>
+                    <option value="center">
+                        center
+                    </option>
+                    <option value="baseline">
+                        baseline
+                    </option>
+                </select>
+            </label>
+        </p>
+    </form>
+    <h2>grid item 속성인 grid-column,grid-row로 셀의 위치와 영역을 지정하자</h2>
+    <div class="grid_container" style="height: 800px;">
+        <div class="item" style="grid-column: 1/span 2;">
+            <h3>셀01</h3>
+            <p>grid-column: 1/span 2</p>
+        </div>
+        <div class="item" style="grid-column: 3/span 1; grid-row: 1/span 4">  
+            <h3>셀02</h3>
+        </div>
+        <div class="item" style="grid-column: 1/span 2; grid-row: 2/span 2">
+            <h3>셀03</h3>
+        </div>
+        <div class="item">
+            <h3>셀04</h3>
+        </div>
+        <div class="item">
+            <h3>셀05</h3>
+        </div>
+    </div>
+    <h2>grid로 레이아웃을 구성하자</h2>
+<style>
+.grid_layout{
+    display: grid;
+    grid-template-columns: 3fr 7fr 2fr;
+}
+.grid_layout .item{
+    border: 2px solid gray;
+    
+}
+.grid_layout .header{
+    grid-column: 1/span 3;
+    grid-row: 1/span 1;
+}
+.grid_layout .menu{
+    grid-column: 1/span 1;
+    grid-row: 2/span 2;
+}
+.grid_layout .main{
+    grid-column: 2/span 1;
+    grid-row: 2/span 1;
+}
+.grid_layout .right{
+    grid-column: 3/span 1;
+    grid-row: 2/span 1;
+    
+}
+.grid_layout .footer{
+    grid-column: 2/span 2;
+    grid-row: 3/span 1;
+}
+
+.grid_layout2{
+    display: grid;
+     grid-template-columns: 3fr 7fr 2fr;
+    grid-template-areas:
+    "header header header"
+    "menu main aside"
+    "menu footer footer";
+}
+.grid_layout2 .item{
+    border: 2px solid gray;
+    
+}
+.grid_layout2 .header{
+    grid-area: header;
+}
+.grid_layout2 .menu{
+    grid-area: menu;
+}
+.grid_layout2 .main{
+    grid-area: main;
+}
+.grid_layout2 .right{
+    grid-area: aside;
+}
+.grid_layout2 .footer{
+    grid-area: footer;
+}
+</style>
+    <div class="grid_layout">
+        <header class="header item">헤더</header>
+        <nav class="menu item">메뉴
+            <ul>
+                <li>
+                    <a href="#">메뉴1</a>
+                </li>
+                <li>
+                    <a href="#">메뉴2</a>
+                </li>
+                <li>
+                    <a href="#">메뉴3</a>
+                </li>
+                <li>
+                    <a href="#">메뉴4</a>
+                </li>
+                <li>
+                    <a href="#">메뉴5</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="main item">메인</main>
+        <aside class="right item">광고</aside>
+        <footer class="footer item">회사정보</footer>
+    </div>
+    <h2>grid-template-areas로 레이아웃을 구성하자</h2>
+    <div class="grid_layout2">
+        <header class="header item">헤더</header>
+        <nav class="menu item">메뉴
+            <ul>
+                <li>
+                    <a href="#">메뉴1</a>
+                </li>
+                <li>
+                    <a href="#">메뉴2</a>
+                </li>
+                <li>
+                    <a href="#">메뉴3</a>
+                </li>
+                <li>
+                    <a href="#">메뉴4</a>
+                </li>
+                <li>
+                    <a href="#">메뉴5</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="main item">메인</main>
+        <aside class="right item">광고</aside>
+        <footer class="footer item">회사정보</footer>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>append로 스케줄 관리하기</title>
+</head>
+<style>
+
+#scheduleApp{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: antiquewhite;
+    width: 700px;
+}
+#scheduleApp li{
+    display: inline-block;
+    border: 2px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+    overflow: hidden;
+    padding:10px;
+    margin: 5px;
+}
+</style>
+<body>
+    <h1>append로 스케줄 관리 프로그램 만들기</h1>
+
+    <h2>스케줄 관리 프로그램</h2>
+    <ul id="scheduleApp">
+        <li>일정을 추가해 보세요. </li>
+    </ul>
+    <br>
+    <form name="scheduleList">
+        <p>
+            <label>오브젝트에 일정 및 시간 추가
+                <input type="time" name="objTime" id=""
+                value="06:00">
+                <input type="text" name="objSchedule" value="일어나기">
+            </label>
+        </p>
+        <p>
+            <button id="scheduleObjPrint" type="button">등록</button>
+        </p>   
+  
+    </form>
+<script>
+//1. 이전 과정을 그대로 진행
+//2. obj 기반으로 일정을 출력
+//<li> <b>06:00</b> <i>일어나기</i></li>
+//3. form을 제작 후 등록을 누르면 scheduleObj에 필드를 추가하라.
+//4. 하루를 24시가 아니라 1440분으로 보고 key를 설정하라.(시=>분)
+const scheduleObj={
+    511:"씻기",
+    550:"수업 시작",
+    780:"점심식사",
+    1070:"퇴근",
+    1140:"저녁식사",
+    1438:"수면",
+}
+//for in 반복문 (참조형의 데이터 타입의 키를 받아오는 반복문)
+//key 숫자로 사용하면 정렬(문자열 정렬)
+
+console.log(scheduleObj);
+
+//분 => 시간  
+cal_time=function(x){  
+    return parseInt(x/60)+":"+(x%60<10?"0"+x%60:x%60); 
+}
+function removeList(x){
+    x.remove();
+}
+
+//오브젝트에 새로 추가 및 출력
+scheduleList.scheduleObjPrint.addEventListener("click",()=>{
+    let schedule_value=(scheduleList.objSchedule.value);
+    let time_value=(scheduleList.objTime.value);
+    const str=time_value;
+    const arr=str.split(":");
+
+    scheduleObj[arr[0]*60+Number(arr[1])]=schedule_value;
+    scheduleApp.innerHTML=(" ");
+
+for(let key in scheduleObj){
+    const new_li=document.createElement("li");
+    const b_el=document.createElement("b");
+    const i_el=document.createElement("i");
+    const btn_el=document.createElement("button")
+    btn_el.onclick=function(){removeList(new_li)};
+        btn_el.append(" X ");
+        b_el.append(cal_time(key));
+        i_el.append(scheduleObj[key]);
+        new_li.append(b_el,"  ",i_el," ",btn_el);
+        scheduleApp.append(new_li);
+    }
+    console.log(scheduleObj);
+});
+
+
+
+</script>
+</body>
+</html>

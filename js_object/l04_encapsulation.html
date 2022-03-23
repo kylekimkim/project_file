@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체의 캡슐화</title>
+</head>
+<body>
+    <h1>객체의 캡슐화를 배워보자</h1>
+<script>
+class Animal{
+    //"#" private 필드(외부에 접근할 수 없는, 내부에서만 접근가능)
+    #heart="심장";
+    liver="간";kidneys="콩팥"; //외부에서 접근할 수 없는 필드
+    gene="유전자"; //비밀번호
+    name;eyes;nose;mouth;legs;
+    constructor(name,eyes=2,nose=2,mouth=1,legs=2){
+        this.name=name;
+        this.eyes=Number(eyes);
+        this.nose=Number(nose);
+        this.mouth=Number(mouth);
+        this.legs=Number(legs);
+        this.beatInterval=this.heartBeats();//생성할때만 내부에서만 심장을 뛰게 호출(정상)
+    }
+    move(){
+        return `${this.name}가 다리 ${this.legs}개로 움직인다.`;
+
+    }
+    breath(){
+        return `${this.name}가 콧구멍 ${this.nose}개로 숨을 쉰다.`;
+    }
+    //getter() 캡슐화된 private 필드를 호출할 수 있는 메서드
+    heartBeats(){
+        window.setInterval(()=>{console.log(`${this.#heart}이 두근두근`);},1000);
+        return `${this.heart}가 두근두근 뛴다.`
+    }
+}
+const 홍구 = new Animal();
+홍구.heart="콧구멍";
+//홍구.heartBeats() //외부에서 심장을 뛰게 호출(정상적 호출 x)
+</script>
+</body>
+</html>

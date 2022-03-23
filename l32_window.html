@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window</title>
+</head>
+<body>
+    <h1>브라우저 객체인 window에 대해 알아보자(BrowserObjectModel)</h1>
+
+    <h2>브라우저 정보를 알아보자</h2>
+    <ul>
+        <li>window.innerHeight (뷰포트 높이) : 
+            <script>document.write(window.innerHeight)</script>
+        </li>
+        <li>window.innerHeight (뷰포트 넓이) : 
+            <script>document.write(window.innerWidth)</script>
+        </li>
+    </ul>
+    <h2>브라우저를 출력하는 모니터 정보(screen)</h2>
+    <ul>
+        <li>window.screen.height (모니터 높이) : 
+            <script>document.write(window.screen.height)</script>
+        </li>
+        <li>window.screen.width (모니터 넓이) : 
+            <script>document.write(window.screen.width)</script>
+        </li>
+        <li>window.screen.colorDepth (모니터 색 깊이 24 or 32) : 
+            <script>document.write(window.screen.colorDepth)</script>
+        </li>
+    </ul>
+    <h2>브라우저 참조하는 리소스의 주소 참조 정보(location)</h2>
+    <ul>
+        <li>window.location.href (리소스의 주소url) : 
+            <script>document.write(window.location.href)</script>
+        </li>
+        <li>window.location.hostname (도메인 이름 or 서버의 ip주소) : 
+            <script>document.write(window.location.hostname)</script>
+        </li>
+        <li>window.location.pathname (리소스의 주소url) : 
+            <script>document.write(window.location.pathname)</script>
+        </li>
+        <li>
+            네이버 이동 버튼 :
+            <button onclick="window.location.href='https://naver.com'">네이버</button>
+            <a href="https://naver.com">네이버</a>
+        </li>
+    </ul>
+    <h2>브라우저가 참조한 리소스의 기록 정보 (history)</h2>
+    <ul>
+        <li>window.history.length (브라우저가 방문한 수) :
+            <script>document.write(window.history.length)</script>
+        </li>
+        <li>window.history.back() (뒤로가기 버튼) :
+            <button onclick="window.history.back()"> ← back() </button>
+            <button onclick="window.history.go(-1)"> ← go(-1) </button>
+            <button onclick="window.history.go(-2)"> ← go(-2) </button>
+        </li>
+        <li>window.history.forward() (앞으로가기 버튼) :
+            <button onclick="window.history.forward()"> → forward() </button>
+            <button onclick="window.history.go(1)"> ← go(1) </button>
+            <button onclick="window.history.go(2)"> ← go(2) </button>
+        </li>
+    </ul>
+    <h2>브라우저가 생성하는 경고창(alert), 확인창(confirm), 프롬프트창(prompt)</h2>
+    <ul>
+        <li>경고창 : <button onclick="alert('경고')">alert("경고")</button></li>
+        <li>확인창 : <button onclick="
+                            var con=confirm('확인하시겠습니까?');
+                            conMsg.innerText=(con)? '확인 완료' : '통과' ">
+                            confirm('확인하시겠습니까?')
+                        </button>
+                        <strong id="conMsg"></strong>
+                    </li>
+                    <li>입력창 : 
+                        <button onclick="console.log(prompt('이름은?','길동이'))">
+                            prompt("msg","value")
+                        </button>
+                    </li>
+    </ul>
+    
+    
+    
+    
+    <br><br><br><br><br><br><br><br><br><br>
+
+<script>
+console.log(window.history);
+
+console.log(window); //window (브라우저)
+console.log(window.document);   //HTMLDocument (DOMTree)
+//this 필드 접근자
+//script를 객체로 생성해서 필드사용하는 최상위 객체 == this
+console.log(this);
+
+class Obj{
+    a;b; //필드를 정의
+    //Obj의 필드인 a b를 생성자의 매개변수(파라미터) a b로 초기화 하라
+    constructor(a,b){
+        //필드를 접근하는 this로 a,b를 참조해서 파라미터 a,b를 대입
+        this.a=a;
+        this.b=b;
+    }
+    c(){
+        return this.a+this.b;
+    }
+}
+console.log(new Obj("안녕","this"));
+//new 연산자로 생성자를 호출해서 Obj 타입의 객체를  생성하는데
+//이 때 생성의 초기값으로 필드 a에 "안녕", 필드 b에 "this"를 정의하라
+const o= new Obj("객체지향","프로그래밍 공부하세요!");
+console.log(o.c());
+</script>
+</body>
+</html>

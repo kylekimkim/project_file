@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문 스위치를 사용해보자</title>
+</head>
+<body>
+    <h1>제약은 많지만속도가 빠른 스위치를 사용하자</h1>
+    <script>
+        let data=-80//기본데이터 타입만 가능
+        let score="F";
+        switch(parseInt(data/10)){
+            case 10:
+            case 9:
+            score="A";
+            break;   
+            case 8:
+            score="B";
+            break;
+            case 7:
+            score="C";
+            break;
+            case 6:
+            score="D";
+            break;
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            case 0:
+            score="F";
+            break;
+            default:
+            score="undefined";
+            break;
+        }
+        console.log("score",score);
+    //switch 규칙
+    //switch의 case는 동등 비교밖에 할 수 없다.
+    //동등비교는 기본 데이터 타입만 가능하다.
+    //장점1:switch가 if보다 월등히 빠르게 실행된다.
+    //장점2:가독성이 좋다.
+    </script>
+    <h2>성적 입력 프로그램</h2>
+    <form name="scoreForm">
+        <p>
+            <label>
+                프로그래밍
+                <input name="programingScore" type="number" min="0" max="100" value="80">
+            </label>
+        </p>
+    </form>
+<table style="width: 80%;" border="1">
+<thead>
+    <tr>
+        <td>과목</td>
+        <td>점수</td>
+        <td>등급</td>
+        <td>4.5</td>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>프로그래밍</td>
+        <td id="programingScore"></td>
+        <td id="programingGrade"></td>
+        <td id="programingScore2"></td>
+    </tr>
+</tbody>
+</table>
+<script>
+    scoreForm.programingScore.onchange=processGrade;
+
+function processGrade(){
+    let score=this.value;
+    let grade="F";
+    let score2=4.5;
+    //F=0, D=1, D+=1.5, C=2, C+=2.5, B=3, B+=3.5, A=4, A+=4.5;
+    //5~9 점은 +를 사용하라
+
+    switch(parseInt(score/5)){
+        case 20:
+            case 19:
+            grade="A+"
+            score2="4.5"
+            break; 
+            case 18:
+            grade="A"
+            score2="4.0"
+            break;
+            case 17:
+            grade="B+"
+            score2="3.5"
+            break;    
+            case 16:
+            grade="B";
+            score2="3.0"
+            break;
+            case 15:
+            grade="C+"
+            score2="2.5"
+            break; 
+            case 14:
+            grade="C";
+            score2="2.0"
+            break;
+            case 13:
+            grade="D+"
+            score2="1.5"
+            break; 
+            case 12:
+            grade="D";
+            score2="1.0"
+            break;
+            case 11:
+            case 10:
+            case 9:
+            case 8:
+            case 7:
+            case 6:
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            case 0:
+            grade="F";
+            score2="0"
+            break;
+            default:
+            grade="undefined";
+            score2="undefined"
+            break;
+    }
+    programingScore.innerText=score;
+    programingGrade.innerText=grade;
+    programingScore2.innerText=score2;
+}
+</script>
+</body>
+</html>

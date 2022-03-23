@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img 태그로 이미지를 참조하자</title>
+</head>
+<body>
+    <h1>img 태그로 이미지를 참조하자</h1>
+    <p>img 넓이와 높이는 출력되는 컨텐츠의 넓이 높이로 지정된다.</p>
+    <div>
+    아이유1: <img src="/img/IU/아이유1.jpg" alt="아이유1" 
+    width="200px" height="100px">
+    </div>
+    <div>
+        아이유1: <img src="/img/IU/아이유1.jpg" alt="아이유1" 
+        width="200px" height="">
+        </div>
+        <div>
+            아이유1: <img src="/img/IU/아이유1.jpg" alt="아이유1" 
+            height="100px" style="border-radius: 50%; 
+            border:1px solid; padding: 10px;
+            background-color: rosybrown;">
+            </div>
+        <div>
+            아이유2: <img src="/img/IU/아이유2.jpg" alt="아이유2" 
+            width="200px">
+        </div>
+        <div>
+            <figure>
+                <caption>object-fit: contain</caption>
+                <img src="/img/IU/아이유3.jpg"
+                alt="아이유3" style="width:200px; height:400px;
+                border: 1px solid red;
+                object-fit: contain;">
+            </figure>
+            <figure>
+                <caption>object-fit: fill(default)</caption>
+                <img src="/img/IU/아이유3.jpg"
+                alt="아이유3" style="width:200px; height:400px;
+                border: 1px solid red;
+                object-fit: fill;">
+            </figure>
+            <figure>
+                <caption>object-fit: cover</caption>
+                <img src="/img/IU/아이유3.jpg"
+                alt="아이유3" style="width:200px; height:400px;
+                border: 1px solid red;
+                object-fit: cover;">
+            </figure>
+            <figure>
+                <caption>object-fit: cover</caption>
+                <img src="/img/IU/아이유3.jpg"
+                alt="아이유3" style="width:500px; height:200px;
+                border: 1px solid red;
+                object-fit: cover;">
+            </figure>
+            <figure>
+                <caption>object-fit: none</caption>
+                <img src="/img/IU/아이유3.jpg"
+                alt="아이유3" style="width:200px; height:400px;
+                border: 1px solid red;
+                object-fit: none;">
+            </figure>
+
+        </div>
+        <hr>
+        <div>
+            <h2>box-reflect</h2>
+            <img src="/img/IU/아이유1.jpg" alt="아이유1반사"
+            width="200" style="-webkit-box-reflect: below;">
+            <img src="/img/IU/아이유1.jpg" alt="아이유1반사"
+            width="200" style="-webkit-box-reflect: right;">
+        </div>
+            <br> <br> <br> <br>
+</body>
+</html>

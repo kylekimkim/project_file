@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async function</title>
+</head>
+<body>
+    <h1>async function을 이용해서 스마트하게 스레드를 동기화 하자</h1>
+    <p>타이머:
+        <strong id="timerNum">3</strong>
+    </p>
+    <div id="root"></div>
+<script>
+let timer_num=3;
+let interNum=window.setInterval(()=>{
+    console.log("스레드 실행중");
+    if(timer_num!==0){
+        timerNum.innerHTML=(--timer_num)
+    }else{
+        window.clearInterval(interNum);
+    }
+},1000)
+//promise화
+function appendI(index,sec){
+    return new Promise((resolve,reject)=>{
+        window.setTimeout(()=>{
+            let p=document.createElement("p");
+            p.append(index);
+            root.append(p);
+            resolve();
+        },sec)
+    });
+}
+//static sugar(문법적 꾸밈) 문법 async 함수 : Promise 객체를 반환
+//return == resolve와 동일하지만 콜백 함수에서 return을 정의할 수 없어서 실질적 사용은 불가능
+//async function asyncTest(resolve,reject) (x)
+async function asyncTest(){
+    await appendI(1,2000);
+    await appendI(2,1000);
+    await appendI(3,1000);
+    return "async resolve msg"
+}
+asyncTest().then((msg)=>{
+    root.append(msg);
+});
+
+
+
+
+
+//기존의 promise 체이닝
+// appendI(1,2000).then((resolve_msg)=>{
+//     return appendI(2,1000);
+// }).then(()=>{
+//     appendI(3,1000);
+// })
+</script>
+</body>
+</html>

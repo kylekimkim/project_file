@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>binding 개념을 알아보자</title>
+</head>
+<body>
+    <h1>객체의 필드를 this로 bind(묶다,붙이다)하는 개념을 알아보자</h1>
+    <p>this가 참조하는 필드는 this가 bind하는 필드라는 의미</p>
+    <div>타이머 <strong id="getTime"></strong></div>
+<script>
+//1초 1씩 줄어드는 타이머
+class Timer{
+    constructor(selector,time=10){
+        this.time=time;
+        this.selector=selector;
+
+        window.setInterval(()=>{
+            console.log(this);
+            document.querySelector(this.selector).innerText=this.time;
+            this.time--;
+        },1000);
+        //화살표 함수를 사용하면 unbinding해서 window를 bind하지 않고 그 밖의 객체인
+        //time을 binding한다.
+    }
+}
+const timer=new Timer("#getTime",20);
+//timer.printTime("#getTime");
+</script>
+</body>
+</html>

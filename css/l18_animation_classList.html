@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition과 animation으로 요소에 애니메이션을 적용</title>
+</head>
+<style>
+.transitionTest li{
+    position: relative;
+}
+.box{
+    width: 50px;
+    height: 50px;
+    background-color: aquamarine;
+    display: inline-block;
+    /* transition: all 500ms; */
+    transition-property: transform;
+    transition-delay: 200ms;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0,1.67,1,-0.89);
+
+    /* margin-left: 50px; */
+    /* transform: translateX(200px); */
+    /* transform 요소를 직접접ㄱ으로 변경하지 않기 때문에(렌더링을 위한 추가 삭제)
+    메모리에 부담이 적다. */
+    /* position: absolute;
+    left: 200px;*/
+} 
+.rotate{
+    transform: rotateZ(180deg);
+}
+</style>
+<body>
+    <h1>transition, animation으로 특정 시간동안 수치를 변경해 애니메이션을 적용하자.</h1>
+    <h2>수치가 변경되면 애니메이션이 발생하는 transition</h2>
+
+    <ul class="transitionTest">
+        <li>
+            <span class="box" onmouseover="this.style.transform='translateX(200px)'">
+                translate(200px)</span>
+        </li>
+        <li>
+            <span class="box" onclick="this.classList.add('rotate')">
+                classList.add('rotate')</span>
+        </li>
+        <li>
+            <span class="box rotate" onclick="this.classList.remove('rotate')">
+                classList.remove('rotate')</span>
+        </li>
+        <li>
+            <span class="box" onclick="this.classList.toggle('rotate')">
+                classList.toggle('rotate')</span>
+        </li>
+    </ul>
+    
+    <h2 id="classTest" class="a b c d e f">classList와 className</h2>
+    <ul>
+        <li>className은 요소의 속성으로 지정한 class의 문자열 값</li>
+        <li>classList는 문자열 class를 " "으로 배열로 나눈 값</li>
+        <li>add("classNmae") : 해당 클래스가 없으면 추가</li>
+        <li>remove("classNmae") : 해당 클래스가 없으면 삭제</li>
+        <li>toggle("classNmae") : 해당 클래스가 없으면 추가, 있으면 삭제</li>
+        <li>contains("contains") : 해당 클래스가 없으면 true, 없으면 false</li>
+        <li>replace("old","new") : 해당 클래스(old)가 있으면 new로 변경</li>
+        <li>forEach(func) : class 개수 만큼 반복 실행</li>
+    </ul>
+    <form name="checkBoxTest">
+        <h3>성별</h3>
+        <p>
+            남자:
+            <input type="radio" name="gender" value="남자">
+            여자:
+            <input type="radio" name="gender" value="여자">
+            ??:
+            <input type="radio" name="gender" value="??">
+        </p>
+        <h3>취미</h3>
+        <p>
+            낚시:
+            <input type="checkbox" name="hobby" value="낚시" checked>
+            독서:
+            <input type="checkbox" name="hobby" value="독서">
+            요리:
+            <input type="checkbox" name="hobby" value="요리" checked>
+            수면:
+            <input type="checkbox" name="hobby" value="수면">
+
+        </p>
+    </form>
+<script>
+
+class Obj{}
+console.log(classTest.className);
+console.log(classTest.className.split(" "));
+console.log(classTest.classList);
+console.log(classTest.classList.replace("d","new_d"));
+console.log(classTest.classList);
+console.log(classTest.classList.contains("c"));
+//c class가 있으면 삭제하세요
+if(classTest.classList.contains("c")){
+    classTest.classList.remove("c");
+}
+console.log(classTest.classList);
+
+
+console.log(new Number(16));
+
+//type=radio RadioNodeList
+//라디오는 1개만 선택 가능하기 때문에 value가 존재
+console.log(checkBoxTest.gender);
+console.log(checkBoxTest.gender.value);
+//type=checkbox RadioNodeList
+//체크박스는 복수를 선택 가능하기 때문에 value가 존재 x
+console.log(checkBoxTest.hobby);
+//문제1 checkBoxTest.hobby를 Array 타입으로 변경 후 filter()로 checked된 것만
+//남기세요. => map으로 선택된 value만 남기세요.
+
+const hobby_arr=Array.from(checkBoxTest.hobby);
+console.log(hobby_arr);
+const hobby_checked_arr=hobby_arr.filter((item)=>{
+    return item.checked;
+});
+console.log(hobby_checked_arr);
+const hobby_checked_values=hobby_checked_arr.map((item)=>{
+    return item.value;
+})
+console.log(hobby_checked_values);
+console.log(checkBoxTest.hobby[0].checked);
+
+//문제 2 querySelectorAll()로 checked된 요소만 찾으세요.
+//const hobby_checked_list=document.querySelectorAll("form[name='checkBoxTest'] [name='hobby']")
+const hobby_checked_list=checkBoxTest.querySelectorAll("[name='hobby'][checked]");
+console.log(hobby_checked_list);
+const hobby_values=[];
+
+hobby_checked_list.forEach((item)=>{
+    hobby_values.push(item.value);
+});
+console.log(hobby_values);
+</script>
+</body>
+</html>

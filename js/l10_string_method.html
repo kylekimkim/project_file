@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자열의 랩퍼 객체 String</title>
+</head>
+<body>
+    <h1>기본데이터 타입 문자열의 랩퍼 객체 String</h1>
+    <p>let txt="안녕하세요. 프론트엔드 수업입니다."</p>
+    <ul>
+        <li>txt.length :
+            <script>
+                let txt="안녕하세요. 프론트엔트 수업입니다.";
+                document.write(txt.length);
+            </script>
+        </li>
+        <li>txt.charAt(0) :
+            <script>
+                document.write(txt.charAt(0));
+            </script>
+            (문자 추출)
+        </li>
+        <li>txt[0] :
+            <script>
+                document.write(txt[0]);
+            </script>
+            (문자 추출)
+        </li>
+        <li>txt.charCodeAt(0) :
+            <script>
+                document.write(txt.charCodeAt(0));
+            </script>
+        </li>
+        <li>txt.slice(13,15) :
+            <script>
+                document.write(txt.slice(13,15));
+            </script>
+            (문자열 추출)
+        </li>
+        <li>txt.slice(-6,-4) :
+            <script>
+                document.write(txt.slice(-6,-4));
+            </script>
+            (문자열 추출)
+        </li>
+        <li>txt.substr(13,2) :
+            <script>
+                document.write(txt.substr(13,2));
+            </script>
+            (substr(start,length))
+        </li>
+        <li>txt.substr(-6) :
+            <script>
+                document.write(txt.substr(-6));
+            </script>
+            (substr(start))
+        </li>
+        <li>txt.tndexOf("수"):
+            <script>
+                document.write(txt.indexOf("수"));
+            </script>
+        </li>
+        <li>txt.indexOf("요"):
+            <script>
+                document.write(txt.indexOf("요"));
+            </script>
+            (처음으로 찾은 문자열의 index 반환)
+        </li>
+        <li>txt.lastIndexOf("요"):
+            <script>
+                document.write(txt.lastIndexOf("요"));
+            </script>
+            (마지막으로 찾은 문자열의 index 반환)
+        </li>
+        <li>
+            <script>
+                let 수_위치=txt.indexOf("수");
+                let 잘라낼길이=6;
+                document.write(txt.slice(수_위치,수_위치+잘라낼길이));
+            </script>
+        </li>
+        <li>
+            <script>  
+                document.write(txt.substr(수_위치,잘라낼길이));
+            </script>
+        </li>
+        <li>
+            "  양쪽으로 공백이 포함된 문자  "(통신 많이 발생)
+        </li>
+        <li>txt2.length:
+            <script>
+                let txt2="  양쪽으로 공백이 포함된 문자  ";
+                document.write(txt2.length);
+            </script>
+        </li>
+        <li>txt.trim().length :
+            <script>
+                document.write(txt2.trim().length);
+                console.log(txt2);
+                console.log(txt2.trim());
+            </script>
+        </li>
+        <li>txt.split(" "):
+            <script>
+                document.write(txt.split(" "));
+                console.log(txt.split(" "));
+            </script>
+        </li>
+        <li>txt.split("."):
+            <script>
+                document.write(txt.split("."));
+                console.log(txt.split("."));
+            </script>
+        </li>
+        <li>txt.split(""):
+            <script>
+                document.write(txt.split(""));
+                console.log(txt.split(""));
+            </script>
+        </li>
+        <li>txt.replace("프론트엔드","front-end") :
+            <script>
+                document.write(txt.replace("프론트엔트","front-end"));
+            </script>
+        </li>
+        <li>txt.replace("프론트엔드","front-end") :
+            <script>
+                document.write(txt.replace("프론트엔트","front-end").toUpperCase());
+            </script>
+        </li>
+        <li>txt :
+            <script>
+                document.write(txt);
+            </script>
+        </li>
+    </ul>
+</body>
+</html>

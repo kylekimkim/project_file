@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-items으로 flex 박스의 레이아웃을 결정</title>
+</head>
+<style>
+.flex_container{
+    display: flex;
+    border: 3px solid saddlebrown;
+    height: 200px;
+}
+.flex_container div.item{
+    /* 부모가 flex기 때문에 자동으로 flex-item으로 지정된다. */
+    border: 3px ridge royalblue;
+    /* flex-grow: 1; */
+}
+</style>
+<body>
+    <h1>flex 박스의 자식 요소를 flex items라 한다.</h1>
+    <h2>flex-grow: 1 2 1</h2>
+    <section class="flex_container" id="flexItemsTest">
+        <!-- div[class="items"]{아이템$}*5 -->
+        <div class="item" style="flex-grow:1">아이템1
+            <br>flex-grow:1
+        </div>
+        <div class="item" style="flex-grow:2">아이템2
+            <br>flex-grow:2</div>
+        <div class="item" style="flex-grow:1">아이템3
+            <br>flex-grow:1
+        </div>
+    </section>
+    <form name="growChange">
+        <p>
+            <label>width :
+                0 <input type="range" value="100"
+                    oninput="flexItemsTest.style.width=this.value+'%'"> 100%
+            </label>
+        </p>
+    </form>
+    <h2>flex-basis: 200px 100px 150px</h2>
+    <section class="flex_container" id="flexItemsTest2">
+        <!-- div[class="items"]{아이템$}*5 -->
+        <div class="item" style="flex-basis:200px;">아이템1
+            <br>flex-basis:200
+        </div>
+        <div class="item" style="flex-basis:100px;">아이템2
+            <br>flex-basis:100</div>
+        <div class="item" style="flex-basis:150px;">아이템3
+            <br>flex-basis:150
+        </div>
+    </section>
+    <form name="growChange">
+        <p>
+            <label>width :
+                0 <input type="range" value="100"
+                    oninput="flexItemsTest2.style.width=this.value+'%'"> 100%
+            </label>
+        </p>
+    </form>
+    <h2>flex-basis: auto auto auto (default)</h2>
+    <section class="flex_container" id="flexItemsTest3">
+        <!-- div[class="items"]{아이템$}*5 -->
+        <div class="item" style="flex-basis: auto;">아이템1
+            <br>flex-basis:auto
+        </div>
+        <div class="item" style="flex-basis: auto;">아이템2
+            <br>flex-basis:auto</div>
+        <div class="item" style="flex-basis: auto;">아이템3
+            <br>flex-basis:auto
+        </div>
+    </section>
+    <form name="growChange">
+        <p>
+            <label>width :
+                0 <input type="range" value="100"
+                    oninput="flexItemsTest3.style.width=this.value+'%'"> 100%
+            </label>
+        </p>
+    </form>
+    <h2>flex-shrink: 1 2 1, flex-grow: 1 1 1</h2>
+    <section class="flex_container" id="flexItemsTest4">
+        <!-- div[class="items"]{아이템$}*5 -->
+        <div class="item" style="flex-grow:1; flex-shrink:1;">아이템1
+            <br>flex-grow:1
+            <br>flex-shrink:1
+        </div>
+        <div class="item" style="flex-grow:1; flex-shrink:2;">아이템2
+            <br>flex-grow:1
+            <br>flex-shrink:2</div>
+        <div class="item" style="flex-grow:1; flex-shrink:1;">아이템3
+            <br>flex-grow:1
+            <br>flex-shrink:1
+        </div>
+    </section>
+    <form name="growChange">
+        <p>
+            <label>width :
+                0 <input type="range" value="100"
+                    oninput="flexItemsTest4.style.width=this.value+'%'"> 100%
+            </label>
+        </p>
+    </form>
+    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

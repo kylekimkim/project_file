@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom 추가 제어</title>
+</head>
+<style>
+.container{
+    border: 3px dotted;
+    /* height: 100px; */
+}
+.box{
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-color: aquamarine;
+    border: 3px dashed #aaa;
+}
+.bolder{
+    font-weight: bolder;
+}
+</style>
+<body>
+    <h1>DOM을 추가 제어하자.</h1>
+
+    <h2>element.appendChild(node)</h2>
+    <h3>#firstCont</h3>
+    <p class="container" id="firstCont">
+        <span style="background-color: red;"
+        id="box" class="box">#box</span>
+    </p>
+    <h3>#secondCont</h3>
+    <p class="container" id="secondCont">
+
+    </p>
+    <p>
+        <button id="moveBox">
+            #firstCont>#box => #secondCont 이동
+        </button>
+        <button id="moveBox2">
+            #secondCont>#box => #firstCont 이동
+        </button>
+        <button id="appendChildBox">
+            appendGhild(box)
+        </button>
+        <button id="prependBox">
+            prepend(box)
+        </button>
+    </p>
+<script>
+//secondCont.appendChild(box);
+moveBox.addEventListener("click",()=>(
+    secondCont.appendChild(box)
+));
+moveBox2.addEventListener("click",()=>(
+    firstCont.appendChild(box)
+));
+
+    let i=0;
+appendChildBox.addEventListener("click",function(){
+    //secondCont.appendChild("<span class='box'>box</span>")
+    const new_span=document.createElement("span");
+    const new_text=document.createTextNode("box"+(i++));
+    new_span.appendChild(new_text);
+    new_span.className="box bolder";
+    firstCont.appendChild(new_span);
+});
+let pre_i=0;
+prependBox.addEventListener("click",function(){
+    //secondCont.appendChild("<span class='box'>box</span>")
+    const new_span=document.createElement("span");
+    const new_text=document.createTextNode("box"+(pre_i++));
+    new_span.appendChild(new_text);
+    new_span.className="box bolder";
+    firstCont.prepend(new_span);
+});
+
+//node 개체 생성 함수
+// const new_span=document.createElement("span");
+// const new_text=document.createTextNode("box");
+// new_span.appendChild(new_text);
+// new_span.className="box bolder";
+// //class 약속 => className
+// //new_span.innerText="box";
+// secondCont.appendChild(new_span);
+// console.log(new_span);
+
+class Obj{}
+
+</script>
+
+<h2>element.append(node,node,string)</h2>
+<h3>일정 관리</h3>
+<ul id="appendList">
+
+</ul>
+<form name="insertList">
+    <p>
+        <label>일정
+            <input type="time" name="time" id=""
+                value="06:00">
+            <input type="text" name="schedule" value="일어나기">
+        </label>
+    </p>
+    <p>
+        <button name="insert" type="button">등록</button>
+    </p>
+</form>
+<script>
+insertList.insert.addEventListener("click",()=>{
+    let schedule_value=(insertList.schedule.value);
+    let time_value=(insertList.time.value);
+    const li=document.createElement("li");
+    const strong=document.createElement("strong");
+    strong.append(schedule_value);
+    const i_el=document.createElement("i");
+    i_el.append(time_value);
+
+    li.append(i_el," ",strong);
+    appendList.append(li);
+})
+
+
+
+
+
+// const new_li=document.createElement("li");
+// new_li.append("커피 마시기");
+// //new_li.innerText="커피 마시기";
+// //new_li.appendChild(document.createTextNode("커피 마시기"));
+// //console.log(new_li);
+// const new_li2=document.createElement("li");
+// new_li2.append("출근하기");
+// appendList.append(new_li,new_li2,"<li>형제3</li>","형제4");
+</script>
+</body>
+</html>

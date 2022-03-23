@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>논리 연산자로 범위를 지정해 보자</title>
+</head>
+<body>
+    <h1>&&(and), ||(or), !(not)</h1>
+<script>
+console.log("true || false:",true||false);
+//true=1, flase=0 1+0=1
+console.log("treu || true || false:",true||true||false);
+console.log("true && false:",true&&false);
+//true=1, flase=0 1*0=0
+
+console.log("!!true:",!!true);
+console.log(Boolean(-10)); //값이 있으면 true
+console.log(!-10);
+console.log(!"  ");
+console.log(!0);
+console.log(!"");
+console.log(!null);
+console.log(!undefined);
+//!boolean(data)와 같은 결과
+
+let num="3";
+let msg="짝수다"
+
+if(num==1 || num==3 || num==5 || num==7){
+    msg="홀수다."
+}
+
+console.log(msg);
+
+let num2=Infinity;
+let msg2="";
+//5보다 작거나 7보다 큰수
+if(num2<5 || num>7){
+    msg2="5보다 작거나 7보다 큰 수"
+}else if(num2>=5 && num2<=7){
+    msg2="5보다 크고 7보다 작은 수"
+}
+console.log(msg2);
+
+//삼항 연산자 (if else) 줄여서 사용 가능
+//(조건)?true블럭:false블럭
+
+//짝수, 홀수 검수 (10%2)==0 짝수, (13%2)==1 홀수
+let num3=12;
+let msg3=(num3%2==0)?"짝수":"홀수";
+console.log(msg3);
+</script>
+</body>
+</html>

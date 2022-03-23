@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노드 개체에 정의된 상속 관계로 노드를 검색하자</title>
+</head>
+<body>
+    <h1>노드 개체에 정의된 상속 관계로 노드를 검색하자</h1>
+    <div id="childContainer">
+        <div>1번</div>
+        <div id="child">
+            <b>
+                2번(#child)
+            </b>
+        </div>     
+        <div>3번</div>
+        4번째
+    </div>
+    <ul id="searchChild">
+        <li>#child</li>
+        <li onmouseover="child.parentNode.style.border='1px solid'">#child.parentNode</li>
+        <li
+            onmouseover="child.previousElementSibling.style.border='1px solid'">
+            #child.previousElementSibling</li>
+        <li
+            onmouseover="child.nextElementSibling.style.border='1px solid'">
+            #child.nextElementSibling</li>
+        <li
+            onmouseover="child.children[0].style.color='red'">
+            #child.children[0]</li>
+            <!-- firstElementChild == children[0] -->
+    </ul>
+<script>
+//console.log(child.children[0].style.color='red');
+
+
+
+
+const childContainer=document.getElementById("childContainer");
+//console.log(childContainer.parentNode);
+console.log(child.parentNode);
+
+
+</script>
+</body>
+</html>

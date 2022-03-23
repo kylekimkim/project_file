@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#gameBack{
+    border: 3px dashed;
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    background-image: url("l35_gawebawebo.png");
+    background-size: auto 100px;
+    /* background-position: -200px; */
+    background-repeat: no-repeat;
+}
+.s{
+    /* 가위 */
+    background-position: 10;
+}
+.r{
+    /* 바위 */
+    background-position: -97px;
+}
+.p{
+    /* 보 */
+    background-position: -204px;
+}
+</style>
+<body>
+    <h1>가위 바위 보 게임을 만드세요!</h1>
+
+    <h2>규칙에 따라 만들어 주세요</h2>
+    <ul>
+        <li>가위 바위 보 이미지가 계속 변경 된다.(setInterval)</li>
+        <li>게임시작 버튼(setInterval 시작 버튼)</li>
+        <li>멈춤 버튼(가위 바위 보 중에 random으로 선택된 값을 출력)</li>
+        <li>radio로 묵 찌 빠를 선택한 후 멈춤을 하면 random 수와 비교 해서
+            이기고 지는지 출력(묵 찌 빠 버튼 3개도 가능)
+        </li>
+    </ul>
+    <hr>
+    <h2>가위 바위 보 게임</h2>
+    <div id="gameBack" class="s">
+        <b id="ovalue"></b>
+    </div>
+    <button id="gamestartBtn">게임 시작</button>
+        <h3>무엇을 낼 것인지 선택하시오.</h3>
+        <p>
+            <button id="sBtn" type="button">가위</button>
+            <button id="rBtn" type="button">바위</button>
+            <button id="pBtn" type="button">보</button>
+        </p>
+    <hr>
+    <br>
+    <strong id="myvalue"></strong>
+    <strong id="result"></strong>
+<script>
+//class 이름 전체 삭제 방법
+gameBack.className="";
+const game_arr=["s","r","p"];
+gamestartBtn.addEventListener("click",()=>{
+    let interval_num=window.setInterval(()=>{
+        let game_i=Math.trunc(Math.random()*3);
+        gameBack.className=game_arr[game_i];
+        if(game_i==0){
+            ovalue.innerText="가위";
+        }
+        else if(game_i==1){
+            ovalue.innerText="바위";
+        }
+        else{
+            ovalue.innerText="보";
+        }
+        sBtn.addEventListener("click",()=>{
+            myvalue.innerText="가위를 냈습니다."
+             window.clearInterval(interval_num);
+             if(game_i==0){
+                 result.innerText="비겼습니다.";
+             }
+             else if(game_i==1){
+                result.innerText="졌습니다.ㅠㅠ";
+             }
+             else{
+                result.innerText="이겼습니다!!!";
+             }
+            });
+        rBtn.addEventListener("click",()=>{
+            myvalue.innerText="바위를 냈습니다."
+            window.clearInterval(interval_num);
+            if(game_i==0){
+                 result.innerText="이겼습니다!!!";
+             }
+             else if(game_i==1){
+                result.innerText="비겼습니다.";
+             }
+             else{
+                result.innerText="졌습니다.ㅠㅠ";
+             }
+            });
+        pBtn.addEventListener("click",()=>{
+            myvalue.innerText="보를 냈습니다."
+            window.clearInterval(interval_num);
+            if(game_i==0){
+                 result.innerText="졌습니다.ㅠㅠ";
+             }
+             else if(game_i==1){
+                result.innerText="이겼습니다!!!";
+             }
+             else{
+                result.innerText="비겼습니다.";
+             }
+            });
+    },100);
+});
+</script>
+</body>
+</html>

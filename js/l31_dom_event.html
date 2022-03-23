@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document event 정의하자</title>
+<script>
+window.onload=function(){
+    console.log(loadTest);
+
+    const arr=[10,2,3];
+
+    // for(;true;){
+    //     console.log(arr);
+    // }
+    //thread가 1개라서 반복문이 끝나야 다음 코드를 실행한다.
+    //반복문이 무한 반복이면 다음 코드는 실행되지 않는다.
+    //만약 다음 코드를 실행하려면 무한 반복문을 위해 스레드를 생성해야 한다.
+    console.log("반복문 끝");
+
+    //loadTest에 onclick 이벤트를 검사하는 무한 반복문 생성
+
+    loadTest.addEventListener("mouseover",function(){
+        this.style.color='red';
+    });
+    loadTest.addEventListener("mouseout",function(){
+        this.style.color='black';
+    });
+    loadTest.addEventListener("mouseout",function(){
+        this.style.color='black';
+    });
+    loadTest.addEventListener("mouseout",function(){
+        this.style.borderBottom='1px solid';
+    });
+    console.log("onclick 이벤트를 (무한히)대기하는 onclick 생성 끝");
+}
+</script>
+</head>
+<body>
+    <h1>모든 요소는 이벤트를 정의할 수 있다.</h1>
+
+    <div id="loadTest">
+        <p>body의 요소가 모두 렌더링(노드개체 생성)되는 시점 onload</p>
+    </div>
+<script>
+//console.log(loadTest);
+</script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML table로 표를 생성</title>
+</head>
+<body>
+    <h1>HTML table로 표를 생성해 보자</h1>
+    <h2>사원정보</h2>
+    <table border="1" style="width: 100%;">
+        <caption>사원리스트</caption>
+        <colgroup> 
+        <col span="1">
+        <col span="2" style="background-color: tomato;">
+     </colgroup>
+        <thead>
+        <tr>
+            <th>사번(대표)</th>
+            <th style="width: calc(100%/6)">이름</th>
+            <th>생일</th>
+            <th>월급</th>
+            <th>직책</th>
+            <th>부서</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>e101001</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e237111</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e333210</td>
+            <td>마이클</td>
+            <td>1880-05-20</td>
+            <td>250</td>
+            <td>대리</td>
+            <td>세일즈</td>
+        </tr>
+    </tbody>
+    </table>
+    <hr>
+    <style>
+        /* head에 작성해야 하지만 예제를 잘 이해하기 위해 작성 */
+    table#table1{
+        border: 1px solid black;
+        /* border-collapse: collapse; */
+    }
+    table#table1 tr{
+        /* tr은 박스모델의 border 지정 불가 */
+        border: 1px solid red;
+    }
+    table#table1 td,table#table1 th{
+        border : 3px solid;
+        border-top-color: aqua;
+        border-left-color: purple;
+        border-right-color:  cornflowerblue;
+        border-bottom-color:  chartreuse;
+    }
+    table.stripe{
+        border-collapse: collapse;
+        border-top:1px solid;
+        width: 100%;
+    }
+    table.stripe td,table.stripe th{
+        
+        border-bottom:1px solid #000;
+        padding: 5px;
+    }
+    table.stripe tr:nth-child(2n-1) td{
+        background-color: wheat;
+    }
+    table.stripe thead th{
+        background-color: darkgrey;
+        color:white;
+    }
+    table.stripe tr td:hover{
+        background-color: violet;
+    }
+    table.stripe tr:active td{
+        background-color: violet;
+    }
+    table.stripe tr td:nth-child(3),
+    table.stripe tr td:nth-child(3)
+    {
+        background-color: tomato;
+    }
+    /* table.stripe tr:first-child th{ 
+        border-top: 1px solid red;
+    /* } */
+    
+    </style>
+    <table id="table1">
+        <caption>사원리스트</caption>
+        <thead>
+        <tr>
+            <th>사번(대표)</th>
+            <th style="width: calc(100%/6)">이름</th>
+            <th>생일</th>
+            <th>월급</th>
+            <th>직책</th>
+            <th>부서</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>e101001</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e237111</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e333210</td>
+            <td>마이클</td>
+            <td>1880-05-20</td>
+            <td>250</td>
+            <td>대리</td>
+            <td>세일즈</td>
+        </tr>
+    </tbody>
+    </table>
+    <hr>
+    <table id="table1" style="border-collapse: collapse;">
+        <caption>사원리스트</caption>
+        <thead>
+        <tr>
+            <th>사번(대표)</th>
+            <th style="width: calc(100%/6)">이름</th>
+            <th>생일</th>
+            <th>월급</th>
+            <th>직책</th>
+            <th>부서</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>e101001</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e237111</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e333210</td>
+            <td>마이클</td>
+            <td>1880-05-20</td>
+            <td>250</td>
+            <td>대리</td>
+            <td>세일즈</td>
+        </tr>
+    </tbody>
+    </table>
+    <hr>
+    <table class="stripe">
+        <caption>사원리스트</caption>
+        <thead>
+        <tr>
+            <th>사번(대표)</th>
+            <th style="width: calc(100%/6)">이름</th>
+            <th>생일</th>
+            <th>월급</th>
+            <th>직책</th>
+            <th>부서</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>e101001</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e237111</td>
+            <td>제인</td>
+            <td>1900-01-20</td>
+            <td>350</td>
+            <td>과장</td>
+            <td>세일즈</td>
+        </tr>
+        <tr>
+            <td>e333210</td>
+            <td>마이클</td>
+            <td>1880-05-20</td>
+            <td>250</td>
+            <td>대리</td>
+            <td>세일즈</td>
+        </tr>
+    </tbody>
+    </table>
+    <h2 onclick="this.style.color='red'"
+    onmousedown="this.style.color='blue'">
+    onclick => color: red</h2>
+</body>
+</html>

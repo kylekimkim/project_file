@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax간의 동기화</title>
+</head>
+<body>
+    <h1>비동기식 통신인 ajax 코드간의 동기화 하기</h1>
+    <h2>아이가 사용가능 한지 체크가 되면 비밀번호 입력창이 보이게 하세요.</h2>
+    <h2>회원가입</h2>
+    <form action="userInsert.jsp" name="userInsert">
+        <p>
+            <label>
+                아이디<br>
+                <input type="text" name="id" placeholder="@naver"><br>
+                <span id="idMsg"></span>
+            </label>
+        </p>
+        <div id="loadForm">
+        </div>
+    </form>
+<script>
+let id_check=false;
+userInsert.id.addEventListener("blur",(e)=>{
+    let id_val=(e.target.value);
+    if(id_val.length>4){
+        const req=new XMLHttpRequest();
+        req.open("GET","loginCheck.json");
+        req.onload=(e)=>{
+            //e.target === req
+            const id_check_obj=JSON.parse(e.target.responseText);
+            id_check=id_check_obj.login;
+            if(id_check){
+                const req=new XMLHttpRequest();
+                req.open("GET","l08_read_user_insert_form.html");
+                req.onload=(e)=>{
+                    if(e.target.status===200){
+                        loadForm.innerHTML=(e.target.responseText);
+                        idMsg.innerText="사용가능 id, 나머지 입력하세요."
+                        userInsert.id.disabled=true;
+                    }else{
+                        //통신 장애
+                        loadForm.innerHTML="";
+                        idMsg.innerText="통신장애입니다 다시입력하세요."
+                        userInsert.id.disabled=false;
+                    }
+                }
+                req.send();
+            }else{
+                loadForm.innerHTML="";
+                idMsg.innerText="이미 사용중인 아이디 입니다."
+                userInsert.id.disabled=false;
+            }
+        }
+        req.send()
+    }else{
+        loadForm.innerHTML="";
+        idMsg.innerText="5글자 이상 입력하세요."
+        userInsert.id.disabled=false;
+    }
+});
+
+
+
+</script>
+
+
+
+</body>
+</html>

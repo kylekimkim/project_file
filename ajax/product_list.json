@@ -1,0 +1,38 @@
+[
+    {
+        "product_num":123123333,
+        "name":"나이키 신발",
+        "price": 80000,
+        "stars":4.5,
+        "sale":true
+    },
+    {
+        "product_num":123123400,
+        "name":"조던 신발",
+        "price": 180000,
+        "stars":5,
+        "sale":false
+    },
+    {
+        "product_num":123123500,
+        "name":"아디다스 신발",
+        "price": 130000,
+        "stars":4,
+        "sale":true
+    },
+    {
+        "product_num":123123356,
+        "name":"뉴발란스303",
+        "price": 100000,
+        "stars":5,
+        "sale":false
+    },
+    {
+        "product_num":1231252,
+        "name":"프로스펙스 신발",
+        "price": 80000,
+        "stars":3,
+        "sale":true
+    }
+
+]

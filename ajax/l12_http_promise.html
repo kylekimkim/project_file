@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise로 fetch를 만들자</title>
+</head>
+<body>
+    <h1>Promise로 fetch를 만들어보자.</h1>
+<script>
+// fetch("product_list.json",{method:"GET"}).then((res)=>{
+//     return res.json()
+// }).then((product_list)=>{
+//     console.log(product_list);
+// });
+
+httpFetch("product_list.json").then((res)=>{
+    console.log(JSON.parse(res));
+    return httpFetch("loginCheck.json");
+},(error)=>{
+    console.error("reject:"+error)
+}).then((res)=>{
+    console.log(JSON.parse(res));
+}).catch(alert("catch"));
+
+function httpFetch(url,method="GET"){
+    return new Promise((resolve,reject)=>{
+        const req=new XMLHttpRequest();
+        req.open(method,url);
+        req.onload=function(){
+            if(req.status===200){
+                resolve(req.responseText);
+            }else{
+                reject(req.status+"통신 장애");
+            }
+        }
+        req.send();
+    });
+}
+</script>
+</body>
+</html>

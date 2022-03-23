@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 기본데이터 타입 문자열</title>
+</head>
+<body>
+    <h2>기본 데이터 타입인 문자열을 작성해 보자</h2>
+    <p>문자열은 복수의 문자의 열로 참조형 같은 구조지만 자바스크립트에서는
+        기본 데이터 타입으로 사용 가능하다.</p>
+        <ul>
+            <li>"가나다라마바사"[0] :
+                <script>
+                    document.write("가나다라마바사"[0])
+                </script>
+            </li>
+            <li>new String("가나다라마바사")[3] :
+                <script>
+                    document.write(new String("가나다라마바사")[3])
+                </script>
+            </li>
+            <li>
+                ["가","나","다","마"][2] :
+                <script>
+                    document.write(["가","나","다","마"][2])
+                </script>
+            </li>
+            <li>작성법 "" : 큰따옴표 = "a'b'cd"</li>
+                <ol>
+                    <script>let insert="추가";</script>
+                    <li><script>document.write("a'b'cd")</script></li>
+                    <li><script>document.write("a\"b\"cd")</script></li>
+                    <li><script>document.write("ab"+insert+"cd")</script></li>
+                <!-- <li><script>document.write("ab
+                    cd")</script></li>
+                    큰따옴표는 라인개행을 할 수 없다 -->
+                    <li><script>document.write("ab"
+                        +"cd")</script></li>
+                        <li><script>document.write("ab\
+                            cd")</script></li>
+                            
+                    <li><script>document.write("ab<br>cd")</script></li>
+                    <li><script>document.write("ab\ncd")</script></li>
+                    <!-- white-space 속성으로 라인개행이 " "로 바뀌었다. -->
+                    <script>
+                        console.log("ab\ncd");
+                    </script>
+                </ol>
+            <li>작성법 '' : 작은따옴표 = 'ab"c"d' (java char 'a')</li>
+            <li>작성법 `` : 백틱 = `a"b"c'd'`
+                    <li><script>document.write(`a"b"c'd'`)</script></li>
+                    <li><script>document.write(`a\"b\"c\'d\'`)</script></li>
+                    <li><script>document.write(`ab\ncd'`)</script></li>
+                    <li><script>document.write(`ab
+                    cd`)</script></li>
+                    <script>
+                        console.log(`ab
+                        cd`);
+                    </script>
+                    <li><script>document.write(`ab`+insert+`cd`)</script></li>
+                    <li><script>document.write(`ab${insert}cd`)</script></li>
+                    <li><script>document.write(`ab${100/3}cd`)</script></li>
+                </ol>
+            </li>
+            <li>
+                "abcd"==='abcd' (비교연산 가능):
+                <script>document.write("abcd"==='abcd')</script>
+            </li>
+            <li>
+                "abcd"===new String('abcd'):
+                <script>document.write("abcd"===new String('abcd'))</script>
+            </li>
+            <li>
+                "abcd"==new String('abcd'):
+                <script>document.write("abcd"==new String('abcd'))</script>
+            </li>
+            <script>
+                console.log(new String("abcd").toUpperCase());
+                console.log(new String("abcd").charCodeAt(2));
+                console.log(new String("가나다라").charCodeAt(1));
+                console.log(new String("가나다라")===new String("가나다라"));
+                //참조형 데이터 끼리는 비교할 방법이 없다.
+            </script>
+        </ul>
+</body>
+</html>

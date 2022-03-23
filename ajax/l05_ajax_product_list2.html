@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax로 list를 출력하자</title>
+<style>
+.product_list_container>li{
+    border: 1px solid;
+    list-style: none;
+    display:inline-block;
+    padding: 40px 20px;
+    margin: 10px;
+}
+</style>
+</head>
+<body>
+<!-- {
+    "product_num":123123333,
+    "name":"나이키 신발",
+    "price": 80000,
+    "stars":4.5,
+    "sale":true
+} -->
+    <h1>AJAX로 product_list.json을 출력하자</h1>
+    <p>
+        <button id="productListBtn"
+        >상품 리스트 출력!</button>
+    </p>
+    <ul class="product_list_container" id="productList">
+        <!-- <li>
+            <ul>
+                <li>이름: 나이키 신발</li>
+                <li>가격: 80000원</li>
+                <li>별점: ★★★★☆</li>
+                <li>상태: 판매중</li>
+            </ul>
+        </li>       -->
+    </ul>
+<script>
+const productListBtn=document.getElementById("productListBtn");
+const productList=document.getElementById("productList");
+
+productListBtn.addEventListener("click",productListReq);
+
+function productListReq(){
+///fetch ajax api
+//then() 상태를 동기화
+    fetch("product_list.json")
+    .then((resp)=>{
+        return resp.json();
+    }).then((resp_obj)=>{
+        let list_html="";
+        for(const item of resp_obj){
+            list_html+="<li>";
+            list_html+="<ul class='product'>";
+            for(let key in item){
+                list_html+=`<li>${item[key]}</li>`;
+            }
+            list_html+="</ul>";
+            list_html+="</li>";
+        }
+        productList.innerHTML=list_html;
+    })
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상속의 기본 개념</title>
+</head>
+<body>
+<script>
+//class를 사용하지 않는 상속은 어렵다.
+class A{
+    a_id;a_pw;
+    constructor(id,pw){
+        this.a_id=id;this.a_pw=pw;
+    }
+}
+//A를 부모(super)로 상속(A의 프로토타입을 __proto__로 참조)
+class B extends A{
+    b_name;
+    //생성자 재정의
+    constructor(id,pw,name){
+        super(id,pw); //부모의 생성자 호출
+        this.b_name=name;
+    }
+}
+const obj_a=new A("길동이","1986");
+console.log(obj_a);
+console.log(A); //(x)타입을 반환하지 않고 코드만 반환
+console.log(A.prototype); //실제 설계도
+console.log(obj_a.__proto__);
+//??obj_a 설게또를 참조하세요.
+const obj_b=new B("YH","영희","1950");
+console.log(obj_b);
+console.log(obj_b instanceof B);
+console.log(obj_b instanceof A);
+console.log(obj_b instanceof Object);
+console.log(obj_b instanceof String);
+
+console.log(obj_b.__proto__);
+
+console.log(obj_b.__proto__.__proto__);
+console.log(obj_b.__proto__.__proto__.__ptoro__);
+
+</script>
+</body>
+</html>

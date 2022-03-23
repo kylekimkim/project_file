@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문 스위치를 사용해보자</title>
+</head>
+<body>
+    <h1>제약은 많지만 속도가 빠른 스위치를 사용하자</h1>
+<script>
+let data="109";//기본데이터 타입만 가능   
+let score="F";
+//data/10 8.2 =>
+//console.log(parseInt(data/10));
+switch(parseInt(data/10)){
+    case 10: case 9://if(data==9 || data==10)
+        score="A";
+        break;
+    case 8: //if(data==8)
+        score="B";
+        break;
+    case 7: //else if(data==7)
+        score="C";
+        break;
+    case 6: //else if(data==6)
+        score="D";
+        break;
+    case 5: case 4: case 3: case 2: case 1: case 0: 
+        score="F"
+    break;
+    default: //else
+        score=undefined;
+        break;
+}
+console.log("score",score+"+");
+//switch 규칙
+//switch의 case 는 동등 비교밖에 할수 없다.
+//동등비교는 기본데이터 타입만 가능하다.
+//장점1.switch가 if보다 월등히 빠르게 실행된다.
+//장점2.가독성이 좋다.
+</script>
+<h2>성적 입력 프로그램</h2>
+<form name="scoreForm">
+    <p>
+        <label>
+            프로그래밍 
+            <input name="programingScore" type="number" min="0" max="100" value="80"
+            data-name="프로그래밍">
+        </label>
+    </p>
+    <p>
+        <label>
+            영어
+            <input name="engScore" type="number" min="0" max="100" value="80"
+            data-name="영어">
+        </label>
+    </p>
+    <p>
+        <label>
+            디자인 
+            <input name="designScore" type="number" min="0" max="100" value="80"
+            data-name="디자인">
+        </label>
+    </p>
+    <p>
+        <label>
+            수영
+            <input name="swimScore" type="number" min="0" max="100" value="80"
+            data-name="수영">
+        </label>
+    </p>
+</form>
+<button onclick="printGaradeList()">테이블 출력</button>
+<table style="width: 80%;" border="1">
+    <thead>
+        <tr><td>과목</td><td>점수</td><td>등급</td><td>4.5</td></tr>
+    </thead>
+    <tbody id="gradeList">
+        <tr><td id="programingName"></td><td 
+            id="programingScore"></td><td 
+            id="programingGrade"></td><td 
+            id="programingScore2"></td>
+        </tr>
+        <tr>
+            <td id="engName"></td><td 
+            id="engScore"></td><td 
+            id="engGrade"></td><td 
+            id="engScore2"></td>
+        </tr>
+        <tr>
+            <td id="designName"></td><td 
+            id="designScore"></td><td 
+            id="designGrade"></td><td 
+            id="designScore2"></td>
+        </tr>
+        <tr>
+            <td id="swimName"></td><td 
+            id="swimScore"></td><td 
+            id="swimGrade"></td><td 
+            id="swimScore2"></td>
+        </tr>
+    </tbody>
+</table>
+<script>
+function GradeObj(p_name,p_score){
+    this.name=p_name;
+    this.score=p_score;
+    //score로 계산
+    this.score2=function(){
+        let score2Srt="0";
+        switch(parseInt(this.score/5)){
+            case 20:
+            case 19:
+                score2Str="4.5"
+                break;
+            case 18:
+            score2Str="4.0"
+                break;
+                case 17:
+                score2Str="3.5"
+                break;
+                case 16:
+                score2Str="3.0"
+                break;
+                case 15:
+                score2Str="2.5"
+                break;
+                case 14:
+                score2Str="2.0"
+                break;
+                case 13:
+                score2Str="1.5"
+                break;
+                case 12:
+                score2Str="1.0"
+                break;
+                case 11:
+                case 10:
+                case 9:
+                case 8:
+                case 7:
+                case 6:
+                case 5:
+                case 4:
+                case 3:
+                case 2:
+                case 1:
+                case 0:
+                score2Str="0"
+                break;      
+        }
+        return score2Str;
+
+    }
+    this.grade=function(){
+        let gradeSrt="F";
+        switch(parseInt(this.score/5)){
+            case 20:
+            case 19:
+                gradeStr="A+";
+                break;
+            case 18:
+                gradeStr="A";
+                break;
+                case 17:
+                gradeStr="B+";
+                break;
+                case 16:
+                gradeStr="B";
+                break;
+                case 15:
+                gradeStr="C+";
+                break;
+                case 14:
+                gradeStr="C";
+                break;
+                case 13:
+                gradeStr="D+";
+                break;
+                case 12:
+                gradeStr="D";
+                break;
+                case 11:
+                case 10:
+                case 9:
+                case 8:
+                case 7:
+                case 6:
+                case 5:
+                case 4:
+                case 3:
+                case 2:
+                case 1:
+                case 0:
+                gradeStr="F";
+                break;      
+        }
+        return gradeStr;
+    }
+}
+scoreForm.programingScore.onchange=function(){
+    p_obj=new GradeObj(this.dataset.name,this.value)
+    console.log(p_obj);
+    console.log(p_obj.grade());
+    console.log(p_obj.score2());
+    programingName.innerText=p_obj.name;
+    programingScore.innerText=p_obj.score;
+    programingGrade.innerText=p_obj.grade();
+    programingScore2.innerText=p_obj.score2();
+};
+
+scoreForm.engScore.onchange=function(){
+    p_obj=new GradeObj(this.dataset.name,this.value)
+    console.log(p_obj);
+    console.log(p_obj.grade());
+    console.log(p_obj.score2());
+    engName.innerText=p_obj.name;
+    engScore.innerText=p_obj.score;
+    engGrade.innerText=p_obj.grade();
+    engScore2.innerText=p_obj.score2();
+};
+scoreForm.designScore.onchange=function(){
+    p_obj=new GradeObj(this.dataset.name,this.value)
+    console.log(p_obj);
+    console.log(p_obj.grade());
+    console.log(p_obj.score2());
+    designName.innerText=p_obj.name;
+    designScore.innerText=p_obj.score;
+    designGrade.innerText=p_obj.grade();
+    designScore2.innerText=p_obj.score2();
+};
+scoreForm.swimScore.onchange=function(){
+    p_obj=new GradeObj(this.dataset.name,this.value)
+    console.log(p_obj);
+    console.log(p_obj.grade());
+    console.log(p_obj.score2());
+    swimName.innerText=p_obj.name;
+    swimScore.innerText=p_obj.score;
+    swimGrade.innerText=p_obj.grade();
+    swimScore2.innerText=p_obj.score2();
+};
+
+function processGrade(){
+    let score= this.value;
+    let grade="A";
+    let score2=0;
+    let plus="";
+    if(score>=0 && score<=100){
+     
+        let int_score=parseInt(score/10);
+
+        if(((score/10).toFixed()-int_score)==1){
+            plus="+";
+            score2+=0.5;
+        }
+        switch(int_score){
+            case 10:
+                grade="A+";
+                score2+=4.5;
+            break;
+            case 9:
+                grade="A"+plus;
+                score2+=4;
+            break;
+            case 8:
+                grade="B"+plus;
+                score2+=3;
+            break;
+            case 7:
+                grade="C"+plus;
+                score2+=2;
+            break;
+            case 6:
+                grade="D"+plus;
+                score2+=1;
+            break;
+            default:
+                grade="F";
+                score2=0;
+            break;
+        }
+
+    }
+
+}
+</script>
+
+
+
+
+
+</body>
+</html>

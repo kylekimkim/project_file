@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>overflow로 컨텐츠에 표시한 자식노드를 정의</title>
+</head>
+<body>
+    <h1>자식노드의 사이즈가 부모노드의 컨텐츠보다 클 때 표시하는 방법</h1>
+
+    <h2>overflow(select)</h2>
+    <div id="overflowChange"
+        style="border: 5px dashed deeppink;
+                padding: 50px;
+                background-color: gainsboro;
+                box-sizing: border-box;
+                height: 100px;">
+        <h3>overflow 속성</h3>
+        <ul>
+            <li>visible</li>
+            <li>hidden</li>
+            <li>scroll</li>
+            <li>auto</li>
+            <li>overflow-x</li>
+            <li>overflow-y</li>
+        </ul>
+    </div>
+    <p>overflow : 
+        <select onchange="overflowChange.style.overflow=this.value">
+            <option value="visible">visible</option>
+            <option value="hidden" selected>hidden</option>
+            <option value="scroll">scroll</option>
+            <option value="auto">auto</option>
+        </select>
+    </p>
+    <style>
+    .btn_test:hover .effect{
+        width: 300px !important;
+        height: 300px !important;
+    }
+    </style>
+    <h2>overflow 응용</h2>
+    <div>
+        <p class="btn_test"
+            style="border: 2px inset black;
+                padding: 20px 10px;
+                display: inline-block;
+                width: 200px; height: 40px;
+                overflow:hidden;">
+            <span class="effect"
+            style="
+            display: inline-block;
+            background-color: rgb(209,187,230);
+            width: 0px;
+            height: 0px;
+            border-radius: 50%;
+            position: relative;
+            top: -100px;
+            left: -50px;
+            transition: all 1s;">
+            마우스를 올리세요.
+        </span>
+        </p>
+    </div>
+</body>
+</html>

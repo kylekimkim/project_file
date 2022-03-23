@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수의 연산</title>
+</head>
+<body>
+    <h1>Number 기본 데이터 타입을 연산해 보자</h1>
+    <h2>operator</h2>
+    <table border="1" style="width: 100%;">
+        <tr>
+            <th>연산(operator)</th>
+            <th>이름</th>
+            <th>예시</th>
+        </tr>
+        <tr>
+            <td>+</td>
+            <td>add(더하기)</td>
+            <td>
+                10.0+11.0=
+                <script>
+                    document.write(10.0+11.0);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>sub(빼기)</td>
+            <td>
+                11.3-10.2=
+                <script>
+                    document.write(11.3-10.2);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>*</td>
+            <td>mult(곱하기)</td>
+            <td>
+                10.1*20.2=
+                <script>
+                    document.write(10.1*20.2);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>/</td>
+            <td>div(나누기)</td>
+            <td>20.0/2.0=
+                <script>
+                    document.write(20.0/2.0);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>%</td>
+            <td>mod(나머지)</td>
+            <td>
+                21%4=
+                <script>
+                    document.write(21%4);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>**</td>
+            <td>Exponentiation(거듭제곱)</td>
+            <td>7**3=
+            <script>
+                document.write(7**3);
+            </script>
+            </td>
+        </tr>
+        <tr>
+            <td>++</td>
+            <td>increment(증가)</td>
+            <td>++10=
+                <script>
+                    let a=10;
+                    document.write(++a);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>--</td>
+            <td>decrement(증감)</td>
+            <td>--11=
+                <script>
+                    document.write(--a);
+                </script>
+            </td>
+        </tr>
+    </table>
+    <h2>할당 연산자</h2>
+    <table border="1" style="width: 100%">
+    <thead>
+        <tr>
+            <th>연산</th>
+            <th>예시</th>
+            <th>같은 연산</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>=(할당)</td>
+            <td>x=y</td>
+            <td>x가 y를 참조한다(x에 y를 할당한다.)</td>
+        </tr>
+        <tr>
+            <td>+=</td>
+            <td>a+=b</td>
+            <td>a=a+b
+                <script>
+                    let b=7;
+                    document.write(b+=10);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>-=</td>
+            <td>a-=b</td>
+            <td>a=a-b
+                <script>
+                    document.write(b-=15);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>*=</td>
+            <td>a*=b</td>
+            <td>a=a*b
+                <script>
+                    document.write(b*=15);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>/=</td>
+            <td>a/=b</td>
+            <td>a=a/b
+                <script>
+                    document.write(b/=15);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>**=</td>
+            <td>a**=b</td>
+            <td>a**a-b
+                <script>
+                    document.write(b**=4);
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td>%=</td>
+            <td>a%=b</td>
+            <td>a=a%b 
+                <script>
+                    document.write(b%=3);
+                </script>
+            </td>
+        </tr>
+        </tr>
+    </tbody>
+    </table>
+    <h2>비교 연산자 a=10, b=12, c="10", d=10</h2>
+    <p>비교 연산 후 boolean인 true or false 변환한다.</p>
+    <table border="1" style="width: 100%">
+        <thead>
+            <tr>
+                <th>연산</th>
+                <th>의미</th>
+                <th>예시</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a==b</td>
+                <td>동등 비교(형 변환 후 값을 비교)</td>
+                <td>
+                    <script>
+                        a=10; b=12; let c="10"; d=10;
+                        document.write("a==b: "+(a==b)+"<br>")
+                        document.write("a==c: "+(a==c)+"<br>")
+                        document.write("a==d: "+(a==d)+"<br>")
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>a===b</td>
+                <td>엄격 동등 비교(타입까지 같아야 동등, type과 value 비교)</td>
+                <td>
+                    <script>      
+                        document.write("a===b: "+(a===b)+"<br>")
+                        document.write("a===c: "+(a===c)+"<br>")
+                        document.write("a===d: "+(a===d)+"<br>")
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>a!=b</td>
+                <td>비동등 비교(형 변환 후 value 비교))</td>
+                <td>
+                    <script>       
+                        document.write("a!=b: "+(a!=b)+"<br>")
+                        document.write("a!=c: "+(a!=c)+"<br>")
+                        document.write("a1=d: "+(a!=d)+"<br>")
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>a!==b</td>
+                <td>엄격 비동등 비교(type과 value 비교))</td>
+                <td>
+                    <script>       
+                        document.write("a!==b: "+(a!==b)+"<br>")
+                        document.write("a!==c: "+(a!==c)+"<br>")
+                        document.write("a1==d: "+(a!==d)+"<br>")
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>b>a</td>
+                <td>초과(형 변환 후 value 비교))</td>
+                <td>
+                    <script>       
+                        document.write("b>a: "+(b>a)+"<br>")
+                        document.write("b>c: "+(b>c)+"<br>")
+                        document.write("c>b: "+(c>b)+"<br>")
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>a < b</td>
+                <td>미만(형 변환 후 value 비교))</td>
+                <td>
+                    <script>       
+                        document.write("a < b: "+(a<b)+"<br>")
+                        document.write("c < b: "+(c<b)+"<br>")
+                        document.write("b < c: "+(b<c)+"<br>")
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>a <= b</td>
+                <td>이하(형 변환 후 value 비교))</td>
+                <td>
+                    <script>       
+                        document.write("a <= b: "+(a<=b)+"<br>")
+                        document.write("c <= b: "+(c<=b)+"<br>")
+                        document.write("c <= d: "+(c<=d)+"<br>")
+                    </script>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        console.log("10=='10' :",10=="10");
+        console.log("10==Number('10') :",10==Number("10"));
+        console.log("10==='10' :",10==="10");
+        console.log("10<'30' :",10<"30");
+        //연산 우선순위!!
+        console.log("2+4*2 :",2+4*2);
+        console.log("(2+4)*2 :",(2+4)*2);
+        let i=1;
+        console.log(++i*2);
+    </script>
+</body>
+</html>

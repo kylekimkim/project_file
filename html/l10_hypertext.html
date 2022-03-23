@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperText인 a Element</title>
+</head>
+<body>
+    <h1>HyperText인 a(anchor) 요소를 사용하자</h1>
+    <p>
+        <a href="https://www.naver.com">네이버</a>
+    </p>
+    <p>
+        <a href="https://daum.net" target="_self">다음</a>
+    </p>
+    <p>
+        <a href="https://daum.net" target="_blank">
+            <img src="/daumlogo.png" alt="다음 로고"
+            width="100">
+        </a>
+    </p>
+    <p>
+        버튼을 a 태그 처럼 사용하는 것을 
+        권장하지 않음(a 태그로 검색엔진 최적화)
+        
+        <input
+        onclick="window.location.href='https://daum.net'" 
+        type="button" value="다음">
+    </p>
+    <style>
+    a.btn{
+        /* display: inline; box model 적용 안됨*/
+        display: inline-block;
+        border: 1px solid darkgrey;
+        background-color: rgb(240, 226, 226);
+        padding: 3px 7px;
+        text-decoration: none;
+        color: black;
+        cursor: default;
+    }
+    a.btn:hover{
+        border-color:blue;
+        background-color:rgb(104, 104, 204);
+    }
+    </style>
+    <p>
+        a 태그를 버튼으로 스타일링
+        <a class="btn" href="https://daum.net">다음</a href>
+    </p>
+    <nav>
+        <h2>html 수업 네비게이션</h2>
+        <a href="/l08_form.html">form</a>
+        <a href="/l09_table.html">table</a>
+        <a href="#mark">#mark</a>
+        <a href="javascript:alert('경고'); alert('완료')">
+            alert("경고")
+        </a>
+    </nav>
+    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
+    <h3 id="mark">href="#mark"</h3>
+</body>
+</html>

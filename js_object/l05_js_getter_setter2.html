@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캡슐화의 일부인 getter,setter를 정의해보자</title>
+</head>
+<body>
+    <h1>디자인 패턴인 getter setter의 등장과  js의 get set 함수</h1>
+    <p>디자인 패턴은 개발을 위해 구성한 코드의 형태</p>
+<script>
+class CPU{
+    //core;
+    constructor(core){
+        this.core=core;
+    }
+}
+
+class Computer{
+    kyeboard; mouse;
+    monitor="4k"; speatker="브리츠";
+    #cpu=new CPU(16); #ram="32g"; #disk="1t";
+    constructor(kyeboard,mouse){
+        this.kyeboard=kyeboard;
+        this.mouse=mouse;
+    }
+    //개발자들간의 약속된 디자인 패턴
+    get cpu(){
+        return "cpu의 상태는 "+this.#cpu.core+"코어 입니다."
+    }
+    set cpu(cpu){
+        //private 필드가 문제가 생기지 않도록 예외처리하는 곳
+        //CUP type만 대입가능 
+        if(cpu instanceof CPU) this.#cpu=cpu;
+    }
+}
+const myCom=new Computer();
+//console.log(myCom.#cpu);
+console.log(myCom.cpu);
+//myCom.#cpu=32;
+myCom.cpu=(new CPU(2));
+console.log(myCom.cpu);  //private 캡슐화하는 이유는 문제가 생기지 않게 하기 위함
+</script>
+
+
+</body>
+</html>

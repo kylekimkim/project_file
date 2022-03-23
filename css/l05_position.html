@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position layout을 변경하자</title>
+</head>
+<body>
+<style>
+.container{
+    padding: 20px;
+    border: 3px solid;
+    position: relative;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    color: #fff;
+    border: 3px solid hotpink;
+    background-color: olive;
+    transition: all 200ms;
+    left: 0;
+    top: 0;
+}
+</style>
+    <h1>css position으로 html 레이아웃의 구성을 바꿔보자.</h1>
+    <div class="container">
+        <p class="box">
+        static;</p>
+        <p class="box" id="posChange"
+         style="background-color: orangered;">
+         static
+        </p>
+        <p class="box">
+            static
+        </p>
+    </div>
+    <p>
+        <label>
+            position:
+            <select onchange="posChange.style.position=this.value;
+            posChange.innerText=this.value">
+                <option value="static" selected>static</option>
+                <option value="relative">realtive</option>
+                <option value="absolute">absolute</option>
+                <option value="fixed">fixed</option>
+                <option value="sticky">sticky</option>
+            </select>
+        </label>
+        <button
+        onclick="posChange.style.left='0px';
+        posChange.style.top='0px';
+        ">left:0px;top:0px;이동</button>
+        <button
+            onclick="posChange.style.left='50px';
+            posChange.style.top='50px';
+            ">left:50px;top:50px;이동</button>
+            <button
+            onclick="posChange.style.transform='translate(50px,50px)'">
+            translate(50px,50px)</button>
+            <button
+            onclick="posChange.style.transform='translate(0,0)'">
+            translate(0,0)</button>
+    </p>
+    <style>
+    .test_container{
+        border: 2px inset;
+        height: 200px;
+        overflow: auto;
+    }
+    .test li{
+        border: 1px solid gray;
+        padding: 20px;
+    }
+    .sticky_box{
+        position: sticky;
+        background-color: lavender;
+        top: 0;
+    }
+    </style>
+    <h2>position:sticky</h2>
+    <div class="test_container">
+        <ol class="test">
+            <li>position: 1</li>
+            <li class="sticky_box">position: 2</li>
+            <li>position: 3</li>
+            <li class="sticky_box">position: 4</li>
+            <li>position: 5</li>
+            <li class="sticky_box">position: 6</li>
+            <li>position:7 </li>
+            <li class="sticky_box">position: 8</li>
+            
+        </ol>
+    </div>
+    <h2>z-index</h2>
+    <style>
+    .box_container{
+        border: 5px dotted;
+        position: relative;
+        height: 300px;
+    }
+    .box_container .box{
+        position: absolute;
+    }
+    </style>
+    <div class="box_container">
+        <div class="box"
+                style="background-color:aquamarine;
+                left:calc((100% - 100px)/2);
+                top: 100px;
+                z-index: 0;">
+        1(z-index:1)</div>
+        <div class="box"
+                style="top:50px;
+                left:80px;
+                z-index: 0;"
+                >2(z-index:2)</div>
+        <div class="box"
+                style="background-color:brown;
+                top: -30px;
+                left: 150px;
+                z-index: 0;">
+            3(z-index:0)</div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

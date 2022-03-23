@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="l02_variable.js">
+    </script>
+    <title>js variable</title>
+</head>
+<body>
+    <h1>자바스크립트의 변수</h1>
+    <ul>
+        <li>var a=10 :
+            <ol>
+                <li> 10 객체 생성</li>
+                <li> 변수 a 생성</li>
+                <li> 변수 a가 10의 찾모</li>
+            </ol>
+        </li>
+        <li>변수 a는 다른 객체를 참조할 수 있다.</li>
+    </ul>
+    <h2>전역, 지역(블록)</h2>
+    <ul>
+        <li>전체 영역을 의미하는 전역은 js로 선언된 필드</li>
+        <li>{블록} 전체 영역에서 부분만 지정하기 위해 구분된 지역</li>
+    </ul>
+    <h2>var, let 변수의 차이</h2>
+    <ul>
+        <li>전역에서 선언하면 어디서든 참조 가능</li>
+        <li>var 지역에 선언해도 어디서든 참조 가능</li>
+        <li>let 지역을 구분한다.(지역에서만 선언)</li>
+        <li>** var을 선언하면 전역의 window가 참조한다.</li>
+        <li>**지역에서 선언했는데 전역에서 참조가능한 것을 Hoisiong
+            이라 한다.
+        </li>
+    </ul>
+    <h2>window</h2>
+    <ul>
+        <li>window는 브라우저를 참조하는 객체</li>
+        <li>window는 자바스크립트의 최상위 객체</li>
+        <li>window의 필드로 console, document(DOM tree)</li>
+        <li>window는 브라우저에서 실행되는 js의 최상위 객체로
+            생략 가능하다.(전역==window 필드)
+        </li>
+        <h2>변수 선언하는 이름 규칙!</h2>
+        <ul>
+            <li>문자+"_"+문자 (스네이크) : local_var</li>
+            <li>문자+대문자 (낙타 표기법): localVar</li>
+        </ul>
+        <h2>변수로 사용하면 안되는 이름</h2>
+        <ul>
+            <li>대문자+대문자 : LocalVar (x, 객체를 선언)</li>
+            <li>약속어 : -, +, =, if, for, switch, class, ;, var, let (x)</li>
+            <li>선언된 객체: window, console, document...</li>
+        </ul>
+    </ul>
+</body>
+</html>

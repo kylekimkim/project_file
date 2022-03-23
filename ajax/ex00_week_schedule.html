@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한주 스케줄을 출력해보자</title>
+</head>
+<style>
+#weekConatainer{
+    display: flex;
+    border: 1px solid darkgray;
+}
+.day_container{
+    border-left: 1px solid;
+    text-align: center;
+    flex-grow: 1;
+}
+.day_container:first-child{
+    border-left: none;
+}
+
+.day_container>ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.day_container>ul>li{
+    border-top: 1px solid darkgray;
+    box-sizing: border-box;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.weekday{
+    margin: 0;
+    padding: 5px 0;
+    color: #fff;
+    background-color: rgb(100, 110, 105);
+}
+.day_container:first-child .weekday{
+    background-color: rgb(214, 50, 63);
+}
+.day_container:last-child .weekday{
+    background-color: rgb(61, 50, 214);
+}
+.day{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    margin: 2px auto;
+}
+.day_container:hover .day{
+    background-color: rgb(27, 82, 170);
+    color: #fff;
+
+}
+</style>
+<body>
+<script>
+window.addEventListener("load",()=>{
+    fetch("l06_week_schedule.json");
+});
+
+</script>    
+    <h1>한주 스케줄을 출력해보자</h1>
+    <h2>2022 3월 2째 주</h2>
+    <div id="weekConatainer">
+        <div class="day_container sun">
+            <h3 class="weekday">일요일</h3>
+            <h4 class="day">6</h4>   
+            <ul>
+                <li>06:00~06:30<br> 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+        <div class="day_container mon">
+            <h3 class="weekday">월요일</h3>
+            <h4 class="day">7</h4>   
+            <ul>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+
+        <div class="day_container tue">
+            <h3 class="weekday">화요일</h3>
+            <h4 class="day">8</h4>   
+            <ul>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+        <div class="day_container web">
+            <h3 class="weekday">수요일</h3>
+            <h4 class="day">9</h4>   
+            <ul>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+        <div class="day_container thu">
+            <h3 class="weekday">목요일</h3>
+            <h4 class="day">10</h4>   
+            <ul>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+        <div class="day_container fri">
+            <h3 class="weekday">금요일</h3>
+            <h4 class="day">11</h4>   
+            <ul>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+        <div class="day_container sat">
+            <h3 class="weekday">토요일</h3>
+            <h4 class="day">12</h4>   
+            <ul id="sunList">
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+                <li>06:00 커피마시기</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

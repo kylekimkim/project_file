@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>while 반복문</title>
+</head>
+<body>
+    <h1>while 반복문을 사용해 보자</h1>
+<script>
+//for(초기문; 조건문; 중간문){}
+
+
+//초기문
+//while(조건문){중간문}
+
+const nums=["일","삼","오","칠","십오"];
+document.write("<ul>");
+for(let i=0; i<nums.length; i++){
+    document.write(`<li>${nums[i]}</li>`);
+}
+document.write("</ul>");
+
+document.write("<ul>");
+let i=0;
+while(i<nums.length){
+    document.write(`<li>${nums[i]}</li>`);
+    i++;
+}
+document.write("</ul>");
+const num2=[];
+</script>
+</body>
+</html>

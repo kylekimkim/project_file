@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            padding:10px;
+            background-color:blanchedalmond;
+        }
+        .box{
+            /* display:block; */
+            background-color: blueviolet;
+            width:100px;
+            height:100px;
+            border:2px dotted aqua;
+            border-radius: 5px;
+            padding:10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>box model 고급</h1>
+    <div class="container">
+        <div class="box">
+            block; <br>
+            margin-right: auto(default)
+        </div>
+        <div class="box" style="margin-left: auto;">
+            block <br>
+            margin-left: auto
+        </div>
+
+        <div class="box" style="margin: 10px auto">
+            block <br>
+            margin: 10px auto
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <span class="box">
+            inline
+        </span>
+        <span class="box" style="display:inline-block">
+            inline-block
+            (box-model)
+        </span>
+        <span class="box">
+            inline
+        </span>
+        <button>버튼</button>
+        <input type="text">
+    </div>
+    <h2>block과 박스모델</h2>
+    <p>display: block 모든 박스모델 속성이 적용가능</p>
+    <p>margin-right: auto로 블록을 왼쪽 정렬하고 라인 개행한다.</p>
+    <h2>inline과 박스모델</h2>
+    <p>width, height, margin-top, margin-bottom을 지정할 수 없다.
+        (박스모델을 적용할 수 없다.)
+    </p>
+    <p>inline-block은 박스모델을 적용하지만 라인 개행하지 않는다.
+        (img, button, input...)
+    </p>
+</body>
+</html>

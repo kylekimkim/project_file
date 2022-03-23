@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON(JavaScript Object Notation)</title>
+</head>
+<body>
+    <h1>자바스크립트 오브젝트의 명세서인 JSON에 대해 알아보자</h1>
+    <p>AJAX 통신으로 많이 이용되는 json에 대해 알아보자.</p>
+
+    <h2>json을 통신에 사용하는 이유</h2>
+    <ul>
+        <li>마크업을 해야하는 xml보다 글자 수가 적다.</li>
+        <li>xml은 형식 존재하는 파일이지만 json은 문자열로만 존재할 수 있다. (파일로도 구분할 수도 있다.</li>
+        <li>xml 형식의 내용은 모두 문자열 타입이지만 json은 타입을 구분한다. ("십,true,10,[],{})</li>
+        <li>웹 통신에서 JSON을 사용하면 브라우저의 js의 object로 형 변환이 쉽다.(JSON.parse())</li>
+    </ul>
+    <h2>json의 문제점</h2>
+    <ul>
+        <li>xml보다 구분이 정확하지 않아 parse 되지 않는 데이터를 생성할 수 있다.</li>
+        <li>함수를 필드로 정의할 수 없다.(해킹의 위험)</li>
+    </ul>
+<script>
+const Obj=function(a,b){
+    this.a=a;
+    this.b=function(b){
+        return b;
+    }
+}
+function Obj2(a,b){
+    this.a=a;
+    this.b=b;
+}
+console.log(Obj2);//설계도
+console.log(Obj2.prototype); //설계도 객체
+console.log(new Obj2(10,2)); //프로토타입을 기반으로 객체 생성
+console.log(new Obj(10,2)); //프로토타입을 기반으로 객체 생성
+//오브젝트 명세서를 리터럴한 선언법으로 객체 생성
+const o={a:10, b:15};
+console.log(o);
+//오브젝트 명세서가 xml 형식보다 가볍고 문자열로만 표현하기 좋다.
+//xml대힌 오브젝트 명세서를 (문자열로 변형하고 JSON이라 부른 후)통신에 이용한다.
+//html 역시 xml 형식의 문서다.
+
+let o_json='{"a":10,"b":"십","c":true}' //json
+console.log(o_json.length);
+//기본 데이터 타입 null, NaN, true, Number는 '' 인용수 사용 x
+//{},[],: 인용구 사용 x
+//key, 문자열 인용구 사용 o
+console.log("o_json:",o_json);
+console.log("o_json['a']:",o_json["a"]);
+console.log("typeof o_json:",typeof o_json);
+
+const o_parse=JSON.parse(o_json);//통신에서 받은 문자열은 Object로 형 변환
+console.log(o_parse);
+console.log(o_parse["a"]);
+
+let arr_json='[{"a":10,"b":3},{"a":17,"b":13},{"a":13,"b":7}]'
+const arr_parse=JSON.parse(arr_json);
+console.log(arr_parse);
+//a+b를 콘솔에 출력
+// arr_parse.forEach((obj)=>{
+//     let sum=0;
+//     for(let key in obj){
+//         sum+=obj[key];
+//     }
+//     console.log("a+b="+sum);
+// });
+let type_json=`{
+    "num":-13.333,
+    "empty":null,
+    "boolean":true,
+    "text":"문자열",
+    "arr":[1,2,3],
+    "obj":{"a":1}
+    }`;
+//"nan":NaN,"un":undefined,"func":function(){},다른 타입의 객체(window,date...) (x)
+//NaN : Number type이 아니다. (x)
+//undefined (x)
+console.log(JSON.parse(type_json));
+
+const type_obj={
+    num: -13.333,
+    empty: null,
+    un: undefined,
+    boolean: false,
+    text: "글자들",
+    arr: [5,6,7],
+    obj: {a:"20"},
+    func: function(){return ++this.num},
+    //wind: window,
+    todate: new Date()
+}
+console.log(type_obj);
+console.log(type_obj.func());
+console.log(type_obj.todate);
+
+console.log(JSON.stringify(type_obj));
+
+
+
+
+
+</script>
+</body>
+</html>

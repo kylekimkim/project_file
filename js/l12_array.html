@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>참조형 데이터 타입 배결</title>
+</head>
+<body>
+    <h1>순서(index)가 있는 참조형 데이터 타입 Array</h1>
+<script>
+let txt="안녕하세요"; //순서는 있지만 문자를 index로 참조할 수 없다. (원시 데이터)
+console.log(txt[0]); //String 랩퍼 클래스 지원
+let txt2=new String("안녕하세요");
+console.log(txt2[0]);
+//"안녕" != new String("안녕")
+//문자열을 리터럴하게 선언=>기본 데이터 타입
+//문자열을 new 연산자로 생성자 호출=>참조형 데이터 타입
+
+let arr=["안","녕"] //순서가 있고 index로 참조할 수 있다. (참조형 데이터)
+console.log(arr[0]); //Array 타입의 기능
+let arr2=new Array("안","녕");
+console.log(arr2[0]);
+
+//["안","녕"] == new Array("안","녕")
+//참조형 데이터는 비교가 불가능하지만 같은 값을 갖는다.
+
+//배열을 리터럴하게 선언=>기본 데이터 타입
+//배열을 new 연산자로 생성자 호출=>참조형 데이터 타입
+
+//리터럴 선언법을 지원하는 이유
+//배열을 많이 사용하기 때문=>선언을 쉽게 하기 위해
+//리터럴하게 선언되어도 데이터가 리터럴하진(원시적이진) 않다.
+console.log(txt);
+console.log(txt2);
+let arr3=[10.3,true,"10",arr]
+console.log(arr3);
+console.log(arr3.length);
+let arr4=[[1,2,3],[1,2,3],[1,2,3]]; //2차원 배열
+//////////////////////////////////////////
+
+//동등 비교는 기본데이터 타입만 가능
+console.log("txt==txt2:",txt==txt2);
+console.log("txt===txt2:",txt===txt2);
+//typeof data (data의 type을 문자열로 출력하는 연산자)
+//참조형 data는 모두 object를 출력한다.
+console.log(`typeof "안녕"`,typeof "안녕");
+console.log(`typeof new Srting("안녕")`,typeof new String("안녕"));
+console.log(`typeof 13`,typeof 13);
+
+console.log(arr,arr2);
+//참조형 데이터 타입은 동등비교가 불가능(복잡하기 때문)
+console.log(`arr==arr2:`,arr==arr2);
+console.log(`arr===arr2:`,arr===arr2);
+console.log(`typeof [1,2,3]:`,typeof [1,2,3]);
+</script>
+</body>
+</html>

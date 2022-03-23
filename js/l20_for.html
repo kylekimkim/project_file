@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문 for</title>
+</head>
+<body>
+    <h1>반복문 for의 규칙을 배우고 배열을 출력하자</h1>
+
+<script>
+//for(초기문; 조건문; 중간문;){조건문이 true일 때 실행}
+for(let i=0; i<5; i++)
+{
+    console.log(i);
+}
+console.log("/////////////////////////////////////");
+const arr=["a","b","c","d","e"];
+console.log("arr[0]:",arr[0]);
+console.log("arr[1]:",arr[1]);
+console.log("arr[2]:",arr[2]);
+console.log("arr[3]:",arr[3]);
+console.log("arr[4]:",arr[4]);
+console.log("arr.length:",arr.length);
+
+console.log("/////////////////////////////////////");
+
+for(let i=0; i<arr.length; i++){
+    console.log(`arr[${i}]:`,arr[i]);
+}
+console.log("/////////////////////////////////////");
+for(let i=arr.length; i>=0; i--){
+    console.log(`arr[${i}]:`,arr[i]);
+}
+
+//큰 수를 검사 =>출력
+const num_arr=[-20,30,4,100,-200];
+let max=-Infinity;
+for(let i=0; i<num_arr.length; i++){
+    if(max<num_arr[i]){
+        max=num_arr[i];
+    }
+}
+console.log(max);
+console.log("/////////////////////////////////////");
+
+//최소값
+let min=Infinity;
+for(let i=0; i<num_arr.length; i++){
+    if(min>num_arr[i]){
+        min=num_arr[i];
+    }
+}
+console.log(min);
+
+//버블정렬
+console.log("//////////////버블정렬/////////////////");
+const num2_arr=[-20,30,4,100,-200];
+let tmp2=null;
+for (let i = 0; i < num2_arr.length-1; i++) {
+    for (let j = 0; j < num2_arr.length - i; j++) {
+      if (num2_arr[j + 1] < num2_arr[j]) {
+        tmp2 = num2_arr[j];
+        num2_arr[j] = num2_arr[j + 1];
+        num2_arr[j + 1] = tmp2;
+      }
+    }
+  }
+for(let i=0; i<num2_arr.length; i++){
+    console.log(`num2_arr[${i}]:`,num2_arr[i]);
+}
+//선택정렬
+console.log("////////////선택정렬///////////////////");
+const num3_arr=[-55,0,67,-200,41]
+
+for (let i = 0; i < num3_arr.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < num3_arr.length; j++) {
+      if (num3_arr[j] < num3_arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (i !== minIndex) {
+      let temp = num3_arr[i];
+      num3_arr[i] = num3_arr[minIndex];
+      num3_arr[minIndex] = temp;
+    }
+  }
+for(let i=0; i<num3_arr.length; i++){
+    console.log(`num3_arr[${i}]:`,num3_arr[i]);
+}
+
+console.log("/////////////////////////////////////");
+const str_arr=["a","b",null,"sd",null,"dd"];
+//null => ""
+for(let i=0; i<str_arr.length; i++){
+    console.log(`${str_arr[i]}==null:`,str_arr[i]==null);
+    if(str_arr[i]==null){
+        str_arr[i]="";
+    }
+}
+console.log(str_arr);
+</script>
+<ul id="nums_list">
+    <li class="nums">88</li>
+    <li class="nums">40</li>
+    <li class="nums">20</li>
+    <li class="nums">423</li>
+    <li class="nums">11</li>
+    <li class="nums">-20</li>
+    <li class="nums">-300</li>
+    <li class="nums">100</li>
+    <li class="nums">4</li>
+    <li class="nums">0</li>
+</ul>
+<button id="sortBtn" type="button">정렬 버튼</button>
+<br>
+<strong id="minNum"></strong>
+<br>
+<strong id="maxNum"></strong>
+    <ol id="month_list"></ol>
+<script>
+    console.log(document.getElementsByTagName("li"));
+    console.log(document.querySelectorAll(".nums")); //css 선택자로 노드 개체를 찾음
+    console.log(document.getElementsByClassName("nums"));
+    console.log(document.getElementsByClassName("nums")[0].innerText);
+
+    let numsEl=window.document.getElementsByClassName("nums");
+    let sortEl=window.document.getElementById("sortBtn");
+    let minEl=window.document.getElementById("minNum");
+    let maxEl=window.document.getElementById("maxNum");
+    let tmp3=null;
+    
+sortEl.onclick=function(){
+    for (let i = 0; i < numsEl.length - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < numsEl.length; j++) {
+      if (Number(numsEl[j].innerText) < Number(numsEl[minIndex].innerText)) {
+        minIndex = j;
+      }
+    }
+    if (i !== minIndex) {
+      let temp = numsEl[i].innerText;
+      numsEl[i].innerText = numsEl[minIndex].innerText;
+      numsEl[minIndex].innerText = temp;
+    }
+  }
+    minEl.innerText="최소값: "+numsEl[0].innerText;
+    maxEl.innerText="최대값: "+numsEl[9].innerText;
+}
+
+    //최대값, 최소값
+    //정렬 출력
+    const nums=document.getElementById("nums_list").getElementsByClassName("nums");
+    console.log(nums);
+    let nums_max;
+    for(let i=0; i<nums.length; i++){
+        //console.log(i+":",nums[i].innerText);
+        let num=Number(nums[i].innerText);
+        console.log(i+":",num);
+        if(i===0){
+            nums_max=num;
+        }else{
+            if(!(nums_max>num)){
+                nums_max=num;
+            }
+        }
+    }
+
+</script>
+<script>
+    const month_arr=["Jan","Feb","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    console.log(document.createElement("li"));
+    //documet.createElement("li")로 li 노드 개체를 생성 후 month_arr를
+    //month_list에 출력하세요.
+
+    for(let i=0; i<month_arr.length;i++){
+        console.log(month_arr[i]);
+        let new_li=document.createElement("li");
+        let new_txt=document.createTextNode(month_arr[i]);
+        new_li.appendChild(new_txt);
+        //console.log(new_li);
+        month_arr[i]=new_li;
+    }
+    console.log(month_arr);
+    for(let i=0; i<month_arr.length; i++){
+        month_list.appendChild(month_arr[i]);
+    }
+</script>
+<script>
+    const score_arr=[80, 88, 90, 95, 40, 120, 70, 88, -10]
+//0~100 사이로 입력된 수 중 평균을 구하시오
+//0~100 사이로 입력된 수 중 큰 수를 구하세요
+//0~100 사이로 입력된 수의 성적(A~F)을 구하고 0~100 사이의 수가 아닌 것을 undefined로 만드세요.
+let score_sum=0;
+let score_check=0;
+let score_avg=0;
+for(let i=0;i<score_arr.length;i++){
+    if(score_arr[i]>=0 && score_arr[i]<=100){
+        score_sum+=score_arr[i];
+        score_check++;
+    }
+}
+score_avg=score_sum/score_check;
+console.log(score_sum);
+console.log(score_avg);
+const grade_arr=[];
+//결과 : const score_arr=["B","B+","A","A+","F",undefined,"C","B+",undefined]
+</script>
+<h2>문자열을 split(",")으로 배열을 만든 후 합만 출력하세요.</h2>
+<p>40,-20,423,11,99 => [40,-20,423,11,99] => 553</p>
+<ul id="text_list">
+    <li>40,-20,423,11,99</li>
+    <li>4,0,3,2,8,-33</li>
+    <li>14,13,-3,22</li>
+    <li>334,-32,12,0</li>
+</ul>
+<script>
+//const text_li=text_list.getElementsByTagName("li");
+
+const text_li=document.querySelectorAll("#text_list li");
+console.log(text_li);
+for(let i=0; i<text_li.length; i++){
+    const text_nums=text_li[i].innerText.split(",");
+    let p=0;
+    for(let j=0; j<text_nums.length; j++){
+        p+=Number(text_nums[j]);
+    }
+    text_li[i].innerText=p;
+}
+
+const num_arr2=[[40,20,423,11,99],
+                [4,0,3,2,8,-33],
+                [14,13,-3,22],
+                [334,-32-12-0]]
+//전체 합, 각 배열의 합, 평균, 각 배열의 평균
+
+for(let j=0; j<6; j++)
+{
+    for(let i=0; i<6-j; i++){
+    document.write("* ");
+}
+document.write("<br>");
+}
+
+const num2_sort=[40,-20,423,11,99];
+
+let num2_max=num2_sort[0];
+let max_i=0;
+
+for(let i=1; i<num2_sort.length; i++){
+    if(num2_max<num2_sort[i]){
+        num2_max=num2_sort[i];
+        max_i=i;
+    }
+}
+console.log(num2_max,max_i);
+let temp=num2_sort[0];
+num2_sort[0]=num2_max;
+num2_sort[max_i]=temp;
+console.log(num2_sort);
+
+
+
+</script>
+</body>
+</html>

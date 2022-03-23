@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소의 글로벌 속성들</title>
+    <style>
+        /*style의 주석*/
+        /* 선택자 */
+        li{
+            color:red;
+            background-color:green;
+        }
+        .blueColor{
+            color:blue;
+            background-color:yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color:rgb(0, 0, 255)">요소의 
+        <i title="Global Attributes">글로벌 속성</i>
+        을 알아보자</h1>
+        <p>style="color:red; property:value;"</p>
+        <ul>
+            <li style="background-color:gray">id:</li>
+            <li class="blueColor">class:</li>
+            <li class="blueColor">style:</li>
+            <li>title:</li>
+            <li>이벤트 처리기(onclick,onfocus):</li>
+        </ul>
+</body>
+</html>

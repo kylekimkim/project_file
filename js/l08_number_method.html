@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랩퍼 클래스 Number의 메소드를 사용해 보자</title>
+</head>
+<body>
+    <h1>Primitive Wrapper Object 개념과 메소드</h1>
+    <ul>
+        <li>기본 데이터 타입에서 작업을 수행하기 위해 존재하는 보조 객체를 랩퍼 객체라 한다.</li>
+        <li>기본 데이터 타입의 상태를 나타내는 상수 지원(MAX_VALUE...)</li>
+        <li>기본 데이터 타입을 검사하거나 형 변환하는 함수 지원(Number("10")=>10, Number.isNaN((Number("삼"))=>true</li>
+        <li>기본 데이터 타입의 데이터를 변경해서 반환하는 함수 지원(123.toString()=>"123", 9.56.toExponential=>9.6)</li>
+    </ul>
+    <h2>숫자를 반환하는(수로 형 변환하는) 함수 3가지</h2>
+    <section>
+        <h3>Number()</h3>
+        <ul>
+            <li>Number()=
+                <script>document.write(Number())</script>
+            </li>
+            <li>Number("10")=
+                <script>document.write(Number("10"))</script>
+            </li>
+            <li>Number(십)=
+                <script>document.write(Number("십"))</script>
+            </li>
+            <li>Number(123a)=
+                <script>document.write(Number("123a"))</script>
+            </li>
+            <li>Number(123123n)=
+                <script>
+                    console.log("Number",123123123123123123123123123123123123132);
+                    console.log("BigInt",123123123123123123123123123123123123132n);
+                document.write(Number("123123n"))</script>
+            </li>
+            <li>Number("Infinity")=
+                <script>document.write(Number("Infinity"));
+                </script>
+            </li>
+            <li>Number("1.23")=
+                <script>
+                document.write(Number("1.23"))</script>
+            </li>
+            <li>Number("1.23e+3")=
+                <script>document.write(Number("1.23e+3"))</script>
+            </li>
+            <li>Number("0x0f")=
+                <script>document.write(Number("0x0f"))</script>
+            </li>
+            <li>Number("10*3")=
+                <script>document.write(Number("10*3"))</script>
+            </li>
+            <li>Number(true)=
+                <script>document.write(Number(true))</script>
+            </li>
+            <li>Number(false)=
+                <script>document.write(Number(false))</script>
+            </li>
+            <li>Number(null)=
+                <script>
+                    let null_value=null;
+                document.write(Number(null_value))</script>
+            </li>
+            <li>Number(undefined)=
+                <script>
+                let undefined_value;
+                document.write(Number(undefined_value))</script>
+            </li>
+            <li>Number("")=
+                <script>document.write(Number(""))</script>
+            </li>
+            <li>Number(" ")=
+                <script>document.write(Number(" "))</script>
+            </li>
+            <li>Number("30")===new Number("30")=
+                <script>document.write(Number("30")===new Number("30"))</script>
+            </li>
+            <li>Number("30")==new Number("30")=
+                <script>document.write(Number("30")==new Number("30"))</script>
+            </li>
+            <li>Number(new Date("1970-01-01"))=
+                <script>document.write(Number(new Date("1970-01-01")))</script>
+            </li>
+            <li>Number(new Date("1970-01-02"))=
+                <script>document.write(Number(new Date("1970-01-02")))</script>
+            </li>
+            <li>new Date().toString()/ Number(new Date) :
+                <script>document.write(new Date().toString(),"/", Number(new Date))</script>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>parseFloat() 실수(부동소수점)로 형 변환(파싱)하는 함수</h3>
+        <ul>
+            <li>Number("30n") / new Number("30") :
+                <script>document.write(Number("30n"),"/",Number.parseFloat("30n"))
+                </script>
+            </li>
+            <li>Number.parseFloat("30.11ab") :
+                <script>document.write(Number.parseFloat("30.11ab"))
+                </script>
+            </li>
+            <li>Number.parseFloat("ab30.11") :
+                <script>document.write(Number.parseFloat("ab30.11"))
+                </script>
+            </li>
+            <li>Number.parseFloat("30.11e-10") :
+                <script>document.write(Number.parseFloat("30.11e-10"))
+                </script>
+            </li>
+            <li>Number.parseFloat(true) :
+                <script>document.write(Number.parseFloat(true))
+                </script>
+            </li>
+            <li>Number.parseFloat(false) :
+                <script>document.write(Number.parseFloat(false))
+                </script>
+            </li>
+            <li>Number.parseFloat(null) :
+                <script>document.write(Number.parseFloat(null))
+                </script>
+            </li>
+            <li>Number.parseFloat(undefined) :
+                <script>document.write(Number.parseFloat(undefined))
+                </script>
+            </li>
+            <li>Number.parseFloat("Infinity") :
+                <script>document.write(Number.parseFloat("Infinity"))
+                </script>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>parseInt() 정수로 형 변환 하는 함수</h3>
+        <ul>
+            <li>Number.parseInt("11.12aa") :
+                <script>document.write(Number.parseInt("11.12aa"))
+                </script>
+            </li>
+            <li>Number.parseInt("aa11.12") :
+                <script>document.write(Number.parseInt("aa11.12"))
+                </script>
+            </li>
+            <li>Number.parseInt("11",10) :
+                <script>document.write(Number.parseInt("11",10))
+                </script>
+            </li>
+            <li>Number.parseInt("11",16) :
+                <script>document.write(Number.parseInt("11",16))
+                </script>
+            </li>
+            <li>Number.parseInt("11",2) :
+                <script>document.write(Number.parseInt("11",2))
+                </script>
+            </li>
+            <li>Number.parseInt("99999999999999999") :
+                <script>document.write(Number.parseInt("99999999999999999"))
+                </script>
+            </li>
+            <li>Number.parseInt(true) :
+                <script>document.write(Number.parseInt(true))
+                </script>
+            </li>
+            <li>Number.parseInt(false) :
+                <script>document.write(Number.parseInt(false))
+                </script>
+            </li>
+            <li>Number.parseInt(" ") :
+                <script>document.write(Number.parseInt(" "))
+                </script>
+            </li>
+            <li>Number.parseInt(null) :
+                <script>document.write(Number.parseInt(null))
+                </script>
+            </li>
+            <li>Number.parseInt(undefined) :
+                <script>document.write(Number.parseInt(undefined))
+                </script>
+            </li>
+            <li>Number.parseInt("Infinity") :
+                <script>document.write(Number.parseInt("Infinity"))
+                </script>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>Number.isNaN() 숫자가 아닌 오류를 검출하는(NaN인지 확인) 함수</h3>
+        <ul>
+            <li>Number("십") :
+                <script>document.write(Number("십"))
+                </script>
+            </li>
+            <li>Number("십")==NaN :
+                <script>document.write(Number("십")==NaN)
+                </script>
+                (NaN는 비교연산자를 사용할수 없다.)
+            </li>
+            <li>Number.isNaN(Number(("십")) :
+                <script>document.write(Number.isNaN(Number("십")))
+                </script>
+            </li>
+            <li>Boolean(NaN) :
+                <script>document.write(Boolean(NaN))
+                </script>
+            </li>
+            <li>Boolean(1) :
+                <script>document.write(Boolean(1))
+                </script>
+            </li>
+            <li>Boolean("안녕") :
+                <script>document.write(Boolean("안녕"))
+                </script>
+            </li>
+            <li>Boolean(0) :
+                <script>document.write(Boolean(0))
+                </script>
+            </li>
+            <li>Boolean("") :
+                <script>document.write(Boolean(""))
+                </script>
+            </li>
+            <li>Boolean(null) :
+                <script>document.write(Boolean(null))
+                </script>
+            </li>
+            <li>Boolean(undefined) :
+                <script>document.write(Boolean(undefined))
+                </script>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>isFinite() 유한인지 검사하는 함수</h3>
+        <ul>
+            <li>isFinite(10) :
+                <script>document.write(isFinite(10))
+                </script>
+            </li>
+            <li>isFinite(10/0) :
+                <script>document.write(isFinite(10/0))
+                </script>
+            </li>
+            <li>isFinite(-10/0) :
+                <script>document.write(isFinite(-10/0))
+                </script>
+            </li>
+            <li>isFinite(0) :
+                <script>document.write(isFinite(0))
+                </script>
+            </li>
+            <li>isFinite("유한") :
+                <script>document.write(isFinite("유한"))
+                </script>
+            </li>
+            <li>isFinite(NaN) :
+                <script>document.write(isFinite(NaN))
+                </script>
+            </li>
+        </ul>
+    </section>
+<script>
+console.log(Number("30"));
+let num=30; //30이라는 원시 데이터만 존재하는 기본 데이터
+let intants_num=new Number(30); //30의 기본 데이터를 포함하는 참조형 객체
+console.log(num);
+console.log(num.toString()); //참조형 객체를 생성해야 사용할 수 있는데 과정을 생략한다.
+console.log(intants_num);
+console.log(intants_num.valueOf());
+console.log(intants_num.toString());
+
+
+let f_num=192.123456;
+//toExponential 반올림 + 지수표기법
+console.log(f_num.toExponential(2));
+console.log(f_num.toExponential(7));
+console.log(new Number(f_num).toExponential(6));
+console.log(f_num.toFixed(2));
+console.log(f_num.toFixed(5));
+
+</script>
+</body>
+</html>

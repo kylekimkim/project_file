@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동기와 비동기</title>
+</head>
+<body>
+    <h1>싱글 스레드와 멀티 스레드의 개념과 코드간의 동기와 비동기</h1>
+    <h2>싱글 스레드와 코드간 동기화</h2>
+    <ul>
+        <li>거의 모든 프로그래밍 언어는 순차적 언어+싱글 스레드를 기본으로 제공한다.</li>
+        <li>single Tread : 한번에 코드 1개를 실행할 수 있다는 의미</li>
+        <li>순차적 언어 : 프로그래밍이 싱글 스레드를 가지고 있어서 순서대로 1개씩 실행한다.</li>
+        <li>코드간 동기 : 이전 코드가 실행을 완료해야 다음 코드가 실행된다.</li>
+    </ul>
+    <h2>멀티 스레드와 비동기</h2>
+    <ul>
+        <li>스레드가 생성이 되면 멀티 스레드가 되고 스레드간의 코드는 동기화 되지 않는다.(비동기)</li>
+        <li>multi Tread : 한번에 스레드 개수 만큼 동시에 실행할 수 있다는 의미</li>
+        <li>비순차적 언어 : 동시에 실행되는 코드간에 순서가 없다.</li>
+        <li>코드간 비동기화 : 동시에 실행되는 코드간의 연관이 없음을 의미</li>
+    </ul>
+    <h2>멀티 스레드의 특징</h2>
+    <ul>
+        <li>컴퓨터가 한꺼번에 많은 일을 하게 된다.</li>
+        <li>일을 효율적으로 할 수 있다.(빠르게 일을 끝낸다.)</li>
+        <li>컴퓨터가 너무 많은 일을 할 수도 있다.</li>
+    </ul>
+    <hr>
+    <h2>setTimeout()으로 코드간 비동기 확인하기</h2>
+
+    <div id="root"></div>
+
+<script>
+window.setTimeout(()=>{
+    const p=document.createElement("p");
+    p.append("3초 뒤 첫번째 노드 추가");
+    root.append(p)
+},3000);
+window.setTimeout(()=>{
+    const p=document.createElement("p");
+    p.append("3초 뒤 첫번째 노드 추가");
+    root.append(p)
+},3000);
+</script>
+
+    <h2>멀티 스레드간의 동기화 하기 (콜백 지옥)</h2>
+    <div id="root2"></div>
+<script>
+
+window.setTimeout(()=>{
+    appendP("#root2","3초 뒤 첫번째");
+    window.setTimeout(()=>{
+        appendP("#root2","첫번째가 끝나고 3초뒤")
+    },3000);
+},3000);
+
+window.setTimeout(()=>{
+    appendP("#root2","3초 뒤 두번째");
+},3000);
+
+
+function appendP(selector,textNode){
+    const p=document.createElement("p");
+    p.append(textNode);
+    //append를 성공했는지를 결과로 반환
+    const node=document.querySelector(selector);
+    if(node){
+        node.append(p);
+        return true; 
+    }
+        return false;
+    
+}
+</script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe으로 웹페이지 안에 웹페이지를 추가하자</title>
+</head>
+<body>
+    <h1>iframe으로 웹 페이지(document) 내에 다른 웹 페이지를 표시하자</h1>
+    <iframe src="/l01_intro.html"></iframe>
+    <iframe src="/https://naver.com"></iframe>
+    <iframe src="https://daum.net"></iframe>
+    <hr>
+    <iframe style="width: 100%; height:90vh; border-color:red;" src="l02_attributes.html"
+     name="frame1"></iframe>
+
+     <a href="/l03_attributes.html" target="frame1">
+        l03속성 수업 링크
+    </a>
+     <a href="/l04_global_attributes.html" target="frame1">
+         l04글로벌 수업 링크
+     </a>
+    <br><br><br><br><br>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test JavaScript Form Validation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+</head>
+ 
+<body>
+  <h1>jquery form을 쉽게 다루자</h1>
+ 
+  <form id="theForm" name="theForm" method="get" action="submitData">
+    <table>
+    <tr>
+      <td>Name<span class="red">*</span></td>
+      <td><input type="text" id="name" name="name"/></td>
+      <td id="nameError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Address</td>
+      <td><input type="text" id="address" name="address" /></td>
+      <td id="addressError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Zip Code<span class="red">*</span></td>
+      <td><input type="text" id="zipcode" name="zipcode" /></td>
+      <td id="zipcodeError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Country<span class="red">*</span></td>
+      <td><select id="country" name="country">
+            <option value="" selected>Please select...</option>
+            <option value="AA">AA</option>
+            <option value="BB">BB</option>
+            <option value="CC">CC</option>
+          </select><br /></td>
+      <td id="countryError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Gender<span class="red">*</span></td>
+      <td><input type="radio" name="gender" value="m" />Male
+          <input type="radio" name="gender" value="f" />Female</td>
+      <td id="genderError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Preferences<span class="red">*</span></td>
+      <td><input type="checkbox" name="color" value="r" />Red
+          <input type="checkbox" name="color" value="g" />Green
+          <input type="checkbox" name="color" value="b" />Blue</td>
+      <td id="colorError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Phone<span class="red">*</span></td>
+      <td><input type="text" id="phone" name="phone" /></td>
+      <td id="phoneError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Email<span class="red">*</span></td>
+      <td><input type="text" id="email" name="email" /></td>
+      <td id="emailError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>password (6-8 characters)<span class="red">*</span></td>
+      <td><input type="password" id="password" name="password" /></td>
+      <td id="passwordError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>Verify password<span class="red">*</span></td>
+      <td><input type="password" id="pwVerified" name="pwVerified" /></td>
+      <td id="pwVerifiedError" class="red">&nbsp;</td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" value="SEND" id="submit"/>&nbsp;
+          <input type="reset" value="CLEAR" id="reset"/></td>
+      <td>&nbsp;</td></tr>
+    </table>
+  </form>
+ <script>
+     for(let gender of theForm.gender){ 
+         gender.onchange=function(){
+             let msg="";
+             if(this.value==="m") {
+                 msg="남자";
+                 rgb_color="rgb(50,50,255)";
+
+                }else if(this.value==="f"){
+                    msg="여자";
+                 rgb_color="rgb(255,50,50)";
+                }
+                genderError.innerText=msg;
+                genderError.style.color=rgb_color;
+     }
+    }
+    //${"[name=color]"}
+    $(theForm.color).change(function(e){
+        $(colorError).html("");
+        $("[name=color]:checked").each(function(i,input){
+            let b=document.createElement("b");
+            $(b)
+            .css()("color",$(input).val())
+            .text($(input).val());
+            $(colorError).append(b);
+            
+        });
+    });
+    //onsubmit은 form 이벤트다.
+    // theForm.onsubmit=function(e){ a.prevnetDefalue(0);}
+
+    $(theForm).submit(function(e){
+        e.preventDefault();
+        //form.serialize() => form의 input으로 파라미터 생성
+        console.log($(theForm).serialize());
+        console.log($(this).serializeArray());
+    })
+ </script> 
+</body>
+</html>

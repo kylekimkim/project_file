@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex로 한줄 레이아웃 지정</title>
+</head>
+<style>
+.flex{
+    display: flex;
+}
+
+.cont{
+    
+    border: 3px dotted blue;
+    height: 100px;
+}
+.cont p{
+    /* 플렉스 아이템 */
+    border: 2px dashed;
+    background-color: palegreen;
+}
+.inline_block{
+    white-space: nowrap;
+
+}
+.inline_block p{
+    display: inline-block;
+
+}
+.float_left.cont p{
+    float: left;
+}
+.float_left.cont::after{
+    content:"";
+    display: block;
+    clear: both;
+}
+</style>
+<body>
+    <h1>display:flex를 이용해서 한줄 레이아웃을 지정해 보자</h1>
+    <p>flex로 정의된 요소를 플렉스 박스나 컨테이너 부른다.</p>
+    <h2>display: block > inline-block</h2>
+    <div class="inline_block cont">
+        <p><strong>블록01</strong>
+        </p><p><strong>블록02</strong>
+        </p><p><strong>블록03</strong>
+        </p><p><strong>블록04</strong>
+        </p><p><strong>블록05</strong>
+        </p></div>
+
+    <h2>display: block > float</h2>
+    <div class="float_left cont">
+        <p><strong>블록01</strong></p>
+        <p><strong>블록02</strong></p>
+        <p><strong>블록03</strong></p>
+        <p><strong>블록04</strong></p>
+        <p><strong>블록05</strong></p>
+    </div>
+
+    <h2>display: flex</h2>
+    <div class="flex cont" id="flexTest">
+        <p><strong style="font-size: 10px;">블록01</strong></p>
+        <p><strong style="font-size: 30px;">블록02.</strong></p>
+        <p><strong style="font-size: 25px;">블록03..</strong></p>
+        <p><strong style="font-size: 50px;">블록04...</strong></p>
+        <p><strong style="font-size: 8px;">블록05....</strong></p>
+    </div>
+    <form name="flexChange">
+        <p>
+        <label>
+            width:
+            <input type="range" value="100"
+            oninput="flexTest.style.width=this.value+'%'">
+        </label>
+    </p>
+    <p>
+        <label>height:
+            <input type="button" value="200px"
+                onclick="flexTest.style.height=this.value">
+        </label>
+        <label>height:
+            <input type="button" value="auto"
+                onclick="flexTest.style.height=this.value">
+                <input type="button" value="600px"
+                onclick="flexTest.style.height=this.value">
+                <button type="button" value="600px"
+                onclick="flexTest.style.height=this.value">
+            600px 변경</button>
+        </label>
+    </p>
+        <p>
+            <label>
+                flex-direction:
+                <select name="direction">
+                    <option value="row" selected>row</option>
+                    <option value="row-reverse">row-reverse</option>
+                    <option value="column">column</option>
+                    <option value="column-reverse">column-reverse</option>
+                </select>
+            </label>
+            <p>
+                <label>
+                    flex-wrap:
+                    <select name="wrap">
+                        <option value="nowrap" selected>nowrap(줄바꿈x)</option>
+                        <option value="wrap" >wrap(줄바꿈o)</option>
+                        <option value="wrap-reverse">wrap-reverse(줄바꾸고 역순)</option>
+                    </select>
+                </label>
+            </p>
+        </p>
+        <p>
+            <label>
+                justify-content:
+                <select name="justify">
+                    <option value="flex-start" selected>
+                        flex-start(왼쪽 정렬)
+                    </option>
+                    <option value="flex-end">
+                        flex-end(오른쪽 정렬)
+                    </option>
+                    <option value="center">
+                        center(중앙 정렬)
+                    </option>
+                    <option value="space-between">
+                        space-between
+                    </option>
+                    <option value="space-around">
+                        space-around(일정하게 공백 나누기)
+                    </option>
+                    <option value="space-evenly">
+                        space-evenly
+                    </option>
+                </select>
+            </label>
+        </p>
+        <p>
+            <label>
+                align-items:
+                <select name="align_items">
+                    <option value="stretch" selected>
+                        stretch(박스 높이+정렬x)
+                </option>
+                <option value="center">
+                   center(컨텐츠 높이+중앙)
+                </option>
+                <option value="flex-start" >
+                    flex-start(컨텐츠 높이+top)
+            </option>
+            <option value="flex-end" >
+                flex-end(컨텐츠 높이+bottom)
+        </option>
+        <option value="baseline">
+            baseline(컨텐츠 높이+글자 높이)
+    </option>
+                </select>
+            </label>
+        </p>
+    </form>
+<script>
+    flexChange.direction.onchange=function(){
+        flexTest.style.flexDirection=this.value;
+    }
+flexChange.wrap.onchange=function(){
+    flexTest.style.flexWrap=this.value;
+}
+flexChange.justify.onchange=function(){
+    flexTest.style.justifyContent=this.value;
+}
+flexChange.align_items.onchange=function(){
+    flexTest.style.alignItems=this.value;
+}
+</script>
+    <br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

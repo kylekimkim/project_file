@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document에 내용을 추가하는 필드</title>
+</head>
+<body>
+    <h1>Dom에 내용을 추가하는 필드</h1>
+
+    <ul id="printTest">
+        <li>프린트1
+            <ul>
+                <li>자손의 목록1</li>
+                <li>자손의 목록2</li>
+            </ul>
+        </li>
+        <li><b>프린트2</b></li>
+    </ul>
+
+    <h2>element.innerText="text node"</h2>
+    <p>element.innerText : 해당 요소의 모든 자손의 text node를 문자열로 반환</p>
+    <ul id="domInsert"></ul>
+    <h2>element.innerText="html text"</h2>
+    <p>element.innerHTML : 해당 요소의 자손의 HTML을 문자열로 반환</p>
+    <p>문자열 안에 html 태그를 찾아서 node 개체로 생성</p>
+    <ul id="domInsert2"></ul>
+
+    <h2>document.write("html")</h2>
+    <p>document.write()가 선언된 시점에 node 개체 생성</p>
+    <p>
+        <strong>
+            <script>
+                document.write("<i>body>p>strong>script 안녕!</i>");
+            </script>
+        </strong>
+    </p>
+<script>
+domInsert.innerText="<li>리스트1</li><li>리스트2</li>";
+domInsert2.innerHTML="<li>리스트1</li><li>리스트2</li>";
+
+console.log("printTest.innerText:",printTest.innerText);
+console.log("printTest.innerHTML:",printTest.innerHTML);
+//printTest.innerText="바뀐다."
+console.log(searchTest);
+</script>
+    <p id="searchTest">
+        찾아봐!
+    </p>
+</body>
+</html>

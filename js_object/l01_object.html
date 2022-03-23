@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function sum(a,b){
+    return a+b;
+}//함수
+function Obj(a,b){
+    this.a=a;
+    this.b=b;
+    this.sum=function(){
+        return this.a+this.b;
+    }
+}
+//타입 (설계도) => (프로토타입 : 자바스크립트의 설계도[읽을 수만 있다.]
+class Obj2{
+    a;b;
+    constructor(a,b){
+        this.a=a;
+        this.b=b;
+    }
+    sum(){
+        return this.a+this.b;
+    }
+}//타입(함수형 타입과 동일하다) static sugar(문법적 설탕 : 추가된 기능 없이 편리한 코드 제공)
+const obj = new Obj(10,20); //이것은 타입이 Obj,object 인 객체입니다.
+//typeof data : data의 기본 데이터 타입을 문자열 반환
+console.log(typeof "10");
+console.log(typeof new String("10"));
+//객체 instanceof 타입 : 객체가 타입인지 비교연산
+console.log(new String("10") instanceof String);
+console.log(obj instanceof Obj);
+console.log(obj instanceof Object);
+console.log(obj.prototype); //객체는 타입(설계도)이 아니기 때문에 프로토타입이 없다.
+console.log(obj.__proto__); //__proto__ 객체가 참조하는 프로토타입 링크
+console.log(Obj.prototype);
+console.log(obj.__proto__.__proto__);
+console.log(obj.__proto__.__proto__.__proto__);
+
+
+const obj2 = new Object(); // 이것은 타입이 Object 인 객체 입니다.
+obj2.a=10; obj2.b=20; obj2.sum=function(){return this.a+this.b}
+//리터럴하게 obj2와 똑같이 선언하세요.
+</script>
+</body>
+</html>

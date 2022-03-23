@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 정의 주의사항</title>
+</head>
+<body>
+    <h1>속성과 따옴표</h1>
+    <ul>
+        <li>
+            value="안녕 'html'"
+            <input type="text" value="안녕 'html'" readonly>
+        </li>
+        <li>
+            value='안녕 "html"'
+            <input type="text" value='안녕 "html"' readonly>
+        </li>
+        <li>
+            onfocus 시 this.value+3 :
+            <input type="text" value=30
+                onfocus="this.value=this.value+3"
+            >
+        </li>
+        <li>
+            onfocus 시 Number(this.value)+3 :
+            <input type="text" value=30
+                onfocus="this.value=Number(this.value)+3"
+            >
+        </li>
+        <li>
+            <!-- 글로벌 속성(모든 요소가 동일하게 갖는 속성)으로 
+                문서에서 유일한 이름을 지정 -->
+                <button id="decNum">감소</button>
+            <strong id="num">0</strong>
+            <button id="incNum">증가</button>
+        </li>
+        <script> //자바스크립트 주석
+        //html 문서 안에서 스크립트 작성
+            console.log("브라우저에서 검사하기 한 후 콘솔을 보세요")
+        //id는 노드개체를 참조하는 변수를 생성한다.
+        console.log(incNum.innerText);
+        console.log(num.innerText+10);
+        console.log("11"+10);
+        console.log(Number("11")+10);         
+        console.log(Number(num.innerText)+1);
+        //num.innerText=Number(num.innerText)+1      
+        incNum.onclick=function(){
+            num.innerText=Number(num.innerText)+1;
+        }        
+        //감소 버튼 구현
+        decNum.onclick=function(){
+            num.innerText=Number(num.innerText)-1;
+        }        
+        </script>
+    </ul>
+</body>
+</html>

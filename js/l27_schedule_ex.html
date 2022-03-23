@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>append로 스케줄 관리하기</title>
+</head>
+<body>
+    <h1>append로 스케줄 관리 프로그램 만들기</h1>
+
+    <h2>스케줄 관리 프로그램</h2>
+    <ul id="scheduleApp">
+        <li>일정을 추가해 보세요.</li>
+    </ul>
+    <form name="insertList">
+        <p>
+            <label>일정
+                <input type="time" name="time" id=""
+                    value="06:00">
+                <input type="text" name="schedule" value="일어나기">
+            </label>
+        </p>
+        <p>
+            <button name="insert" type="button">일정을 직접 입력하시오.</button>
+        </p>
+    </form>
+    <p>
+        <button id="objPrint">오브젝트 일정 출력</button>
+    </p>
+    <br>
+    <form name="scheduleList">
+        <p>
+            <label>오브젝트에 일정 및 시간 추가
+                <input type="time" name="objTime" id=""
+                value="06:00">
+                <input type="text" name="objSchedule" value="일어나기">
+            </label>
+        </p>
+        <p>
+            <button id="scheduleObjPrint" type="button">오브젝트 추가</button>
+        </p>
+        
+    </form>
+<script>
+//1. 이전 과정을 그대로 진행
+//2. obj 기반으로 일정을 출력
+//<li> <b>06:00</b> <i>일어나기</i></li>
+//3. form을 제작 후 등록을 누르면 scheduleObj에 필드를 추가하라.
+//4. 하루를 24시가 아니라 1440분으로 보고 key를 설정하라.(시=>분)
+insertList.insert.addEventListener("click",()=>{
+const new_li=document.createElement("li");
+const b_el=document.createElement("b");
+const i_el=document.createElement("i");
+let schedule_value=(insertList.schedule.value);
+let time_value=(insertList.time.value);
+b_el.append(time_value);
+i_el.append(schedule_value);
+new_li.append(b_el," ",i_el);
+scheduleApp.append(new_li);
+});
+
+const scheduleObj={
+    493:"일어나기",
+    511:"씻기",
+    550:"수업 시작",
+    780:"점심식사",
+    1070:"퇴근",
+    1140:"저녁식사",
+    1438:"수면",
+}
+//for in 반복문 (참조형의 데이터 타입의 키를 받아오는 반복문)
+//key 숫자로 사용하면 정렬(문자열 정렬)
+
+console.log(scheduleObj);
+
+cal_time=function(x){
+    if(isNaN(x)){
+        return x;
+    }
+    else{
+        return parseInt(x/60)+":"+(x%60==0?x%60+"0":x%60);
+    }
+}
+objPrint.addEventListener("click",()=>{
+for(let key in scheduleObj){
+const new_li=document.createElement("li");
+const b_el=document.createElement("b");
+const i_el=document.createElement("i");
+    b_el.append(cal_time(key));
+    i_el.append(scheduleObj[key]);
+    new_li.append(b_el," ",i_el);
+    scheduleApp.append(new_li);
+}
+});
+scheduleList.scheduleObjPrint.addEventListener("click",()=>{
+let schedule_value=(scheduleList.objSchedule.value);
+let time_value=(scheduleList.objTime.value);
+scheduleObj[time_value]=schedule_value;
+console.log(time_value);
+console.log(schedule_value);
+console.log(scheduleObj);
+
+});
+
+</script>
+</body>
+</html>

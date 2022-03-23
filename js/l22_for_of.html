@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for of iterable</title>
+</head>
+<body>
+    <h1>iterable과 for of</h1>
+    <script>
+    //for(let a of [Array,String,Map,Set,NodeList,HTMLCollection]){}
+    //iterable 객체(열거형)만 가능한 for of
+    //
+
+    const nums=[10,-20,33,100,4,0];
+    document.write("<h2>for of로 출력</h2>");
+    for(let num of nums){ document.write(num+",");}
+    document.write("<h2>for로 출력</h2>");
+    for(let i=0; i<nums.length; i++){
+        let num=nums[i];
+        document.write(num+",")
+    }
+    </script>
+    <h2>NodeList와 HTMLCollection의 차이</h2>
+    <ul id="iterableTest">
+        <li>100</li>
+        <li>10</li>
+        <li>99</li>
+        <li>-30</li>
+        <li>0</li>
+        <li>999</li>
+        <li>5</li>
+        <li>77</li>
+        <li>-33</li>
+        <li>1</li>
+    </ul>
+<script>
+    const collection_li=(iterableTest.getElementsByTagName("li"));
+    const nodelist_li=(document.querySelectorAll("#iterableTest li"));
+
+    for(let i=0; i<nodelist_li.length; i++){
+        document.write(nodelist_li[i].innerText);
+    }
+    document.write("<br>");
+    for(const li of nodelist_li){
+        document.write(li.innerText);
+    }
+    document.write("<br>");
+    for(const li of collection_li){
+        document.write(li.innerText);
+    }
+
+    //onclick=function(){} callback 함수 (click 이벤트 발생 시 호출되는 함수)
+    nodelist_li.forEach(function(){}) //매개변수로 사용되는 callback 함수(반복 실행 시 호출되는 함수)
+
+    nodelist_li.forEach(function(item_li, index){
+        console.log(index,item_li);
+    })
+</script>
+<h2>두 수를 입력 받아서 그 사이의 정수의 합을 구하세요</h2>
+<p>예 5,10   5+6+7+8+9+10=?</p>
+<form name="forTest">
+    <p>
+        <label>a : <input type="number" name="a" value="0"></label>
+    </p>
+    <p>
+        <label>b : <input type="number" name="b"  value="10"></label>
+    </p>
+    <p> 
+        <button name="totalPlusBtn" type="button">
+            a~b 사이 정수의 합: 
+        </button>
+        <strong id="result">0</strong>
+    </p>
+</form>
+
+<script>
+forTest.totalPlusBtn.onclick=function(){
+    
+    totalPlus=function(x,y){
+        let res=0;
+        let dif=y-x;
+        for(let i=0; i<=dif; i++){
+            res+=x;
+            x++;
+        }
+        return res;
+       
+    }
+    result.innerText=totalPlus(Number(forTest.a.value),Number(forTest.b.value))
+}
+
+</script>
+<h2>입력받은 수의 구구단을 출력하세요  <input type="number" id="gugudan_num" value="2"></h2>
+<ul id="gugudan">
+    <li class="nums"></li>
+    <li class="nums"></li>
+</ul>
+<script>
+    let gugudanEl=window.document.getElementById("gugudan_num");
+    let numsEl=window.document.getElementsByClassName("nums");
+gugudanEl.onchange=function(){
+   numsEl[0].innerText=this.value+ " * 1 ="+this.value*1;
+   numsEl[1].innerText=this.value+ " * 2 ="+this.value*2;
+}
+</script>
+
+</body>
+</html>

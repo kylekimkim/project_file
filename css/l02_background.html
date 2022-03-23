@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css bockground로 요소의 내용을 꾸미자</title>
+</head>
+<body>
+    <h1>css background</h1>
+    <h2>img vs background-image</h2>
+    <div>
+<img src="/css/IU/아이유1.jpg" alt="아이유1" width="100">
+<img src="/css/IU/아이유2.jpg" alt="아이유2" width="100">
+<img src="/css/IU/아이유3.jpg" alt="아이유3" width="100">
+<img src="/css/IU/아이유4.jpg" alt="아이유4" width="100">
+</div>
+<style>
+.img_container p{
+width: 100px;
+height: 100px;
+display: inline-block;
+border: 2px solid red;
+background-size: auto 80px;
+background-repeat: repeat;
+/* 100px 100px, cover, contain (opject-fit) */
+}
+</style>
+<h2>background-size: auto 80px(width height)</h2>
+<div class="img_container">
+<p style="background-image: url('/css/IU/아이유1.jpg');">
+아이유1
+</p>
+<p style="background-image: url('/css/IU/아이유2.jpg');">
+아이유2
+</p>
+<p style="background-image: url('/css/IU/아이유3.jpg');">
+아이유3
+</p>
+
+</div>
+<h2>background-position:</h2>
+<div class="img_container">
+<p id="imgPosChange" style=" width:300px; height: 300px;
+background-image: url('/css/IU/아이유1.jpg');
+background-repeat: no-repeat;
+/* background-position: bottom right;*/
+background-position: 50% 100%;
+background-color: rosybrown;
+transition: background-position 1s;"> 
+
+background-position: (top bottom center,X)
+(left right center,Y)
+</p>
+<label>
+x:
+<select id="selectPosX">
+    <option value="left">left</option>
+    <option value="right">right</option>
+    <option value="center">center</option>
+    <option value="50%">50%</option>
+    <option value="0">0</option>
+    <option value="100%">100%</option>
+    <option value="50px">50px</option>
+</select>
+</label>
+<label>
+y:
+<input type="text" id="selectPosY" 
+list="posY" size="7">
+<datalist id="posY">
+    <option value="top">
+    <option value="bottom">
+    <option value="center">
+</datalist>
+</label>
+<script>
+selectPosX.onchange=function(){
+imgPosChange.style.backgroundPositionX=this.value;
+}
+//oninput은 입력할 때마다 이벤트 발생
+//selectPosY.oninput=function(){
+//   console.log("oninput:",this.value);
+//}
+//onchange는 입력요소에서 벗어날때(blur) or select가 발생할 때
+selectPosY.onchange=function(){
+console.log("onchange:",this.value);
+imgPosChange.style.backgroundPositionY=this.value;
+}
+</script>
+
+</div>
+<h2>background-size: cover</h2>
+
+<div style="width:300px; height: 400px;
+background-image: url(/CSS/IU/아이유2.jpg);
+background-size: cover;">
+cover 지정됨 
+</div>
+
+<h2>background-size: contain</h2>
+
+<div style="width:300px; height: 400px;
+border: 1px solid red;;
+background-image: url(/CSS/IU/아이유2.jpg);
+background-size: contain;">
+contain 지정됨 
+</div>
+<h2>background-size: 300px 400px(fill)</h2>
+
+<div style="width:300px; height: 400px;
+border: 1px solid red;;
+background-image: url(/CSS/IU/아이유2.jpg);
+background-size: 300px 400px;">
+
+</div>
+<h2>background-origin(box-sizing 비슷): content-box</h2>
+
+<div style="width:300px; height: 400px;
+padding:50px; box-sizing: border-box;
+border: 10px dotted red;
+background-image: url(/CSS/IU/아이유2.jpg);
+background-size: 300px 400px;
+background-repeat: no-repeat;
+background-origin: padding-box;">
+
+</div>
+<h2>background-origin: (padding,content,border)-box</h2>
+<h2>background-clip: (padding,content,border)-box, text</h2>
+<div id="imgOriginChange" style="width:300px; height: 400px;
+padding:50px; box-sizing: border-box;
+border: 10px dotted red;
+background-image: url(/CSS/IU/아이유2.jpg);
+background-size: 300px 400px;
+background-repeat: no-repeat;
+font-size: 2em;
+font-weight: bolder;
+text-transform: uppercase;
+color:transparent;
+text-shadow: 1px 1px 3px black;">
+content-box
+</div>
+<form name="bgChange">
+<p>
+background-origin <br>
+<label>
+    padding-box:
+    <input type="radio" name="origin" value="padding-box"checked>
+</label>
+<label>
+    content-box:
+    <input type="radio" name="origin" value="content-box">
+</label>
+<label>
+    border-box:
+    <input type="radio" name="origin" value="border-box">
+</label>
+</p>
+<p>
+background-clip <br>
+<label>
+    padding-box:
+    <input type="radio" name="clip" value="padding-box">
+</label>
+<label>
+    content-box:
+    <input type="radio" name="clip" value="content-box">
+</label>
+<label>
+    border-box:
+    <input type="radio" name="clip" value="border-box" checked>
+</label>
+<label>
+    text:
+    <input type="radio" name="clip" value="text">
+</label>
+</p>
+</form>
+<script>
+//console.log(bgChange.origin[0]);
+bgChange.origin[0].onchange=function(){
+imgOriginChange.style.backgroundOrigin=this.value;
+}
+bgChange.origin[1].onchange=function(){
+imgOriginChange.style.backgroundOrigin=this.value;
+}
+bgChange.origin[2].onchange=function(){
+imgOriginChange.style.backgroundOrigin=this.value;
+}
+bgChange.clip[0].onchange=function(){
+imgOriginChange.style.backgroundClip=this.value;
+}
+bgChange.clip[1].onchange=function(){
+imgOriginChange.style.backgroundClip=this.value;
+}
+bgChange.clip[2].onchange=function(){
+imgOriginChange.style.backgroundClip=this.value;
+}
+bgChange.clip[3].onchange=function(){
+imgOriginChange.style.color="transparent";
+imgOriginChange.style.webkitBackgroundClip=this.value;
+}
+</script>
+<h2>background-repeat 이미지 반복</h2>
+<div id="bgRepeatChange" style="
+height:300px;
+background-image: url('/css/IU/아이유1.jpg');
+background-color: chartreuse;
+background-size: 100px;
+">
+이미지 반복 방법 변경 
+</div>
+<p>요소 크기 변환:
+<br>
+<label>width=
+0 <input type="range" min="0" max="100" 
+value="100"
+oninput="bgRepeatChange.style.width=this.value+ '%'"> 100%
+</label>
+<br>
+<label>height:
+0 <input type="range" min="0" max="300" value="300"
+onchange="bgRepeatChange.style.height=this.value+ 'px'"> 300px
+</label>
+<br>
+<label>
+repeat:
+<select
+onchange="bgRepeatChange.style.backgroundRepeat=this.value">
+<option value="no-repeat">no-repeat</option>
+<option value="repeat" selected>repeat</option>
+<option value="repeat-x">repeat-x</option>
+<option value="repeat-y">repeat-y</option>
+<option value="space">space</option>
+<option value="round">round</option>
+</select>
+</label>
+</p>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+</body>
+</html>

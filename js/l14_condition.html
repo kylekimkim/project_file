@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문을 작성하자</title>
+</head>
+<body>
+    <h1>비교 연산자와 그 결과인 부울 타입을 이용해 조건문을 작성하자</h1>
+<script>
+//if(조건)(실행)
+//if() == boolean() 결과와 같다.
+//조건 결과가 true면 블록을 실행하고 false면 블록을 무시한다.
+
+let input_name="홍길동";
+//입력 받은 이름이 2글자 이상 되어야 실행되는 블록을 만드세요!
+
+console.log(input_name.length);
+if(input_name.length>=2){
+    document.write(`<h2>${input_name} 반갑습니다!</h2>`)  
+}
+if(input_name.length<2){
+    window.alert("2글자 이상 입력하세요!")
+}
+
+let input_age="22";
+//20살 이상만 입장 가능 20살 미만일때는 입장 불가(출력)
+
+if(input_age>=20)
+{
+    document.write(`<h2>${input_age} 나이님 입장가능</h2>`)
+
+}
+if(input_age<20){
+    document.write(`<h2>${input_age} 나이님 입장불가</h2>`)
+}
+//default로 else문 대신하기
+document.write("<hr>")
+let msg="입장불가";
+
+if(input_age>=20){msg="입장가능"}
+document.write(`<h2>${input_age} 나이님 ${msg}</h2>`)
+
+</script>
+
+<p>당신의 나이는: <input type="text" id="user_age"></p>
+<p>당신은 <strong id="u_msg"></strong> 입니다.</p>
+<ul>
+    <li>성인 >= 20</li>
+    <li>미성년 < 20 </li>
+    <li>노인> => 60</li>
+    <li>중년> => 40</li>
+    <li>다시입력 > 130</li>
+    <li>다시입력 < 1</li>
+</ul>
+<script>
+user_age.onchange=msgPrint;
+
+function msgPrint(){
+    //alert(user_age.id+"는"+this.value+"입니다.");
+    let age=this.value;
+    let msg="당신("+age+")은 성인";
+    //u_msg.innerText=msg;
+    if(Number.isNaN(Number(age))){
+        u_msg.innerText="다시 입력하세요!"
+    }
+    else{
+    if(age>=20 && age<40){
+        u_msg.innerText=msg;
+    }
+    else if(age < 20 &&age>=1){
+        u_msg.innerText="당신("+age+")은 미성년";
+    }
+    else if(age<1 || age>130){
+        u_msg.innerText="나이가 이상합니다!"
+    }
+    else if(age>=40 && age < 60){
+        u_msg.innerText="당신("+age+")은 중년";
+    }
+
+    else if(age>=60 && age <= 130){
+        u_msg.innerText="당신("+age+")은 노인";
+    }
+    }
+}
+//"","  ", null => 0 형 변환
+//"text", undefined, Object type 
+let txt=Number(undefined);
+console.log(Number(null));
+console.log(Number(undefined));
+console.log(Number(""));
+console.log(Number("  "));
+console.log(Number("  20  "));
+console.log(isNaN(""));
+console.log(isNaN(txt));
+
+//"    "=> 입력하지 않은 것으로 간주해야 하지만 0으로 형 변환된다.
+console.log(`"" == "    ":`,""=="    ");
+console.log(`"" == "    ".trim():`,""=="    ".trim());
+
+console.log("isNaN('dd')",isNaN("dd"));
+console.log("isNaN(undefined)",isNaN(undefined));
+console.log("isNaN(' ')",isNaN(" "));
+console.log("isNaN(null)",isNaN(null));
+
+
+
+//Nubmer.isNaN(data) data가 NaN일때만 true
+//isNaN(data) data를 수로 파싱했을 때 NaN일때만 true
+
+console.log("Number.isNaN(NaN)",Number.isNaN(NaN));
+console.log("Number.isNaN('dd'-1)",Number.isNaN("dd"-1));
+console.log("Number.isNaN(0/0)",Number.isNaN(0/0));
+
+console.log("Number.isNaN('13')",Number.isNaN("13"));
+
+console.log("Number.isNaN('dd')",Number.isNaN("dd"));
+console.log("Number.isNaN(undefined)",Number.isNaN(undefined));
+console.log("Number.isNaN(' ')",Number.isNaN(" "));
+console.log("Number.isNaN(null)",Number.isNaN(null));
+
+</script>
+</body>
+</html>

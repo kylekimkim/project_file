@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>number 응용 문제</title>
+</head>
+<style>
+.box{
+    background-color: blueviolet;
+}
+
+</style>
+<body>
+    <h1>number와 연산 응용 문제</h1>
+    <h2>#boxsizeChange 요소를 (viewPort)화면의 가로 세로 비율로 조절 하세요.</h2>
+    <p>innerWidth와 innerHeight를 이용할 것</p>
+    <div class="box" id="boxSizeChange">
+        box 사이즈 조절
+    </div>
+    <p>
+        가로: <input type="range" value="100" id="boxWidth">
+        
+    </p>
+    <p>
+        세로: <input type="range" value="100" id="boxHeight">
+    </p>
+    <p>viewPort_width:
+
+        <script>
+            //100vw
+            document.write(window.innerWidth+"px");
+        </script>
+    </p>
+    <p>
+        viewPort_Height:
+
+        <script>
+            //100vh
+            document.write(window.innerHeight+"px");
+        </script>
+    </p>
+    <script>
+        boxWidth.onchange=function(){
+                boxSizeChange.style.width=window.innerWidth*(boxWidth.value/100)+"px";
+            }
+
+        boxHeight.onchange=function(){
+            boxSizeChange.style.height=window.innerHeight*(boxHeight.value/100)+"px";
+            }
+    </script>
+    <h2>계산기를 만드세요!</h2>
+    <p>버튼을 누르면 버튼의 연산을 하고 결과를 #result에 출력하세요</p>
+    <form name="calculator">
+        <p>
+           x:<input type="number" name="x" value="0">
+        </p>
+        <p>
+            y:<input type="number" name="y" value="0">
+         </p>
+         <p>
+             <strong id="result">0</strong>
+         </p>
+         <button type="button" name="add">x+y=</button>
+         <button type="button" name="sub">x-y=</button>
+         <button type="button" name="div">x/y=</button>
+         <button type="button" name="mul">x*y=</button>
+         <button type="button" name="mod">x%y=</button>
+         <button type="button" name="pow">x**y=</button>
+    </form>
+<script>
+calculator.add.onclick=function(){
+    console.log("x:",calculator.x.value);
+    console.log("y:",calculator.y.value);
+    console.log("result:",result.innerText);
+    result.innerText=Number(calculator.x.value)+Number(calculator.y.value);
+}
+calculator.sub.onclick=function(){
+    console.log("x:",calculator.x.value);
+    console.log("y:",calculator.y.value);
+    console.log("result:",result.innerText);
+    result.innerText=Number(calculator.x.value)-Number(calculator.y.value);
+}
+calculator.div.onclick=function(){
+    console.log("x:",calculator.x.value);
+    console.log("y:",calculator.y.value);
+    console.log("result:",result.innerText);
+    result.innerText=Number(calculator.x.value)/Number(calculator.y.value);
+}
+calculator.mul.onclick=function(){
+    console.log("x:",calculator.x.value);
+    console.log("y:",calculator.y.value);
+    console.log("result:",result.innerText);
+    result.innerText=Number(calculator.x.value)*Number(calculator.y.value);
+}
+calculator.mod.onclick=function(){
+    console.log("x:",calculator.x.value);
+    console.log("y:",calculator.y.value);
+    console.log("result:",result.innerText);
+    result.innerText=Number(calculator.x.value)%Number(calculator.y.value);
+}
+calculator.pow.onclick=function(){
+    console.log("x:",calculator.x.value);
+    console.log("y:",calculator.y.value);
+    console.log("result:",result.innerText);
+    result.innerText=Number(calculator.x.value)**Number(calculator.y.value);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+[
+    {
+        "comment_num": "1",
+        "product_num": "BQ5448-104",
+        "id": "AAA",
+        "delivery_grade": 4,
+        "product_grade": 4,
+        "seller_grade": 4,
+        "img": "1_comment_AAA.jps",
+        "title":"꽤",
+        "contents": "꽤 튼튼한 편입니다.",
+        "date" : "2022-03-07T09:20:00",
+        "lock" : false
+     
+    },
+    {
+        "product_num": "BQ5448-104",
+        "id": "user2",
+        "name": "철수",
+        "grade": 3,
+        "comment": "배송이 별로입니다",
+        "date" : "2022-03-07T09:10:00"
+     
+    },
+    {
+        "product_num": "BQ5448-104",
+        "id": "user3",
+        "name": "영희",
+        "grade": 5,
+        "comment": "완전 이뻐요!",
+        "date" : "2022-03-06T09:10:00"
+     
+    }
+]

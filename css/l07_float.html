@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float로 텍스트에 블럭을 추가하자</title>
+</head>
+<body>
+    <h1>float로 텍스트(인라인)에 블럭을 신문(사설)처럼 추가해보자</h1>
+
+    <h2>text 안에 img(inline-block)</h2>
+    <div>
+        <img src="/css/IU/아이유1.jpg" alt="아이유1"
+         width="50">
+        float이 위치 지정되는 법
+위에서 말한 바와 같이, 요소가 부동되면 문서의 보통 흐름에서 빠집니다. 
+<img src="/css/IU/아이유2.jpg" alt="아이유2"
+         width="50">
+         부동된 요소는 포함 박스나 다른 부동된 요소의 가장자리(edge)에 닿을 때까지 좌나 우로 이동됩니다.
+
+아래 이미지에는, 빨간 사각형이 세 개 있습니다. 둘은 좌에 부동되고 하나는 우에 부동됩니다. "왼쪽" 두 번째 빨간 사각형은 첫 번째 사각형 오른쪽에 놓임을 주의하세요. 추가 사각형은 그들이 포함 박스를 채울 때까지 계속해서 오른쪽으로 쌓입니다. 그 후엔 다음 줄로 넘어갑니다(wrap).
+<img src="/css/IU/아이유3.jpg" alt="아이유3"
+width="100">
+</div>
+<hr>
+<h2>text 안에 float(left,right)</h2>
+    <div>
+        <div style="border: 1px solid;
+                    height: 100px;
+                    background-color: blueviolet;
+                    float: left;
+                    background-image: url('/css/IU/아이유1.jpg');
+                    background-size: contain;"
+        >아이유2</div>
+        <div style="border: 1px solid;
+                    width: 100px;
+                    height: 100px;
+                    background-color: cadetblue;
+                    float:right;"   
+        >아이유3 <br> absolute</div>
+        float이 위치 지정되는 법
+위에서 말한 바와 같이, 요소가 부동되면 문서의 보통 흐름에서 빠집니다. 
+         부동된 요소는 포함 박스나 다른 부동된 요소의 가장자리(edge)에 닿을 때까지 좌나 우로 이동됩니다.
+
+아래 이미지에는, 빨간 사각형이 세 개 있습니다. 둘은 좌에 부동되고 하나는 우에 부동됩니다. "왼쪽" 두 번째 빨간 사각형은 첫 번째 사각형 오른쪽에 놓임을 주의하세요. 추가 사각형은 그들이 포함 박스를 채울 때까지 계속해서 오른쪽으로 쌓입니다. 그 후엔 다음 줄로 넘어갑니다(wrap).
+</div>
+<hr>
+<style>
+    .container{
+        border: 5px dashed darkblue;
+    }
+    .box{
+        border: 2px solid salmon;
+        width: 100px;
+        height: 100px;
+        background-color: burlywood;
+    }
+    </style>
+    <h2>float 문제점1: float로 지정한 요소는 부모가
+        부피를 인지하지 못한다.
+    </h2>
+<div class="container">
+    <div class="box" style="float:left;">float:left</div>
+    <div class="box" style="float:right;">float:right</div>
+    float이 위치 지정되는 법 위에서 말한 바와 같이, 요소가 부동되면 문서의 보통 흐름에서 빠집니다.
+</div>
+<br><br><br>
+<h2>float 문제점2: 인접한 모든 텍스트에 간섭한다.</h2>
+<div class="container">
+<div class="box" style="float:left;">float:left</div>
+<div class="box" style="float:right;">float:right</div>
+float이 위치 지정되는 법 위에서 말한 바와 같이, 요소가 부동되면 문서의 보통 흐름에서 빠집니다.
+</div>
+<div class="container">
+    안녕하세요! 빅데이터 수업입니다.
+</div>
+<br><br>
+<h2>문제1 해결: 부모 노드에 overflow: visible을 제외한 값을
+     지정
+</h2>
+<div class="container" style="overflow:hidden;">
+    <div class="box" style="float: left;">
+        flaot: left; 1
+    </div>
+    <div class="box" style="float: left;">
+        flaot: left; 2
+    </div>
+    <div class="box" style="float: left;">
+        flaot: left; 3
+    </div>
+</div>
+
+<h2>float 문제점2 해경: clear(left,right,both)로 간섭을 막는다.</h2>
+<div class="container">
+<div class="box" style="float:left;">float:left</div>
+<div class="box" style="float:right;">float:right</div>
+float이 위치 지정되는 법 위에서 말한 바와 같이, 요소가 부동되면 문서의 보통 흐름에서 빠집니다.
+</div>
+<div class="container" style="clear:both;">
+    안녕하세요! 빅데이터 수업입니다.
+</div>
+
+<h2>의사 요소 (::before,::after)</h2>
+<style>
+#test::before{
+    content:"^^";
+}
+#test::after{
+    content:" ";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: aqua;
+    border: 3px solid;
+}
+</style>
+<div id="test">
+    안녕
+</div>
+<style>
+.clearfix::after{
+    content: "";
+    display: block;
+    clear:both;
+}
+</style>
+<h2>문제1 해결: 의사요소::after 지정에 부피가 없고 clear 속성을
+    갖는 block을 생성
+</h2>
+<div class="container clearfix">
+   <div class="box" style="float: right;">
+       flaot: left; 1
+   </div>
+   <div class="box" style="float: right;">
+       flaot: left; 2
+   </div>
+   <div class="box" style="float: right;">
+       flaot: left; 3
+   </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
